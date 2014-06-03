@@ -1,0 +1,94 @@
+﻿@model HeadacheCDSSWeb.Models.PatBasicInfor
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Regionview.cshtml";
+}
+@{
+    var items = new SelectList(new[]
+        { 
+           new SelectListItem {Text = "", Value = ""},
+            new SelectListItem {Text = "男", Value = "男"},
+            new SelectListItem {Text = "女", Value = "女"},
+        }, "Text", "Value");
+}
+@{
+    var diagnosis = new SelectList(new[]
+        {  new SelectListItem {Text = "", Value = ""},
+            new SelectListItem {Text = "很可能的偏头痛", Value = "很可能的偏头痛"},
+            new SelectListItem {Text = "无先兆性偏头痛", Value = "无先兆性偏头痛"},
+             new SelectListItem {Text = "先兆性偏头痛", Value = "先兆性偏头痛"},
+             new SelectListItem {Text = "偶尔发作性紧张型头痛", Value = "偶尔发作性紧张型头痛"},
+            new SelectListItem {Text = "频繁阵发性紧张型头痛", Value = "频繁阵发性紧张型头痛"},
+             new SelectListItem {Text = "丛集性头痛或其他三叉自主神经痛", Value = "丛集性头痛或其他三叉自主神经痛"},
+             new SelectListItem {Text = "药物滥用引起的头痛", Value = "药物滥用引起的头痛"},
+            new SelectListItem {Text = "慢性偏头痛", Value = "慢性偏头痛"},
+             new SelectListItem {Text = "慢性紧张型头痛", Value = "慢性紧张型头痛"},
+            new SelectListItem {Text = "新发每日持续性头痛", Value = "新发每日持续性头痛"},
+             new SelectListItem {Text = "其他慢性每日头痛", Value = "其他慢性每日头痛"},
+              new SelectListItem {Text = "其他原发性头痛", Value = "其他原发性头痛"},
+        }, "Text", "Value");
+}
+
+<div id="content" style=" display:inline">
+    <div id="query">
+        @using (Ajax.BeginForm("Query", new AjaxOptions { UpdateTargetId = "List", HttpMethod = "POST", InsertionMode = InsertionMode.Replace, OnSuccess = "ListPage" }))
+        {
+            <h2 class="title">
+                查询病人</h2>
+            <div id="queryinfo">
+            <ul>
+                <li style=" float:left"><span>姓名</span>
+                    @Html.TextBox("name")
+                </li>
+                <li><span>性别</span>
+                    @Html.DropDownList("sex", @items)
+                </li>
+                <li style=" float:left"><span>就诊日期</span><input type="text" name="date" id="date" />
+                </li>
+                <li><span>诊断结论</span> @Html.DropDownList("diagnosis", @diagnosis)
+                </li>
+            </ul></div>
+           <div  id="but"><p><input type="submit" value="查询病人" /></p></div>    
+        }
+    </div>
+
+    <div id="sidebar">
+    <div id="List">
+    </div>
+     <div class="pagination">
+        <a href="#" class="first" data-action="first">&laquo;</a> 
+        <a href="#" class="previous" data-action="previous">&lsaquo;</a>
+        <input type="text" readonly="readonly" data-max-page="40" />
+        <a href="#" class="next" data-action="next">&rsaquo;</a>
+        <a href="#" class="last" data-action="last">&raquo;</a>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $(".pagination").hide();//隐藏有效（注释掉下面的function测试）
+        $("#date").Zebra_DatePicker();
+    });
+    function ListPage() {
+       $(".page").find("tr").hide(); //查询到的病人姓名分页显示
+       $(".pagination").show();
+        $("tr:lt(6)").addClass("current").show();
+        var num = Math.ceil($("tr.trow").length /5);
+        // 分页插件jqPagination 
+        $('.pagination').jqPagination({
+            max_page: num,
+            paged: function (page) {
+                $(".current").hide();
+                var start = (page - 1) * 5;
+                for (var i = 0; i < 5; i++) {
+                    $("tr.thead").addClass("current").show();   
+                    $("tr.trow:eq(" + start + ")").addClass("current").show();
+                    start = start + 1;
+                }
+                // do something with the page variable
+            }
+        })
+    }
+</script>
+

@@ -1,0 +1,18 @@
+﻿@model HeadacheCDSSWeb.Models.DoctorAccount
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LoginLayout.cshtml";
+}
+<div id="main">
+    @using (Html.BeginForm())
+    {  
+        <ul>
+            <li><span>用户名</span>
+                @Html.EditorFor(model => model.UserName)</li>
+            <li><span>密码</span>
+                @Html.PasswordFor(model => model.PassWord)</li>
+        </ul>
+        <input class="button" type="submit" value="登录" />  
+    }
+</div>
+<div id="msg">@ViewBag.Message</div>

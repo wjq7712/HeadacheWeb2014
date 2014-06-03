@@ -1,0 +1,486 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{81D54ED8-C4C6-4BD6-B436-20A2E78529E9}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HeadacheCDSSWeb</RootNamespace>
+    <AssemblyName>HeadacheCDSSWeb</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\wjq（来自GitHup）\HeadacheCDSS\HeadacheCDSSWeb\HeadacheCDSSWeb\bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\DAccountController.cs" />
+    <Compile Include="Controllers\DiagnosisController.cs" />
+    <Compile Include="Controllers\EnterPatInforController.cs" />
+    <Compile Include="Controllers\RegionController.cs" />
+    <Compile Include="Controllers\ViewPatRecordController.cs" />
+    <Compile Include="Filters\AuthorizeActionFilter.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Diagnosis.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DiaryDataPoint.cs" />
+    <Compile Include="Models\DisabilityEvaluation.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DoctorAccount.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GADQuestionaire.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HDAcompanion.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HDheadacheplace.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HDHeadacheProdrome.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HDMitigatingFactors.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HDPrecipitatingFactor.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HeadacheAccompany.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HeadacheDiagnosis.cs" />
+    <Compile Include="Models\HeadacheDiary.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HeadacheFamilyMember.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HeadachePlace.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HeadacheProdrome.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JsonHelper.cs" />
+    <Compile Include="Models\Lifestyle.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MedicationAdvice.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MitigatingFactors.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NationalCenterAccount.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObjectMapper.cs" />
+    <Compile Include="Models\OtherFamilyDisease.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PatBasicInfor.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PatinfoForRe.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PatOperation.cs" />
+    <Compile Include="Models\PHQuestionaire.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PrecipitatingFactor.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PremonitorySymptom.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PreviousDrug.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PreviousExam.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PrimaryHeadacheOverView.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RegionalCenterAccount.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RegionViewData.cs" />
+    <Compile Include="Models\ReportData.cs" />
+    <Compile Include="Models\SecondaryHeadacheSymptom.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SleepStatus.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserOperation.cs" />
+    <Compile Include="Models\HeadacheDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HeadacheDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HeadacheDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HeadacheModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HeadacheModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VisitData.cs" />
+    <Compile Include="Models\VisitDataOperation.cs" />
+    <Compile Include="Models\VisitRecord.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\localhost\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\images\accodion_bg.png" />
+    <Content Include="Content\images\arrow.png" />
+    <Content Include="Content\images\box1.png" />
+    <Content Include="Content\images\box2.png" />
+    <Content Include="Content\images\box3.png" />
+    <Content Include="Content\images\calendar.png" />
+    <Content Include="Content\images\chart.png" />
+    <Content Include="Content\images\circle-blue.png" />
+    <Content Include="Content\images\circle-orange.png" />
+    <Content Include="Content\images\click-button.png" />
+    <Content Include="Content\images\Content.png" />
+    <Content Include="Content\images\delete.png" />
+    <Content Include="Content\images\dropdown.png" />
+    <Content Include="Content\images\foot-2.png" />
+    <Content Include="Content\images\foot.png" />
+    <Content Include="Content\images\gnome_edit_delete.png" />
+    <Content Include="Content\images\head.png" />
+    <Content Include="Content\images\header.png" />
+    <Content Include="Content\images\hover-button.png" />
+    <Content Include="Content\images\login\content.png" />
+    <Content Include="Content\images\login\footer.png" />
+    <Content Include="Content\images\login\head.png" />
+    <Content Include="Content\images\login\login.png" />
+    <Content Include="Content\images\main_bg.png" />
+    <Content Include="Content\images\menu_bg.png" />
+    <Content Include="Content\images\normal-button.png" />
+    <Content Include="Content\images\notepad.png" />
+    <Content Include="Content\images\ocx_bg.png" />
+    <Content Include="Content\images\peoplehead.jpg" />
+    <Content Include="Content\images\phead.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\images\regioncontent833-960new.png" />
+    <Content Include="Content\images\report.png" />
+    <Content Include="Content\images\sidebar.png" />
+    <Content Include="Content\images\split.png" />
+    <Content Include="Content\images\tab-selected.png" />
+    <Content Include="Content\images\title.png" />
+    <Content Include="Content\images\triangle.png" />
+    <Content Include="Content\images\wait.gif" />
+    <Content Include="Content\images\wbox\close.png" />
+    <Content Include="Content\images\wbox\close0.png" />
+    <Content Include="Content\images\wbox\loading.gif" />
+    <Content Include="Content\images\wbox\titleBG.png" />
+    <Content Include="Content\images\wbox\titleBG0.png" />
+    <Content Include="Content\images\wbox\titleBG1.png" />
+    <Content Include="Content\images\wbox\wbox.gif" />
+    <Content Include="Content\images\wbox\wbox.png" />
+    <Content Include="Content\images\wbox\wbox2.gif" />
+    <Content Include="Content\images\二维码.png" />
+    <Content Include="Content\indexstyle.css" />
+    <Content Include="Content\jqpagination.css" />
+    <Content Include="Content\jquery.jqplot.min.css" />
+    <Content Include="Content\Loginstyle.css" />
+    <Content Include="Content\patstyle.css" />
+    <Content Include="Content\Popup.css" />
+    <Content Include="Content\RecordViewstyle.css" />
+    <Content Include="Content\images\regioncontent833-960.png" />
+    <Content Include="Content\Regionview.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\wbox-min.css" />
+    <Content Include="Content\zebra_datepicker.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Models\HeadacheModel.edmx.sql" />
+    <Content Include="Scripts\Diagnosis\ReporterOperation.js" />
+    <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.5.1.js" />
+    <Content Include="Scripts\jquery-1.5.1.min.js" />
+    <Content Include="Scripts\jquery-1.7.2.min.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery.jqpagination.js" />
+    <Content Include="Scripts\jquery.jqpagination.min.js" />
+    <Content Include="Scripts\jquery.json-2.4.js" />
+    <Content Include="Scripts\jquery.json-2.4.min.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\modernizr-1.7.js" />
+    <Content Include="Scripts\modernizr-1.7.min.js" />
+    <Content Include="Scripts\plugins\bootstrap.js" />
+    <Content Include="Scripts\plugins\bootstrap.min.js" />
+    <Content Include="Scripts\plugins\excanvas.js" />
+    <Content Include="Scripts\plugins\jqplot.barRenderer.min.js" />
+    <Content Include="Scripts\plugins\jqplot.canvasAxisLabelRenderer.min.js" />
+    <Content Include="Scripts\plugins\jqplot.canvasTextRenderer.min.js" />
+    <Content Include="Scripts\plugins\jqplot.categoryAxisRenderer.min.js" />
+    <Content Include="Scripts\plugins\jqplot.donutRenderer.min.js" />
+    <Content Include="Scripts\plugins\jqplot.pieRenderer.min.js" />
+    <Content Include="Scripts\plugins\jquery-1.8.3.js" />
+    <Content Include="Scripts\plugins\jquery.jqplot.min.js" />
+    <Content Include="Scripts\plugins\jquery.maphilight.js" />
+    <Content Include="Scripts\plugins\jquery.min.js" />
+    <Content Include="Scripts\wbox-min.js" />
+    <Content Include="Scripts\wbox.js" />
+    <Content Include="Scripts\zebra_datepicker.js" />
+    <Content Include="Views\Shared\PatHeadachePlace.cshtml" />
+    <Content Include="Views\Shared\RecordViewLayout.cshtml" />
+    <Content Include="Views\ViewPatRecord\Index.cshtml" />
+    <Content Include="Views\Shared\Diagnosis_Layout.cshtml" />
+    <Content Include="Views\Region\Index.cshtml" />
+    <Content Include="Views\Shared\Regionview.cshtml" />
+    <Content Include="Views\Shared\PatlistForRe.cshtml" />
+    <Content Include="Views\Diagnosis\Push.cshtml" />
+    <None Include="Web References\localhost\InferenceService.wsdl" />
+    <None Include="Web References\localhost\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="_bin_deployableAssemblies\System.Web.Mvc.dll" />
+    <None Include="_bin_deployableAssemblies\WebMatrix.WebData.xml" />
+    <None Include="_bin_deployableAssemblies\WebMatrix.WebData.dll" />
+    <None Include="_bin_deployableAssemblies\WebMatrix.Data.xml" />
+    <None Include="_bin_deployableAssemblies\WebMatrix.Data.dll" />
+    <None Include="_bin_deployableAssemblies\System.Web.WebPages.xml" />
+    <None Include="_bin_deployableAssemblies\System.Web.WebPages.Razor.xml" />
+    <None Include="_bin_deployableAssemblies\System.Web.WebPages.Razor.dll" />
+    <None Include="_bin_deployableAssemblies\System.Web.WebPages.dll" />
+    <None Include="_bin_deployableAssemblies\System.Web.WebPages.Deployment.xml" />
+    <None Include="_bin_deployableAssemblies\System.Web.WebPages.Deployment.dll" />
+    <None Include="_bin_deployableAssemblies\System.Web.WebPages.Administration.dll" />
+    <None Include="_bin_deployableAssemblies\System.Web.Razor.xml" />
+    <None Include="_bin_deployableAssemblies\System.Web.Razor.dll" />
+    <None Include="_bin_deployableAssemblies\System.Web.Helpers.xml" />
+    <None Include="_bin_deployableAssemblies\System.Web.Helpers.dll" />
+    <None Include="_bin_deployableAssemblies\NuGet.Core.dll" />
+    <None Include="_bin_deployableAssemblies\Microsoft.Web.Infrastructure.xml" />
+    <None Include="_bin_deployableAssemblies\Microsoft.Web.Infrastructure.dll" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\localhost\InferenceService.disco" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\LoginLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\HeadacheModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HeadacheModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DAccount\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\PatLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Models\HeadacheDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>HeadacheDataModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Models\HeadacheDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>HeadacheDataModel.cs</LastGenOutput>
+    </None>
+    <Content Include="Views\EnterPatInfor\Index.cshtml" />
+    <Content Include="Views\Diagnosis\Index.cshtml" />
+    <Content Include="Views\Shared\PatList.cshtml" />
+    <Content Include="Views\Shared\HeadacheDiaryView.cshtml" />
+    <Content Include="Views\Shared\VisitContentView.cshtml" />
+    <Content Include="Views\Diagnosis\ContinueVisit.cshtml" />
+    <Content Include="Views\Shared\DiaryReportView.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://localhost/HeadacheInferenceService/InferenceService.asmx%3fop=DoInference">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\localhost\</RelPath>
+      <UpdateFromURL>http://localhost/HeadacheInferenceService/InferenceService.asmx%3fop=DoInference</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>HeadacheCDSSWeb_localhost_InferenceService</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\bootsrap\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>19367</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

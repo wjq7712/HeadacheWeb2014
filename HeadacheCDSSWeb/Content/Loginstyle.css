@@ -1,0 +1,121 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+	margin: 0;
+	padding: 0;
+	background-color:#c0c0c0;
+	font-size: 20px;
+	color:#000;
+	font-family: "Microsoft YaHei";
+}
+h
+{
+    padding: 50px 0 0 84px;
+    font-size: 24px;
+}
+.head{
+	width: 962px;
+	height: 182px;
+	margin: 0 auto;
+	background: url(images/Login/head.png) no-repeat ;
+}
+.content {
+	width: 960px;
+	margin: 0 auto;
+	height:638px;
+	background: url(images/Login/content.png) no-repeat ;
+}
+ul {
+	padding :0 0 0 25px;
+	display:block;
+	height:80px;
+}
+.login
+{
+	width: 335px;
+	height: 436px;
+	float: right;
+	margin:80px 46px 0 0;
+	background: url(images/Login/login.png) no-repeat ;
+}
+.footer {
+	clear: both;
+	width: 962px;
+	height: 118px;
+	margin: 0 auto;
+	padding: 0 0 0 0;
+	background: url(images/Login/footer.png) no-repeat ;
+	
+}
+
+li
+{
+    height: 32px;
+    display:block;
+    text-decoration:none;
+    font-size:22px;
+    padding:0 0 14px 0;
+}
+input
+{
+  width: 156px;
+  margin: 0 0 0 2px;
+  height: 18px;
+
+  padding: 4px 4px;
+  font-size: 16px;
+    
+}
+p
+{
+    margin-top: 9px;
+    height: 37px;
+	float: left;
+	margin-left:100px;
+	width :138px;
+    background: url(images/normal-button.png) no-repeat ;
+    text-align:center;
+}
+
+#main
+{
+    margin:100px 20px 0 0;
+    height :120px;
+}
+#msg
+{
+    height :30px;
+    width :300px;
+    display:block;
+    font-size :18px;
+    color:Red;
+    float :left;
+    margin:5px 0 0 105px;
+}
+input[type="submit"]
+{
+     height: 37px;
+	float: left;
+	margin-left:110px;
+	width :138px;
+    background: url(images/normal-button.png) no-repeat ;
+    text-align:center;
+    border:0;
+}
+input[type="submit"]:hover
+{
+     background: url(images/hover-button.png) no-repeat ;
+}
+input[type="submit"]:active
+{
+     background: url(images/click-button.png) no-repeat ;
+}
+ul li span {
+width: 63px;
+float: left;
+text-align: right;
+padding-right: 15px;
+padding-top: 7px;
+font-size: 18px;
+color: black;
+}

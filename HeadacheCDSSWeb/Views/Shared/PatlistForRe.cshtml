@@ -1,0 +1,26 @@
+﻿@model   ICollection<HeadacheCDSSWeb.Models.PatinfoForRe>
+             
+             
+<div class="page">
+<h2 class="patlisttitle">病人列表</h2>
+
+<table  id="docview" style ="width:90%">
+<tr class="thead">
+<th style=" width:7%">序号</th>
+<th style=" width:10%">姓名</th>
+<th style=" width:9%">性别</th>
+<th style=" width:9%">年龄</th>
+<th style=" width:32%">头痛类型</th>
+<th style=" width:18%">诊断日期</th>
+<th style=" width:15%">&nbsp</th>
+</tr>
+
+@foreach (var item in Model)
+{ 
+<tr class="trow">
+<td>@item.ListID</td><td>@item.Name </td><td>@item.Sex</td><td>@item.Age</td><td>@item.HeadacheStyle </td><td>@item.Data</td><td>@Html.ActionLink("详细信息", "ViewRecord", new { id=item.PatBasicInforId})</td>
+</tr>
+}
+
+</table>
+</div>

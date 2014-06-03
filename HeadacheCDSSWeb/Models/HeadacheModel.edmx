@@ -1,0 +1,2321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HeadacheModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="HeadacheModelStoreContainer">
+          <EntitySet Name="DisabilityEvaluationSet" EntityType="HeadacheModel.Store.DisabilityEvaluationSet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DoctorAccountSet" EntityType="HeadacheModel.Store.DoctorAccountSet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="GADQuestionaireSet" EntityType="HeadacheModel.Store.GADQuestionaireSet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="HDAcompanionSet" EntityType="HeadacheModel.Store.HDAcompanionSet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="HDheadacheplaceSet" EntityType="HeadacheModel.Store.HDheadacheplaceSet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="HDHeadacheProdromeSet" EntityType="HeadacheModel.Store.HDHeadacheProdromeSet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="HDMitigatingFactorsSet" EntityType="HeadacheModel.Store.HDMitigatingFactorsSet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="HDPrecipitatingFactorSet" EntityType="HeadacheModel.Store.HDPrecipitatingFactorSet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="HeadacheAccompanySet" EntityType="HeadacheModel.Store.HeadacheAccompanySet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="HeadacheDiarySet" EntityType="HeadacheModel.Store.HeadacheDiarySet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="HeadacheFamilyMemberSet" EntityType="HeadacheModel.Store.HeadacheFamilyMemberSet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="HeadachePlaceSet" EntityType="HeadacheModel.Store.HeadachePlaceSet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="HeadacheProdromeSet" EntityType="HeadacheModel.Store.HeadacheProdromeSet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LifestyleSet" EntityType="HeadacheModel.Store.LifestyleSet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MedicationAdviceSet" EntityType="HeadacheModel.Store.MedicationAdviceSet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MitigatingFactorsSet" EntityType="HeadacheModel.Store.MitigatingFactorsSet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NationalCenterAccountSet" EntityType="HeadacheModel.Store.NationalCenterAccountSet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OtherFamilyDiseaseSet" EntityType="HeadacheModel.Store.OtherFamilyDiseaseSet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PatBasicInforSet" EntityType="HeadacheModel.Store.PatBasicInforSet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PatinfoForReSet" EntityType="HeadacheModel.Store.PatinfoForReSet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PHQuestionaireSet" EntityType="HeadacheModel.Store.PHQuestionaireSet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PrecipitatingFactorSet" EntityType="HeadacheModel.Store.PrecipitatingFactorSet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PremonitorySymptom集" EntityType="HeadacheModel.Store.PremonitorySymptom集" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PreviousDrugSet" EntityType="HeadacheModel.Store.PreviousDrugSet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PreviousExamSet" EntityType="HeadacheModel.Store.PreviousExamSet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PrimaryHeadacheOverViewSet" EntityType="HeadacheModel.Store.PrimaryHeadacheOverViewSet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RegionalCenterAccountSet" EntityType="HeadacheModel.Store.RegionalCenterAccountSet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SecondaryHeadacheSymptomSet" EntityType="HeadacheModel.Store.SecondaryHeadacheSymptomSet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SleepStatusSet" EntityType="HeadacheModel.Store.SleepStatusSet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="VisitRecordSet" EntityType="HeadacheModel.Store.VisitRecordSet" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_DoctorAccountPatBasicInfor" Association="HeadacheModel.Store.FK_DoctorAccountPatBasicInfor">
+            <End Role="DoctorAccountSet" EntitySet="DoctorAccountSet" />
+            <End Role="PatBasicInforSet" EntitySet="PatBasicInforSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HeadachaOverViewHeadacheAccompany" Association="HeadacheModel.Store.FK_HeadachaOverViewHeadacheAccompany">
+            <End Role="PrimaryHeadacheOverViewSet" EntitySet="PrimaryHeadacheOverViewSet" />
+            <End Role="HeadacheAccompanySet" EntitySet="HeadacheAccompanySet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HeadachaOverViewHeadachePlace" Association="HeadacheModel.Store.FK_HeadachaOverViewHeadachePlace">
+            <End Role="PrimaryHeadacheOverViewSet" EntitySet="PrimaryHeadacheOverViewSet" />
+            <End Role="HeadachePlaceSet" EntitySet="HeadachePlaceSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HeadachaOverViewHeadacheProdrome" Association="HeadacheModel.Store.FK_HeadachaOverViewHeadacheProdrome">
+            <End Role="PrimaryHeadacheOverViewSet" EntitySet="PrimaryHeadacheOverViewSet" />
+            <End Role="HeadacheProdromeSet" EntitySet="HeadacheProdromeSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HeadachaOverViewMitigatingFactors" Association="HeadacheModel.Store.FK_HeadachaOverViewMitigatingFactors">
+            <End Role="PrimaryHeadacheOverViewSet" EntitySet="PrimaryHeadacheOverViewSet" />
+            <End Role="MitigatingFactorsSet" EntitySet="MitigatingFactorsSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HeadachaOverViewPrecipitatingFactor" Association="HeadacheModel.Store.FK_HeadachaOverViewPrecipitatingFactor">
+            <End Role="PrimaryHeadacheOverViewSet" EntitySet="PrimaryHeadacheOverViewSet" />
+            <End Role="PrecipitatingFactorSet" EntitySet="PrecipitatingFactorSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HeadacheDiaryHDAcompanion" Association="HeadacheModel.Store.FK_HeadacheDiaryHDAcompanion">
+            <End Role="HeadacheDiarySet" EntitySet="HeadacheDiarySet" />
+            <End Role="HDAcompanionSet" EntitySet="HDAcompanionSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HeadacheDiaryHDheadacheplace" Association="HeadacheModel.Store.FK_HeadacheDiaryHDheadacheplace">
+            <End Role="HeadacheDiarySet" EntitySet="HeadacheDiarySet" />
+            <End Role="HDheadacheplaceSet" EntitySet="HDheadacheplaceSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HeadacheDiaryHDHeadacheProdrome" Association="HeadacheModel.Store.FK_HeadacheDiaryHDHeadacheProdrome">
+            <End Role="HeadacheDiarySet" EntitySet="HeadacheDiarySet" />
+            <End Role="HDHeadacheProdromeSet" EntitySet="HDHeadacheProdromeSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HeadacheDiaryHDMitigatingFactors" Association="HeadacheModel.Store.FK_HeadacheDiaryHDMitigatingFactors">
+            <End Role="HeadacheDiarySet" EntitySet="HeadacheDiarySet" />
+            <End Role="HDMitigatingFactorsSet" EntitySet="HDMitigatingFactorsSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HeadacheDiaryHDPrecipitatingFactor" Association="HeadacheModel.Store.FK_HeadacheDiaryHDPrecipitatingFactor">
+            <End Role="HeadacheDiarySet" EntitySet="HeadacheDiarySet" />
+            <End Role="HDPrecipitatingFactorSet" EntitySet="HDPrecipitatingFactorSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NationalCenterAccountRegionalCenterAccount" Association="HeadacheModel.Store.FK_NationalCenterAccountRegionalCenterAccount">
+            <End Role="NationalCenterAccountSet" EntitySet="NationalCenterAccountSet" />
+            <End Role="RegionalCenterAccountSet" EntitySet="RegionalCenterAccountSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatBasicInforHeadacheDiary" Association="HeadacheModel.Store.FK_PatBasicInforHeadacheDiary">
+            <End Role="PatBasicInforSet" EntitySet="PatBasicInforSet" />
+            <End Role="HeadacheDiarySet" EntitySet="HeadacheDiarySet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatBasicInforHeadacheFamilyMember" Association="HeadacheModel.Store.FK_PatBasicInforHeadacheFamilyMember">
+            <End Role="PatBasicInforSet" EntitySet="PatBasicInforSet" />
+            <End Role="HeadacheFamilyMemberSet" EntitySet="HeadacheFamilyMemberSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatBasicInforLifestyle" Association="HeadacheModel.Store.FK_PatBasicInforLifestyle">
+            <End Role="LifestyleSet" EntitySet="LifestyleSet" />
+            <End Role="PatBasicInforSet" EntitySet="PatBasicInforSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatBasicInforOtherFamilyDisease" Association="HeadacheModel.Store.FK_PatBasicInforOtherFamilyDisease">
+            <End Role="PatBasicInforSet" EntitySet="PatBasicInforSet" />
+            <End Role="OtherFamilyDiseaseSet" EntitySet="OtherFamilyDiseaseSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatBasicInforPatinfoForRe" Association="HeadacheModel.Store.FK_PatBasicInforPatinfoForRe">
+            <End Role="PatBasicInforSet" EntitySet="PatBasicInforSet" />
+            <End Role="PatinfoForReSet" EntitySet="PatinfoForReSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatBasicInforPreviousDrug" Association="HeadacheModel.Store.FK_PatBasicInforPreviousDrug">
+            <End Role="PatBasicInforSet" EntitySet="PatBasicInforSet" />
+            <End Role="PreviousDrugSet" EntitySet="PreviousDrugSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatBasicInforPreviousExam" Association="HeadacheModel.Store.FK_PatBasicInforPreviousExam">
+            <End Role="PatBasicInforSet" EntitySet="PatBasicInforSet" />
+            <End Role="PreviousExamSet" EntitySet="PreviousExamSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatBasicInforVisitRecord" Association="HeadacheModel.Store.FK_PatBasicInforVisitRecord">
+            <End Role="PatBasicInforSet" EntitySet="PatBasicInforSet" />
+            <End Role="VisitRecordSet" EntitySet="VisitRecordSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrimaryHeadacheOverViewPremonitorySymptom" Association="HeadacheModel.Store.FK_PrimaryHeadacheOverViewPremonitorySymptom">
+            <End Role="PrimaryHeadacheOverViewSet" EntitySet="PrimaryHeadacheOverViewSet" />
+            <End Role="PremonitorySymptom集" EntitySet="PremonitorySymptom集" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegionalCenterAccountDoctorAccount" Association="HeadacheModel.Store.FK_RegionalCenterAccountDoctorAccount">
+            <End Role="RegionalCenterAccountSet" EntitySet="RegionalCenterAccountSet" />
+            <End Role="DoctorAccountSet" EntitySet="DoctorAccountSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitRecordDisabilityEvaluation" Association="HeadacheModel.Store.FK_VisitRecordDisabilityEvaluation">
+            <End Role="VisitRecordSet" EntitySet="VisitRecordSet" />
+            <End Role="DisabilityEvaluationSet" EntitySet="DisabilityEvaluationSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitRecordGADQuestionaire" Association="HeadacheModel.Store.FK_VisitRecordGADQuestionaire">
+            <End Role="VisitRecordSet" EntitySet="VisitRecordSet" />
+            <End Role="GADQuestionaireSet" EntitySet="GADQuestionaireSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitRecordMedicationAdvice" Association="HeadacheModel.Store.FK_VisitRecordMedicationAdvice">
+            <End Role="VisitRecordSet" EntitySet="VisitRecordSet" />
+            <End Role="MedicationAdviceSet" EntitySet="MedicationAdviceSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitRecordPHQuestionaire" Association="HeadacheModel.Store.FK_VisitRecordPHQuestionaire">
+            <End Role="VisitRecordSet" EntitySet="VisitRecordSet" />
+            <End Role="PHQuestionaireSet" EntitySet="PHQuestionaireSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitRecordPrimaryHeadachaOverView" Association="HeadacheModel.Store.FK_VisitRecordPrimaryHeadachaOverView">
+            <End Role="VisitRecordSet" EntitySet="VisitRecordSet" />
+            <End Role="PrimaryHeadacheOverViewSet" EntitySet="PrimaryHeadacheOverViewSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitRecordSecondaryHeadacheSymptom" Association="HeadacheModel.Store.FK_VisitRecordSecondaryHeadacheSymptom">
+            <End Role="VisitRecordSet" EntitySet="VisitRecordSet" />
+            <End Role="SecondaryHeadacheSymptomSet" EntitySet="SecondaryHeadacheSymptomSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitRecordSleepStatus" Association="HeadacheModel.Store.FK_VisitRecordSleepStatus">
+            <End Role="VisitRecordSet" EntitySet="VisitRecordSet" />
+            <End Role="SleepStatusSet" EntitySet="SleepStatusSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="DisabilityEvaluationSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="HeadacheDays" Type="nvarchar(max)" />
+          <Property Name="OutOfWorkDays" Type="nvarchar(max)" />
+          <Property Name="AffectWorkDays" Type="nvarchar(max)" />
+          <Property Name="OutOfHouseWorkDays" Type="nvarchar(max)" />
+          <Property Name="AffectHouseWorkDays" Type="nvarchar(max)" />
+          <Property Name="MissActivityDays" Type="nvarchar(max)" />
+          <Property Name="VisitRecord_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DoctorAccountSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PassWord" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Hospital" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ChiefDoctor" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RegionalCenterAccountID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GADQuestionaireSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Q1" Type="nvarchar(max)" />
+          <Property Name="Q2" Type="nvarchar(max)" />
+          <Property Name="Q3" Type="nvarchar(max)" />
+          <Property Name="Q4" Type="nvarchar(max)" />
+          <Property Name="Q5" Type="nvarchar(max)" />
+          <Property Name="Q6" Type="nvarchar(max)" />
+          <Property Name="Q7" Type="nvarchar(max)" />
+          <Property Name="TotalScore" Type="nvarchar(max)" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="VisitRecord_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HDAcompanionSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="symptom" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="HeadacheDiaryID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HDheadacheplaceSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="postion" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="HeadacheDiaryID" Type="int" Nullable="false" />
+          <Property Name="detailposition" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HDHeadacheProdromeSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="symptom" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="HeadacheDiaryID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HDMitigatingFactorsSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="factor" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="HeadacheDiaryID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HDPrecipitatingFactorSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="factor" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="HeadacheDiaryID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HeadacheAccompanySet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Symptom" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="HeadachaOverViewId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HeadacheDiarySet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RecordDate" Type="datetime" Nullable="false" />
+          <Property Name="HeadacheTime" Type="int" Nullable="false" />
+          <Property Name="HeadacheType" Type="nvarchar(max)" />
+          <Property Name="PatBasicInforId" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="HeadacheDegree" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HeadacheFamilyMemberSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Person" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PatBasicInforId" Type="nvarchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="HeadachePlaceSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Position" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SpecificPlace" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="HeadachaOverViewId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HeadacheProdromeSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Prodrome" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="HeadachaOverViewId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LifestyleSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SmokeState" Type="bit" />
+          <Property Name="SmokeYear" Type="nvarchar(max)" />
+          <Property Name="DrinkState" Type="bit" />
+          <Property Name="DrinkYear" Type="nvarchar(max)" />
+          <Property Name="TeaPerDay" Type="nvarchar(max)" />
+          <Property Name="CoffePerDay" Type="nvarchar(max)" />
+          <Property Name="ExerciseOften" Type="bit" />
+        </EntityType>
+        <EntityType Name="MedicationAdviceSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DrugApplication" Type="nvarchar(max)" />
+          <Property Name="DrugCategory" Type="nvarchar(max)" />
+          <Property Name="DrugName" Type="nvarchar(max)" />
+          <Property Name="DrugDose" Type="nvarchar(max)" />
+          <Property Name="DrugDoseUnit" Type="nvarchar(max)" />
+          <Property Name="VisitRecordId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MitigatingFactorsSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FactorName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="HeadachaOverViewId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NationalCenterAccountSet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PassWord" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OtherFamilyDiseaseSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DiseaseName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PatBasicInforId" Type="nvarchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="PatBasicInforSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Sex" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Age" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Education" Type="nvarchar(max)" />
+          <Property Name="Job" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Identity" Type="nvarchar(max)" />
+          <Property Name="DoctorAccountId" Type="int" Nullable="false" />
+          <Property Name="SimilarFamily" Type="bit" />
+          <Property Name="Weight" Type="nvarchar(max)" />
+          <Property Name="Height" Type="nvarchar(max)" />
+          <Property Name="Lifestyle_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PatinfoForReSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Sex" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Age" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="HeadacheStyle" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Data" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PatBasicInforId" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PatBasicInfor_Id" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="ListID" Type="nchar" Nullable="false" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="PHQuestionaireSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Q1" Type="nvarchar(max)" />
+          <Property Name="Q2" Type="nvarchar(max)" />
+          <Property Name="Q3" Type="nvarchar(max)" />
+          <Property Name="Q4" Type="nvarchar(max)" />
+          <Property Name="Q5" Type="nvarchar(max)" />
+          <Property Name="Q6" Type="nvarchar(max)" />
+          <Property Name="Q7" Type="nvarchar(max)" />
+          <Property Name="Q8" Type="nvarchar(max)" />
+          <Property Name="Q9" Type="nvarchar(max)" />
+          <Property Name="TotalScore" Type="nvarchar(max)" />
+          <Property Name="VisitRecord_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PrecipitatingFactorSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FactorName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="HeadachaOverViewId" Type="int" Nullable="false" />
+          <Property Name="FactorDetail" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PremonitorySymptom集">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Symptom" Type="nvarchar(max)" />
+          <Property Name="PrimaryHeadacheOverViewId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PreviousDrugSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DrugCategory" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DrugName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DayAmoutnPerM" Type="nvarchar(max)" />
+          <Property Name="MonthTotalAmount" Type="nvarchar(max)" />
+          <Property Name="PatBasicInforId" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="DrugApplication" Type="nvarchar(max)" />
+          <Property Name="PatBasicInforId1" Type="nvarchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="PreviousExamSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ExamName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Result" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Date" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PatBasicInforId" Type="nvarchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="PrimaryHeadacheOverViewSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="HeadacheType" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="HeadacheDegree" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="HeadcheTime" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="HeacheTimeUnit" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FrequencyPerMonth" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="OnsetFixedPeriod" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="OnsetDate" Type="datetime" Nullable="false" />
+          <Property Name="OnsetAmount" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DailyAggravation" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FirstOnsetContinue" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="VisitRecord_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RegionalCenterAccountSet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PassWord" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Region" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NationalCenterAccountID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SecondaryHeadacheSymptomSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Symptom" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="VisitRecordId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SleepStatusSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TimePerDay" Type="nvarchar(max)" />
+          <Property Name="DifficultFallingAsleep" Type="nvarchar(max)" />
+          <Property Name="Dreaminess" Type="nvarchar(max)" />
+          <Property Name="FestlessSleep" Type="nvarchar(max)" />
+          <Property Name="SleepyDayTime" Type="nvarchar(max)" />
+          <Property Name="VisitRecord_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VisitRecordSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="OutpatientID" Type="nvarchar(max)" />
+          <Property Name="ChiefComplaint" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="VisitDate" Type="datetime" Nullable="false" />
+          <Property Name="CDSSDiagnosis1" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CDSSDiagnosis2" Type="nvarchar(max)" />
+          <Property Name="CDSSDiagnosis3" Type="nvarchar(max)" />
+          <Property Name="DiagnosisResult1" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DiagnosisResult2" Type="nvarchar(max)" />
+          <Property Name="DiagnosisResult3" Type="nvarchar(max)" />
+          <Property Name="Prescription" Type="nvarchar(max)" />
+          <Property Name="PreviousDiagnosis" Type="nvarchar(max)" />
+          <Property Name="PrescriptionNote" Type="nvarchar(max)" />
+          <Property Name="PatBasicInforId" Type="nvarchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK_DoctorAccountPatBasicInfor">
+          <End Role="DoctorAccountSet" Type="HeadacheModel.Store.DoctorAccountSet" Multiplicity="1" />
+          <End Role="PatBasicInforSet" Type="HeadacheModel.Store.PatBasicInforSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DoctorAccountSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PatBasicInforSet">
+              <PropertyRef Name="DoctorAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HeadachaOverViewHeadacheAccompany">
+          <End Role="PrimaryHeadacheOverViewSet" Type="HeadacheModel.Store.PrimaryHeadacheOverViewSet" Multiplicity="1" />
+          <End Role="HeadacheAccompanySet" Type="HeadacheModel.Store.HeadacheAccompanySet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PrimaryHeadacheOverViewSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HeadacheAccompanySet">
+              <PropertyRef Name="HeadachaOverViewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HeadachaOverViewHeadachePlace">
+          <End Role="PrimaryHeadacheOverViewSet" Type="HeadacheModel.Store.PrimaryHeadacheOverViewSet" Multiplicity="1" />
+          <End Role="HeadachePlaceSet" Type="HeadacheModel.Store.HeadachePlaceSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PrimaryHeadacheOverViewSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HeadachePlaceSet">
+              <PropertyRef Name="HeadachaOverViewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HeadachaOverViewHeadacheProdrome">
+          <End Role="PrimaryHeadacheOverViewSet" Type="HeadacheModel.Store.PrimaryHeadacheOverViewSet" Multiplicity="1" />
+          <End Role="HeadacheProdromeSet" Type="HeadacheModel.Store.HeadacheProdromeSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PrimaryHeadacheOverViewSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HeadacheProdromeSet">
+              <PropertyRef Name="HeadachaOverViewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HeadachaOverViewMitigatingFactors">
+          <End Role="PrimaryHeadacheOverViewSet" Type="HeadacheModel.Store.PrimaryHeadacheOverViewSet" Multiplicity="1" />
+          <End Role="MitigatingFactorsSet" Type="HeadacheModel.Store.MitigatingFactorsSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PrimaryHeadacheOverViewSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MitigatingFactorsSet">
+              <PropertyRef Name="HeadachaOverViewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HeadachaOverViewPrecipitatingFactor">
+          <End Role="PrimaryHeadacheOverViewSet" Type="HeadacheModel.Store.PrimaryHeadacheOverViewSet" Multiplicity="1" />
+          <End Role="PrecipitatingFactorSet" Type="HeadacheModel.Store.PrecipitatingFactorSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PrimaryHeadacheOverViewSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrecipitatingFactorSet">
+              <PropertyRef Name="HeadachaOverViewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HeadacheDiaryHDAcompanion">
+          <End Role="HeadacheDiarySet" Type="HeadacheModel.Store.HeadacheDiarySet" Multiplicity="1" />
+          <End Role="HDAcompanionSet" Type="HeadacheModel.Store.HDAcompanionSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HeadacheDiarySet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HDAcompanionSet">
+              <PropertyRef Name="HeadacheDiaryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HeadacheDiaryHDheadacheplace">
+          <End Role="HeadacheDiarySet" Type="HeadacheModel.Store.HeadacheDiarySet" Multiplicity="1" />
+          <End Role="HDheadacheplaceSet" Type="HeadacheModel.Store.HDheadacheplaceSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HeadacheDiarySet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HDheadacheplaceSet">
+              <PropertyRef Name="HeadacheDiaryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HeadacheDiaryHDHeadacheProdrome">
+          <End Role="HeadacheDiarySet" Type="HeadacheModel.Store.HeadacheDiarySet" Multiplicity="1" />
+          <End Role="HDHeadacheProdromeSet" Type="HeadacheModel.Store.HDHeadacheProdromeSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HeadacheDiarySet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HDHeadacheProdromeSet">
+              <PropertyRef Name="HeadacheDiaryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HeadacheDiaryHDMitigatingFactors">
+          <End Role="HeadacheDiarySet" Type="HeadacheModel.Store.HeadacheDiarySet" Multiplicity="1" />
+          <End Role="HDMitigatingFactorsSet" Type="HeadacheModel.Store.HDMitigatingFactorsSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HeadacheDiarySet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HDMitigatingFactorsSet">
+              <PropertyRef Name="HeadacheDiaryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HeadacheDiaryHDPrecipitatingFactor">
+          <End Role="HeadacheDiarySet" Type="HeadacheModel.Store.HeadacheDiarySet" Multiplicity="1" />
+          <End Role="HDPrecipitatingFactorSet" Type="HeadacheModel.Store.HDPrecipitatingFactorSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HeadacheDiarySet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HDPrecipitatingFactorSet">
+              <PropertyRef Name="HeadacheDiaryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NationalCenterAccountRegionalCenterAccount">
+          <End Role="NationalCenterAccountSet" Type="HeadacheModel.Store.NationalCenterAccountSet" Multiplicity="1" />
+          <End Role="RegionalCenterAccountSet" Type="HeadacheModel.Store.RegionalCenterAccountSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NationalCenterAccountSet">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RegionalCenterAccountSet">
+              <PropertyRef Name="NationalCenterAccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatBasicInforHeadacheDiary">
+          <End Role="PatBasicInforSet" Type="HeadacheModel.Store.PatBasicInforSet" Multiplicity="1" />
+          <End Role="HeadacheDiarySet" Type="HeadacheModel.Store.HeadacheDiarySet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatBasicInforSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HeadacheDiarySet">
+              <PropertyRef Name="PatBasicInforId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatBasicInforHeadacheFamilyMember">
+          <End Role="PatBasicInforSet" Type="HeadacheModel.Store.PatBasicInforSet" Multiplicity="1" />
+          <End Role="HeadacheFamilyMemberSet" Type="HeadacheModel.Store.HeadacheFamilyMemberSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatBasicInforSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HeadacheFamilyMemberSet">
+              <PropertyRef Name="PatBasicInforId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatBasicInforLifestyle">
+          <End Role="LifestyleSet" Type="HeadacheModel.Store.LifestyleSet" Multiplicity="1" />
+          <End Role="PatBasicInforSet" Type="HeadacheModel.Store.PatBasicInforSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LifestyleSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PatBasicInforSet">
+              <PropertyRef Name="Lifestyle_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatBasicInforOtherFamilyDisease">
+          <End Role="PatBasicInforSet" Type="HeadacheModel.Store.PatBasicInforSet" Multiplicity="1" />
+          <End Role="OtherFamilyDiseaseSet" Type="HeadacheModel.Store.OtherFamilyDiseaseSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatBasicInforSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OtherFamilyDiseaseSet">
+              <PropertyRef Name="PatBasicInforId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatBasicInforPatinfoForRe">
+          <End Role="PatBasicInforSet" Type="HeadacheModel.Store.PatBasicInforSet" Multiplicity="1" />
+          <End Role="PatinfoForReSet" Type="HeadacheModel.Store.PatinfoForReSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatBasicInforSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PatinfoForReSet">
+              <PropertyRef Name="PatBasicInfor_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatBasicInforPreviousDrug">
+          <End Role="PatBasicInforSet" Type="HeadacheModel.Store.PatBasicInforSet" Multiplicity="1" />
+          <End Role="PreviousDrugSet" Type="HeadacheModel.Store.PreviousDrugSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatBasicInforSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PreviousDrugSet">
+              <PropertyRef Name="PatBasicInforId1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatBasicInforPreviousExam">
+          <End Role="PatBasicInforSet" Type="HeadacheModel.Store.PatBasicInforSet" Multiplicity="1" />
+          <End Role="PreviousExamSet" Type="HeadacheModel.Store.PreviousExamSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatBasicInforSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PreviousExamSet">
+              <PropertyRef Name="PatBasicInforId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatBasicInforVisitRecord">
+          <End Role="PatBasicInforSet" Type="HeadacheModel.Store.PatBasicInforSet" Multiplicity="1" />
+          <End Role="VisitRecordSet" Type="HeadacheModel.Store.VisitRecordSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatBasicInforSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VisitRecordSet">
+              <PropertyRef Name="PatBasicInforId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrimaryHeadacheOverViewPremonitorySymptom">
+          <End Role="PrimaryHeadacheOverViewSet" Type="HeadacheModel.Store.PrimaryHeadacheOverViewSet" Multiplicity="1" />
+          <End Role="PremonitorySymptom集" Type="HeadacheModel.Store.PremonitorySymptom集" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PrimaryHeadacheOverViewSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PremonitorySymptom集">
+              <PropertyRef Name="PrimaryHeadacheOverViewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegionalCenterAccountDoctorAccount">
+          <End Role="RegionalCenterAccountSet" Type="HeadacheModel.Store.RegionalCenterAccountSet" Multiplicity="1" />
+          <End Role="DoctorAccountSet" Type="HeadacheModel.Store.DoctorAccountSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegionalCenterAccountSet">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DoctorAccountSet">
+              <PropertyRef Name="RegionalCenterAccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VisitRecordDisabilityEvaluation">
+          <End Role="VisitRecordSet" Type="HeadacheModel.Store.VisitRecordSet" Multiplicity="1" />
+          <End Role="DisabilityEvaluationSet" Type="HeadacheModel.Store.DisabilityEvaluationSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VisitRecordSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DisabilityEvaluationSet">
+              <PropertyRef Name="VisitRecord_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VisitRecordGADQuestionaire">
+          <End Role="VisitRecordSet" Type="HeadacheModel.Store.VisitRecordSet" Multiplicity="1" />
+          <End Role="GADQuestionaireSet" Type="HeadacheModel.Store.GADQuestionaireSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VisitRecordSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GADQuestionaireSet">
+              <PropertyRef Name="VisitRecord_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VisitRecordMedicationAdvice">
+          <End Role="VisitRecordSet" Type="HeadacheModel.Store.VisitRecordSet" Multiplicity="1" />
+          <End Role="MedicationAdviceSet" Type="HeadacheModel.Store.MedicationAdviceSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VisitRecordSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MedicationAdviceSet">
+              <PropertyRef Name="VisitRecordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VisitRecordPHQuestionaire">
+          <End Role="VisitRecordSet" Type="HeadacheModel.Store.VisitRecordSet" Multiplicity="1" />
+          <End Role="PHQuestionaireSet" Type="HeadacheModel.Store.PHQuestionaireSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VisitRecordSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PHQuestionaireSet">
+              <PropertyRef Name="VisitRecord_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VisitRecordPrimaryHeadachaOverView">
+          <End Role="VisitRecordSet" Type="HeadacheModel.Store.VisitRecordSet" Multiplicity="1" />
+          <End Role="PrimaryHeadacheOverViewSet" Type="HeadacheModel.Store.PrimaryHeadacheOverViewSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VisitRecordSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrimaryHeadacheOverViewSet">
+              <PropertyRef Name="VisitRecord_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VisitRecordSecondaryHeadacheSymptom">
+          <End Role="VisitRecordSet" Type="HeadacheModel.Store.VisitRecordSet" Multiplicity="1" />
+          <End Role="SecondaryHeadacheSymptomSet" Type="HeadacheModel.Store.SecondaryHeadacheSymptomSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VisitRecordSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SecondaryHeadacheSymptomSet">
+              <PropertyRef Name="VisitRecordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VisitRecordSleepStatus">
+          <End Role="VisitRecordSet" Type="HeadacheModel.Store.VisitRecordSet" Multiplicity="1" />
+          <End Role="SleepStatusSet" Type="HeadacheModel.Store.SleepStatusSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VisitRecordSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SleepStatusSet">
+              <PropertyRef Name="VisitRecord_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="HeadacheModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="HeadacheModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DoctorAccountSet" EntityType="HeadacheModel.DoctorAccount" />
+          <EntitySet Name="PatBasicInforSet" EntityType="HeadacheModel.PatBasicInfor" />
+          <EntitySet Name="VisitRecordSet" EntityType="HeadacheModel.VisitRecord" />
+          <AssociationSet Name="DoctorAccountPatBasicInfor" Association="HeadacheModel.DoctorAccountPatBasicInfor">
+            <End Role="DoctorAccount" EntitySet="DoctorAccountSet" />
+            <End Role="PatBasicInfor" EntitySet="PatBasicInforSet" />
+          </AssociationSet>
+          <EntitySet Name="PrimaryHeadacheOverViewSet" EntityType="HeadacheModel.PrimaryHeadacheOverView" />
+          <EntitySet Name="LifestyleSet" EntityType="HeadacheModel.Lifestyle" />
+          <EntitySet Name="HeadachePlaceSet" EntityType="HeadacheModel.HeadachePlace" />
+          <EntitySet Name="HeadacheAccompanySet" EntityType="HeadacheModel.HeadacheAccompany" />
+          <EntitySet Name="HeadacheProdromeSet" EntityType="HeadacheModel.HeadacheProdrome" />
+          <AssociationSet Name="HeadachaOverViewHeadachePlace" Association="HeadacheModel.HeadachaOverViewHeadachePlace">
+            <End Role="HeadachaOverView" EntitySet="PrimaryHeadacheOverViewSet" />
+            <End Role="HeadachePlace" EntitySet="HeadachePlaceSet" />
+          </AssociationSet>
+          <AssociationSet Name="HeadachaOverViewHeadacheAccompany" Association="HeadacheModel.HeadachaOverViewHeadacheAccompany">
+            <End Role="HeadachaOverView" EntitySet="PrimaryHeadacheOverViewSet" />
+            <End Role="HeadacheAccompany" EntitySet="HeadacheAccompanySet" />
+          </AssociationSet>
+          <AssociationSet Name="HeadachaOverViewHeadacheProdrome" Association="HeadacheModel.HeadachaOverViewHeadacheProdrome">
+            <End Role="HeadachaOverView" EntitySet="PrimaryHeadacheOverViewSet" />
+            <End Role="HeadacheProdrome" EntitySet="HeadacheProdromeSet" />
+          </AssociationSet>
+          <EntitySet Name="PreviousDrugSet" EntityType="HeadacheModel.PreviousDrug" />
+          <EntitySet Name="PreviousExamSet" EntityType="HeadacheModel.PreviousExam" />
+          <EntitySet Name="HeadacheFamilyMemberSet" EntityType="HeadacheModel.HeadacheFamilyMember" />
+          <EntitySet Name="OtherFamilyDiseaseSet" EntityType="HeadacheModel.OtherFamilyDisease" />
+          <EntitySet Name="MedicationAdviceSet" EntityType="HeadacheModel.MedicationAdvice" />
+          <EntitySet Name="PrecipitatingFactorSet" EntityType="HeadacheModel.PrecipitatingFactor" />
+          <EntitySet Name="MitigatingFactorsSet" EntityType="HeadacheModel.MitigatingFactors" />
+          <AssociationSet Name="HeadachaOverViewMitigatingFactors" Association="HeadacheModel.HeadachaOverViewMitigatingFactors">
+            <End Role="HeadachaOverView" EntitySet="PrimaryHeadacheOverViewSet" />
+            <End Role="MitigatingFactors" EntitySet="MitigatingFactorsSet" />
+          </AssociationSet>
+          <AssociationSet Name="HeadachaOverViewPrecipitatingFactor" Association="HeadacheModel.HeadachaOverViewPrecipitatingFactor">
+            <End Role="HeadachaOverView" EntitySet="PrimaryHeadacheOverViewSet" />
+            <End Role="PrecipitatingFactor" EntitySet="PrecipitatingFactorSet" />
+          </AssociationSet>
+          <AssociationSet Name="PatBasicInforPreviousExam" Association="HeadacheModel.PatBasicInforPreviousExam">
+            <End Role="PatBasicInfor" EntitySet="PatBasicInforSet" />
+            <End Role="PreviousExam" EntitySet="PreviousExamSet" />
+          </AssociationSet>
+          <AssociationSet Name="PatBasicInforHeadacheFamilyMember" Association="HeadacheModel.PatBasicInforHeadacheFamilyMember">
+            <End Role="PatBasicInfor" EntitySet="PatBasicInforSet" />
+            <End Role="HeadacheFamilyMember" EntitySet="HeadacheFamilyMemberSet" />
+          </AssociationSet>
+          <AssociationSet Name="PatBasicInforOtherFamilyDisease" Association="HeadacheModel.PatBasicInforOtherFamilyDisease">
+            <End Role="PatBasicInfor" EntitySet="PatBasicInforSet" />
+            <End Role="OtherFamilyDisease" EntitySet="OtherFamilyDiseaseSet" />
+          </AssociationSet>
+          <EntitySet Name="SecondaryHeadacheSymptomSet" EntityType="HeadacheModel.SecondaryHeadacheSymptom" />
+          <AssociationSet Name="VisitRecordSecondaryHeadacheSymptom" Association="HeadacheModel.VisitRecordSecondaryHeadacheSymptom">
+            <End Role="VisitRecord" EntitySet="VisitRecordSet" />
+            <End Role="SecondaryHeadacheSymptom" EntitySet="SecondaryHeadacheSymptomSet" />
+          </AssociationSet>
+          <AssociationSet Name="VisitRecordPrimaryHeadachaOverView" Association="HeadacheModel.VisitRecordPrimaryHeadachaOverView">
+            <End Role="VisitRecord" EntitySet="VisitRecordSet" />
+            <End Role="PrimaryHeadachaOverView" EntitySet="PrimaryHeadacheOverViewSet" />
+          </AssociationSet>
+          <AssociationSet Name="PatBasicInforLifestyle" Association="HeadacheModel.PatBasicInforLifestyle">
+            <End Role="PatBasicInfor" EntitySet="PatBasicInforSet" />
+            <End Role="Lifestyle" EntitySet="LifestyleSet" />
+          </AssociationSet>
+          <EntitySet Name="PremonitorySymptom集" EntityType="HeadacheModel.PremonitorySymptom" />
+          <AssociationSet Name="PrimaryHeadacheOverViewPremonitorySymptom" Association="HeadacheModel.PrimaryHeadacheOverViewPremonitorySymptom">
+            <End Role="PrimaryHeadacheOverView" EntitySet="PrimaryHeadacheOverViewSet" />
+            <End Role="PremonitorySymptom" EntitySet="PremonitorySymptom集" />
+          </AssociationSet>
+          <EntitySet Name="PHQuestionaireSet" EntityType="HeadacheModel.PHQuestionaire" />
+          <EntitySet Name="GADQuestionaireSet" EntityType="HeadacheModel.GADQuestionaire" />
+          <EntitySet Name="DisabilityEvaluationSet" EntityType="HeadacheModel.DisabilityEvaluation" />
+          <AssociationSet Name="VisitRecordGADQuestionaire" Association="HeadacheModel.VisitRecordGADQuestionaire">
+            <End Role="VisitRecord" EntitySet="VisitRecordSet" />
+            <End Role="GADQuestionaire" EntitySet="GADQuestionaireSet" />
+          </AssociationSet>
+          <AssociationSet Name="VisitRecordPHQuestionaire" Association="HeadacheModel.VisitRecordPHQuestionaire">
+            <End Role="VisitRecord" EntitySet="VisitRecordSet" />
+            <End Role="PHQuestionaire" EntitySet="PHQuestionaireSet" />
+          </AssociationSet>
+          <EntitySet Name="SleepStatusSet" EntityType="HeadacheModel.SleepStatus" />
+          <AssociationSet Name="VisitRecordSleepStatus" Association="HeadacheModel.VisitRecordSleepStatus">
+            <End Role="VisitRecord" EntitySet="VisitRecordSet" />
+            <End Role="SleepStatus" EntitySet="SleepStatusSet" />
+          </AssociationSet>
+          <AssociationSet Name="VisitRecordDisabilityEvaluation" Association="HeadacheModel.VisitRecordDisabilityEvaluation">
+            <End Role="VisitRecord" EntitySet="VisitRecordSet" />
+            <End Role="DisabilityEvaluation" EntitySet="DisabilityEvaluationSet" />
+          </AssociationSet>
+          <EntitySet Name="HeadacheDiarySet" EntityType="HeadacheModel.HeadacheDiary" />
+          <EntitySet Name="HDheadacheplaceSet" EntityType="HeadacheModel.HDheadacheplace" />
+          <EntitySet Name="HDAcompanionSet" EntityType="HeadacheModel.HDAcompanion" />
+          <EntitySet Name="HDPrecipitatingFactorSet" EntityType="HeadacheModel.HDPrecipitatingFactor" />
+          <EntitySet Name="HDMitigatingFactorsSet" EntityType="HeadacheModel.HDMitigatingFactors" />
+          <EntitySet Name="HDHeadacheProdromeSet" EntityType="HeadacheModel.HDHeadacheProdrome" />
+          <AssociationSet Name="HeadacheDiaryHDAcompanion" Association="HeadacheModel.HeadacheDiaryHDAcompanion">
+            <End Role="HeadacheDiary" EntitySet="HeadacheDiarySet" />
+            <End Role="HDAcompanion" EntitySet="HDAcompanionSet" />
+          </AssociationSet>
+          <AssociationSet Name="HeadacheDiaryHDheadacheplace" Association="HeadacheModel.HeadacheDiaryHDheadacheplace">
+            <End Role="HeadacheDiary" EntitySet="HeadacheDiarySet" />
+            <End Role="HDheadacheplace" EntitySet="HDheadacheplaceSet" />
+          </AssociationSet>
+          <AssociationSet Name="HeadacheDiaryHDHeadacheProdrome" Association="HeadacheModel.HeadacheDiaryHDHeadacheProdrome">
+            <End Role="HeadacheDiary" EntitySet="HeadacheDiarySet" />
+            <End Role="HDHeadacheProdrome" EntitySet="HDHeadacheProdromeSet" />
+          </AssociationSet>
+          <AssociationSet Name="HeadacheDiaryHDMitigatingFactors" Association="HeadacheModel.HeadacheDiaryHDMitigatingFactors">
+            <End Role="HeadacheDiary" EntitySet="HeadacheDiarySet" />
+            <End Role="HDMitigatingFactors" EntitySet="HDMitigatingFactorsSet" />
+          </AssociationSet>
+          <AssociationSet Name="HeadacheDiaryHDPrecipitatingFactor" Association="HeadacheModel.HeadacheDiaryHDPrecipitatingFactor">
+            <End Role="HeadacheDiary" EntitySet="HeadacheDiarySet" />
+            <End Role="HDPrecipitatingFactor" EntitySet="HDPrecipitatingFactorSet" />
+          </AssociationSet>
+          <AssociationSet Name="PatBasicInforHeadacheDiary" Association="HeadacheModel.PatBasicInforHeadacheDiary">
+            <End Role="PatBasicInfor" EntitySet="PatBasicInforSet" />
+            <End Role="HeadacheDiary" EntitySet="HeadacheDiarySet" />
+          </AssociationSet>
+          <EntitySet Name="RegionalCenterAccountSet" EntityType="HeadacheModel.RegionalCenterAccount" />
+          <EntitySet Name="NationalCenterAccountSet" EntityType="HeadacheModel.NationalCenterAccount" />
+          <AssociationSet Name="NationalCenterAccountRegionalCenterAccount" Association="HeadacheModel.NationalCenterAccountRegionalCenterAccount">
+            <End Role="NationalCenterAccount" EntitySet="NationalCenterAccountSet" />
+            <End Role="RegionalCenterAccount" EntitySet="RegionalCenterAccountSet" />
+          </AssociationSet>
+          <AssociationSet Name="RegionalCenterAccountDoctorAccount" Association="HeadacheModel.RegionalCenterAccountDoctorAccount">
+            <End Role="RegionalCenterAccount" EntitySet="RegionalCenterAccountSet" />
+            <End Role="DoctorAccount" EntitySet="DoctorAccountSet" />
+          </AssociationSet>
+          <AssociationSet Name="PatBasicInforVisitRecord" Association="HeadacheModel.PatBasicInforVisitRecord">
+            <End Role="PatBasicInfor" EntitySet="PatBasicInforSet" />
+            <End Role="VisitRecord" EntitySet="VisitRecordSet" />
+          </AssociationSet>
+          <AssociationSet Name="PatBasicInforPreviousDrug" Association="HeadacheModel.PatBasicInforPreviousDrug">
+            <End Role="PatBasicInfor" EntitySet="PatBasicInforSet" />
+            <End Role="PreviousDrug" EntitySet="PreviousDrugSet" />
+          </AssociationSet>
+          <AssociationSet Name="VisitRecordMedicationAdvice" Association="HeadacheModel.VisitRecordMedicationAdvice">
+            <End Role="VisitRecord" EntitySet="VisitRecordSet" />
+            <End Role="MedicationAdvice" EntitySet="MedicationAdviceSet" />
+          </AssociationSet>
+          <EntitySet Name="PatinfoForReSet" EntityType="HeadacheModel.PatinfoForRe" />
+          <AssociationSet Name="PatBasicInforPatinfoForRe" Association="HeadacheModel.PatBasicInforPatinfoForRe">
+            <End Role="PatBasicInfor" EntitySet="PatBasicInforSet" />
+            <End Role="PatinfoForRe" EntitySet="PatinfoForReSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="DoctorAccount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UserName" Nullable="false" />
+          <Property Type="String" Name="PassWord" Nullable="false" />
+          <Property Type="String" Name="Hospital" Nullable="false" />
+          <NavigationProperty Name="PatBasicInfor" Relationship="HeadacheModel.DoctorAccountPatBasicInfor" FromRole="DoctorAccount" ToRole="PatBasicInfor" />
+          <Property Type="String" Name="ChiefDoctor" Nullable="false" />
+          <NavigationProperty Name="RegionalCenterAccount" Relationship="HeadacheModel.RegionalCenterAccountDoctorAccount" FromRole="DoctorAccount" ToRole="RegionalCenterAccount" />
+          <Property Type="Int32" Name="RegionalCenterAccountID" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PatBasicInfor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="String" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="255" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="Sex" Nullable="false" />
+          <Property Type="String" Name="Age" Nullable="false" />
+          <Property Type="String" Name="Education" Nullable="true" />
+          <Property Type="String" Name="Job" Nullable="true" />
+          <Property Type="String" Name="Phone" Nullable="false" />
+          <Property Type="String" Name="Address" Nullable="true" />
+          <Property Type="String" Name="Identity" Nullable="true" />
+          <NavigationProperty Name="DoctorAccount" Relationship="HeadacheModel.DoctorAccountPatBasicInfor" FromRole="PatBasicInfor" ToRole="DoctorAccount" />
+          <Property Type="Int32" Name="DoctorAccountId" Nullable="false" />
+          <NavigationProperty Name="PreviousExam" Relationship="HeadacheModel.PatBasicInforPreviousExam" FromRole="PatBasicInfor" ToRole="PreviousExam" />
+          <Property Type="Boolean" Name="SimilarFamily" Nullable="true" />
+          <NavigationProperty Name="HeadacheFamilyMember" Relationship="HeadacheModel.PatBasicInforHeadacheFamilyMember" FromRole="PatBasicInfor" ToRole="HeadacheFamilyMember" />
+          <NavigationProperty Name="OtherFamilyDisease" Relationship="HeadacheModel.PatBasicInforOtherFamilyDisease" FromRole="PatBasicInfor" ToRole="OtherFamilyDisease" />
+          <NavigationProperty Name="Lifestyle" Relationship="HeadacheModel.PatBasicInforLifestyle" FromRole="PatBasicInfor" ToRole="Lifestyle" />
+          <Property Type="String" Name="Weight" Nullable="true" />
+          <Property Type="String" Name="Height" Nullable="true" />
+          <NavigationProperty Name="HeadacheDiary" Relationship="HeadacheModel.PatBasicInforHeadacheDiary" FromRole="PatBasicInfor" ToRole="HeadacheDiary" />
+          <NavigationProperty Name="VisitRecord" Relationship="HeadacheModel.PatBasicInforVisitRecord" FromRole="PatBasicInfor" ToRole="VisitRecord" />
+          <NavigationProperty Name="PreviousDrug" Relationship="HeadacheModel.PatBasicInforPreviousDrug" FromRole="PatBasicInfor" ToRole="PreviousDrug" />
+          <NavigationProperty Name="PatinfoForRe" Relationship="HeadacheModel.PatBasicInforPatinfoForRe" FromRole="PatBasicInfor" ToRole="PatinfoForRe" />
+        </EntityType>
+        <EntityType Name="VisitRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="OutpatientID" Nullable="true" />
+          <Property Type="String" Name="ChiefComplaint" Nullable="false" />
+          <Property Type="DateTime" Name="VisitDate" Nullable="false" />
+          <Property Type="String" Name="CDSSDiagnosis1" Nullable="false" />
+          <Property Type="String" Name="CDSSDiagnosis2" Nullable="true" />
+          <Property Type="String" Name="CDSSDiagnosis3" Nullable="true" />
+          <Property Type="String" Name="DiagnosisResult1" Nullable="false" />
+          <Property Type="String" Name="DiagnosisResult2" Nullable="true" />
+          <Property Type="String" Name="DiagnosisResult3" Nullable="true" />
+          <Property Type="String" Name="Prescription" Nullable="true" />
+          <NavigationProperty Name="SecondaryHeadacheSymptom" Relationship="HeadacheModel.VisitRecordSecondaryHeadacheSymptom" FromRole="VisitRecord" ToRole="SecondaryHeadacheSymptom" />
+          <NavigationProperty Name="PrimaryHeadachaOverView" Relationship="HeadacheModel.VisitRecordPrimaryHeadachaOverView" FromRole="VisitRecord" ToRole="PrimaryHeadachaOverView" />
+          <Property Type="String" Name="PreviousDiagnosis" Nullable="true" />
+          <Property Type="String" Name="PrescriptionNote" Nullable="true" />
+          <NavigationProperty Name="GADQuestionaire" Relationship="HeadacheModel.VisitRecordGADQuestionaire" FromRole="VisitRecord" ToRole="GADQuestionaire" />
+          <NavigationProperty Name="PHQuestionaire" Relationship="HeadacheModel.VisitRecordPHQuestionaire" FromRole="VisitRecord" ToRole="PHQuestionaire" />
+          <NavigationProperty Name="SleepStatus" Relationship="HeadacheModel.VisitRecordSleepStatus" FromRole="VisitRecord" ToRole="SleepStatus" />
+          <NavigationProperty Name="DisabilityEvaluation" Relationship="HeadacheModel.VisitRecordDisabilityEvaluation" FromRole="VisitRecord" ToRole="DisabilityEvaluation" />
+          <NavigationProperty Name="PatBasicInfor" Relationship="HeadacheModel.PatBasicInforVisitRecord" FromRole="VisitRecord" ToRole="PatBasicInfor" />
+          <Property Type="String" Name="PatBasicInforId" Nullable="false" MaxLength="255" />
+          <NavigationProperty Name="MedicationAdvice" Relationship="HeadacheModel.VisitRecordMedicationAdvice" FromRole="VisitRecord" ToRole="MedicationAdvice" />
+        </EntityType>
+        <Association Name="DoctorAccountPatBasicInfor">
+          <End Type="HeadacheModel.DoctorAccount" Role="DoctorAccount" Multiplicity="1" />
+          <End Type="HeadacheModel.PatBasicInfor" Role="PatBasicInfor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DoctorAccount">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PatBasicInfor">
+              <PropertyRef Name="DoctorAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="Diagnosis" >
+          <Property Type="String" Name="FirstDianosis" Nullable="false" />
+          <Property Type="String" Name="SecondDiagnosis" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="PrimaryHeadacheOverView">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="HeadacheType" Nullable="false" />
+          <Property Type="String" Name="HeadacheDegree" Nullable="false" />
+          <Property Type="String" Name="HeadcheTime" Nullable="false" />
+          <Property Type="String" Name="HeacheTimeUnit" Nullable="false" />
+          <Property Type="String" Name="FrequencyPerMonth" Nullable="false" />
+          <Property Type="String" Name="OnsetFixedPeriod" Nullable="false" />
+          <Property Type="DateTime" Name="OnsetDate" Nullable="false" />
+          <Property Type="String" Name="OnsetAmount" Nullable="false" />
+          <Property Type="String" Name="DailyAggravation" Nullable="false" />
+          <NavigationProperty Name="HeadachePlace" Relationship="HeadacheModel.HeadachaOverViewHeadachePlace" FromRole="HeadachaOverView" ToRole="HeadachePlace" />
+          <NavigationProperty Name="HeadacheAccompany" Relationship="HeadacheModel.HeadachaOverViewHeadacheAccompany" FromRole="HeadachaOverView" ToRole="HeadacheAccompany" />
+          <NavigationProperty Name="HeadacheProdrome" Relationship="HeadacheModel.HeadachaOverViewHeadacheProdrome" FromRole="HeadachaOverView" ToRole="HeadacheProdrome" />
+          <NavigationProperty Name="MitigatingFactors" Relationship="HeadacheModel.HeadachaOverViewMitigatingFactors" FromRole="HeadachaOverView" ToRole="MitigatingFactors" />
+          <NavigationProperty Name="PrecipitatingFactor" Relationship="HeadacheModel.HeadachaOverViewPrecipitatingFactor" FromRole="HeadachaOverView" ToRole="PrecipitatingFactor" />
+          <Property Type="String" Name="FirstOnsetContinue" Nullable="false" />
+          <NavigationProperty Name="VisitRecord" Relationship="HeadacheModel.VisitRecordPrimaryHeadachaOverView" FromRole="PrimaryHeadachaOverView" ToRole="VisitRecord" />
+          <NavigationProperty Name="PremonitorySymptom" Relationship="HeadacheModel.PrimaryHeadacheOverViewPremonitorySymptom" FromRole="PrimaryHeadacheOverView" ToRole="PremonitorySymptom" />
+        </EntityType>
+        <EntityType Name="Lifestyle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="SmokeState" Nullable="true" />
+          <Property Type="String" Name="SmokeYear" Nullable="true" />
+          <Property Type="Boolean" Name="DrinkState" Nullable="true" />
+          <Property Type="String" Name="DrinkYear" Nullable="true" />
+          <Property Type="String" Name="TeaPerDay" Nullable="true" />
+          <Property Type="String" Name="CoffePerDay" Nullable="true" />
+          <Property Type="Boolean" Name="ExerciseOften" Nullable="true" />
+          <NavigationProperty Name="PatBasicInfor" Relationship="HeadacheModel.PatBasicInforLifestyle" FromRole="Lifestyle" ToRole="PatBasicInfor" />
+        </EntityType>
+        <EntityType Name="HeadachePlace">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Position" Nullable="false" />
+          <Property Type="String" Name="SpecificPlace" Nullable="false" />
+          <NavigationProperty Name="HeadachaOverView" Relationship="HeadacheModel.HeadachaOverViewHeadachePlace" FromRole="HeadachePlace" ToRole="HeadachaOverView" />
+          <Property Type="Int32" Name="HeadachaOverViewId" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HeadacheAccompany">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Symptom" Nullable="false" />
+          <NavigationProperty Name="HeadachaOverView" Relationship="HeadacheModel.HeadachaOverViewHeadacheAccompany" FromRole="HeadacheAccompany" ToRole="HeadachaOverView" />
+          <Property Type="Int32" Name="HeadachaOverViewId" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HeadacheProdrome">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Prodrome" Nullable="false" />
+          <NavigationProperty Name="HeadachaOverView" Relationship="HeadacheModel.HeadachaOverViewHeadacheProdrome" FromRole="HeadacheProdrome" ToRole="HeadachaOverView" />
+          <Property Type="Int32" Name="HeadachaOverViewId" Nullable="false" />
+        </EntityType>
+        <Association Name="HeadachaOverViewHeadachePlace">
+          <End Type="HeadacheModel.PrimaryHeadacheOverView" Role="HeadachaOverView" Multiplicity="1" />
+          <End Type="HeadacheModel.HeadachePlace" Role="HeadachePlace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HeadachaOverView">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HeadachePlace">
+              <PropertyRef Name="HeadachaOverViewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HeadachaOverViewHeadacheAccompany">
+          <End Type="HeadacheModel.PrimaryHeadacheOverView" Role="HeadachaOverView" Multiplicity="1" />
+          <End Type="HeadacheModel.HeadacheAccompany" Role="HeadacheAccompany" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HeadachaOverView">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HeadacheAccompany">
+              <PropertyRef Name="HeadachaOverViewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HeadachaOverViewHeadacheProdrome">
+          <End Type="HeadacheModel.PrimaryHeadacheOverView" Role="HeadachaOverView" Multiplicity="1" />
+          <End Type="HeadacheModel.HeadacheProdrome" Role="HeadacheProdrome" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HeadachaOverView">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HeadacheProdrome">
+              <PropertyRef Name="HeadachaOverViewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PreviousDrug">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="DrugCategory" Nullable="false" />
+          <Property Type="String" Name="DrugName" Nullable="false" />
+          <Property Type="String" Name="DayAmoutnPerM" Nullable="true" />
+          <Property Type="String" Name="MonthTotalAmount" Nullable="true" />
+          <Property Type="String" Name="PatBasicInforId" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="DrugApplication" Nullable="true" />
+          <NavigationProperty Name="PatBasicInfor" Relationship="HeadacheModel.PatBasicInforPreviousDrug" FromRole="PreviousDrug" ToRole="PatBasicInfor" />
+          <Property Type="String" Name="PatBasicInforId1" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="PreviousExam">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ExamName" Nullable="false" />
+          <Property Type="String" Name="Result" Nullable="false" />
+          <Property Type="String" Name="Date" Nullable="false" />
+          <NavigationProperty Name="PatBasicInfor" Relationship="HeadacheModel.PatBasicInforPreviousExam" FromRole="PreviousExam" ToRole="PatBasicInfor" />
+          <Property Type="String" Name="PatBasicInforId" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="HeadacheFamilyMember">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Person" Nullable="false" />
+          <NavigationProperty Name="PatBasicInfor" Relationship="HeadacheModel.PatBasicInforHeadacheFamilyMember" FromRole="HeadacheFamilyMember" ToRole="PatBasicInfor" />
+          <Property Type="String" Name="PatBasicInforId" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="OtherFamilyDisease">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="DiseaseName" Nullable="false" />
+          <NavigationProperty Name="PatBasicInfor" Relationship="HeadacheModel.PatBasicInforOtherFamilyDisease" FromRole="OtherFamilyDisease" ToRole="PatBasicInfor" />
+          <Property Type="String" Name="PatBasicInforId" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="MedicationAdvice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="DrugApplication" Nullable="true" />
+          <Property Type="String" Name="DrugCategory" Nullable="true" />
+          <Property Type="String" Name="DrugName" Nullable="true" />
+          <Property Type="String" Name="DrugDose" Nullable="true" />
+          <Property Type="String" Name="DrugDoseUnit" Nullable="true" />
+          <NavigationProperty Name="VisitRecord" Relationship="HeadacheModel.VisitRecordMedicationAdvice" FromRole="MedicationAdvice" ToRole="VisitRecord" />
+          <Property Type="Int32" Name="VisitRecordId" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PrecipitatingFactor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="FactorName" Nullable="false" />
+          <NavigationProperty Name="HeadachaOverView" Relationship="HeadacheModel.HeadachaOverViewPrecipitatingFactor" FromRole="PrecipitatingFactor" ToRole="HeadachaOverView" />
+          <Property Type="Int32" Name="HeadachaOverViewId" Nullable="false" />
+          <Property Type="String" Name="FactorDetail" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MitigatingFactors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="FactorName" Nullable="false" />
+          <NavigationProperty Name="HeadachaOverView" Relationship="HeadacheModel.HeadachaOverViewMitigatingFactors" FromRole="MitigatingFactors" ToRole="HeadachaOverView" />
+          <Property Type="Int32" Name="HeadachaOverViewId" Nullable="false" />
+        </EntityType>
+        <Association Name="HeadachaOverViewMitigatingFactors">
+          <End Type="HeadacheModel.PrimaryHeadacheOverView" Role="HeadachaOverView" Multiplicity="1" />
+          <End Type="HeadacheModel.MitigatingFactors" Role="MitigatingFactors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HeadachaOverView">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MitigatingFactors">
+              <PropertyRef Name="HeadachaOverViewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HeadachaOverViewPrecipitatingFactor">
+          <End Type="HeadacheModel.PrimaryHeadacheOverView" Role="HeadachaOverView" Multiplicity="1" />
+          <End Type="HeadacheModel.PrecipitatingFactor" Role="PrecipitatingFactor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HeadachaOverView">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrecipitatingFactor">
+              <PropertyRef Name="HeadachaOverViewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PatBasicInforPreviousExam">
+          <End Type="HeadacheModel.PatBasicInfor" Role="PatBasicInfor" Multiplicity="1" />
+          <End Type="HeadacheModel.PreviousExam" Role="PreviousExam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatBasicInfor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PreviousExam">
+              <PropertyRef Name="PatBasicInforId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PatBasicInforHeadacheFamilyMember">
+          <End Type="HeadacheModel.PatBasicInfor" Role="PatBasicInfor" Multiplicity="1" />
+          <End Type="HeadacheModel.HeadacheFamilyMember" Role="HeadacheFamilyMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatBasicInfor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HeadacheFamilyMember">
+              <PropertyRef Name="PatBasicInforId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PatBasicInforOtherFamilyDisease">
+          <End Type="HeadacheModel.PatBasicInfor" Role="PatBasicInfor" Multiplicity="1" />
+          <End Type="HeadacheModel.OtherFamilyDisease" Role="OtherFamilyDisease" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatBasicInfor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OtherFamilyDisease">
+              <PropertyRef Name="PatBasicInforId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SecondaryHeadacheSymptom">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Symptom" Nullable="false" />
+          <NavigationProperty Name="VisitRecord" Relationship="HeadacheModel.VisitRecordSecondaryHeadacheSymptom" FromRole="SecondaryHeadacheSymptom" ToRole="VisitRecord" />
+          <Property Type="Int32" Name="VisitRecordId" Nullable="false" />
+        </EntityType>
+        <Association Name="VisitRecordSecondaryHeadacheSymptom">
+          <End Type="HeadacheModel.VisitRecord" Role="VisitRecord" Multiplicity="1" />
+          <End Type="HeadacheModel.SecondaryHeadacheSymptom" Role="SecondaryHeadacheSymptom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VisitRecord">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SecondaryHeadacheSymptom">
+              <PropertyRef Name="VisitRecordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VisitRecordPrimaryHeadachaOverView">
+          <End Type="HeadacheModel.VisitRecord" Role="VisitRecord" Multiplicity="1" />
+          <End Type="HeadacheModel.PrimaryHeadacheOverView" Role="PrimaryHeadachaOverView" Multiplicity="0..1" />
+        </Association>
+        <Association Name="PatBasicInforLifestyle">
+          <End Type="HeadacheModel.PatBasicInfor" Role="PatBasicInfor" Multiplicity="1" />
+          <End Type="HeadacheModel.Lifestyle" Role="Lifestyle" Multiplicity="1" />
+        </Association>
+        <EntityType Name="PremonitorySymptom">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Symptom" Nullable="true" />
+          <NavigationProperty Name="PrimaryHeadacheOverView" Relationship="HeadacheModel.PrimaryHeadacheOverViewPremonitorySymptom" FromRole="PremonitorySymptom" ToRole="PrimaryHeadacheOverView" />
+          <Property Type="Int32" Name="PrimaryHeadacheOverViewId" Nullable="false" />
+        </EntityType>
+        <Association Name="PrimaryHeadacheOverViewPremonitorySymptom">
+          <End Type="HeadacheModel.PrimaryHeadacheOverView" Role="PrimaryHeadacheOverView" Multiplicity="1" />
+          <End Type="HeadacheModel.PremonitorySymptom" Role="PremonitorySymptom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PrimaryHeadacheOverView">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PremonitorySymptom">
+              <PropertyRef Name="PrimaryHeadacheOverViewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PHQuestionaire">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Q1" Nullable="true" />
+          <Property Type="String" Name="Q2" Nullable="true" />
+          <Property Type="String" Name="Q3" Nullable="true" />
+          <Property Type="String" Name="Q4" Nullable="true" />
+          <Property Type="String" Name="Q5" Nullable="true" />
+          <Property Type="String" Name="Q6" Nullable="true" />
+          <Property Type="String" Name="Q7" Nullable="true" />
+          <Property Type="String" Name="Q8" Nullable="true" />
+          <Property Type="String" Name="Q9" Nullable="true" />
+          <Property Type="String" Name="TotalScore" Nullable="true" />
+          <NavigationProperty Name="VisitRecord" Relationship="HeadacheModel.VisitRecordPHQuestionaire" FromRole="PHQuestionaire" ToRole="VisitRecord" />
+        </EntityType>
+        <EntityType Name="GADQuestionaire" >
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="String" Name="Q1" Nullable="true" />
+          <Property Type="String" Name="Q2" Nullable="true" />
+          <Property Type="String" Name="Q3" Nullable="true" />
+          <Property Type="String" Name="Q4" Nullable="true" />
+          <Property Type="String" Name="Q5" Nullable="true" />
+          <Property Type="String" Name="Q6" Nullable="true" />
+          <Property Type="String" Name="Q7" Nullable="true" />
+          <Property Type="String" Name="TotalScore" Nullable="true" />
+          <NavigationProperty Name="VisitRecord" Relationship="HeadacheModel.VisitRecordGADQuestionaire" FromRole="GADQuestionaire" ToRole="VisitRecord" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="DisabilityEvaluation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="HeadacheDays" Nullable="true" />
+          <Property Type="String" Name="OutOfWorkDays" Nullable="true" />
+          <Property Type="String" Name="AffectWorkDays" Nullable="true" />
+          <Property Type="String" Name="OutOfHouseWorkDays" Nullable="true" />
+          <Property Type="String" Name="AffectHouseWorkDays" Nullable="true" />
+          <Property Type="String" Name="MissActivityDays" Nullable="true" />
+          <NavigationProperty Name="VisitRecord" Relationship="HeadacheModel.VisitRecordDisabilityEvaluation" FromRole="DisabilityEvaluation" ToRole="VisitRecord" />
+        </EntityType>
+        <Association Name="VisitRecordGADQuestionaire">
+          <End Type="HeadacheModel.VisitRecord" Role="VisitRecord" Multiplicity="1" />
+          <End Type="HeadacheModel.GADQuestionaire" Role="GADQuestionaire" Multiplicity="0..1" />
+        </Association>
+        <Association Name="VisitRecordPHQuestionaire">
+          <End Type="HeadacheModel.VisitRecord" Role="VisitRecord" Multiplicity="1" />
+          <End Type="HeadacheModel.PHQuestionaire" Role="PHQuestionaire" Multiplicity="0..1" />
+        </Association>
+        <EntityType Name="SleepStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="TimePerDay" Nullable="true" />
+          <Property Type="String" Name="DifficultFallingAsleep" Nullable="true" />
+          <Property Type="String" Name="Dreaminess" Nullable="true" />
+          <Property Type="String" Name="FestlessSleep" Nullable="true" />
+          <Property Type="String" Name="SleepyDayTime" Nullable="true" />
+          <NavigationProperty Name="VisitRecord" Relationship="HeadacheModel.VisitRecordSleepStatus" FromRole="SleepStatus" ToRole="VisitRecord" />
+        </EntityType>
+        <Association Name="VisitRecordSleepStatus">
+          <End Type="HeadacheModel.VisitRecord" Role="VisitRecord" Multiplicity="1" />
+          <End Type="HeadacheModel.SleepStatus" Role="SleepStatus" Multiplicity="0..1" />
+        </Association>
+        <Association Name="VisitRecordDisabilityEvaluation">
+          <End Type="HeadacheModel.VisitRecord" Role="VisitRecord" Multiplicity="1" />
+          <End Type="HeadacheModel.DisabilityEvaluation" Role="DisabilityEvaluation" Multiplicity="0..1" />
+        </Association>
+        <EntityType Name="HeadacheDiary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="RecordDate" Nullable="false" />
+          <Property Type="Int32" Name="HeadacheTime" Nullable="false" />
+          <Property Type="String" Name="HeadacheType" Nullable="true" />
+          <NavigationProperty Name="HDAcompanion" Relationship="HeadacheModel.HeadacheDiaryHDAcompanion" FromRole="HeadacheDiary" ToRole="HDAcompanion" />
+          <NavigationProperty Name="HDheadacheplace" Relationship="HeadacheModel.HeadacheDiaryHDheadacheplace" FromRole="HeadacheDiary" ToRole="HDheadacheplace" />
+          <NavigationProperty Name="HDHeadacheProdrome" Relationship="HeadacheModel.HeadacheDiaryHDHeadacheProdrome" FromRole="HeadacheDiary" ToRole="HDHeadacheProdrome" />
+          <NavigationProperty Name="HDMitigatingFactors" Relationship="HeadacheModel.HeadacheDiaryHDMitigatingFactors" FromRole="HeadacheDiary" ToRole="HDMitigatingFactors" />
+          <NavigationProperty Name="HDPrecipitatingFactor" Relationship="HeadacheModel.HeadacheDiaryHDPrecipitatingFactor" FromRole="HeadacheDiary" ToRole="HDPrecipitatingFactor" />
+          <NavigationProperty Name="PatBasicInfor" Relationship="HeadacheModel.PatBasicInforHeadacheDiary" FromRole="HeadacheDiary" ToRole="PatBasicInfor" />
+          <Property Type="String" Name="PatBasicInforId" Nullable="false" MaxLength="255" />
+          <Property Type="Int32" Name="HeadacheDegree" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HDheadacheplace">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="postion" Nullable="false" />
+          <NavigationProperty Name="HeadacheDiary" Relationship="HeadacheModel.HeadacheDiaryHDheadacheplace" FromRole="HDheadacheplace" ToRole="HeadacheDiary" />
+          <Property Type="Int32" Name="HeadacheDiaryID" Nullable="false" />
+          <Property Type="String" Name="detailposition" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HDAcompanion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="symptom" Nullable="false" />
+          <NavigationProperty Name="HeadacheDiary" Relationship="HeadacheModel.HeadacheDiaryHDAcompanion" FromRole="HDAcompanion" ToRole="HeadacheDiary" />
+          <Property Type="Int32" Name="HeadacheDiaryID" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HDPrecipitatingFactor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="factor" Nullable="false" />
+          <NavigationProperty Name="HeadacheDiary" Relationship="HeadacheModel.HeadacheDiaryHDPrecipitatingFactor" FromRole="HDPrecipitatingFactor" ToRole="HeadacheDiary" />
+          <Property Type="Int32" Name="HeadacheDiaryID" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HDMitigatingFactors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="factor" Nullable="false" />
+          <NavigationProperty Name="HeadacheDiary" Relationship="HeadacheModel.HeadacheDiaryHDMitigatingFactors" FromRole="HDMitigatingFactors" ToRole="HeadacheDiary" />
+          <Property Type="Int32" Name="HeadacheDiaryID" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HDHeadacheProdrome">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="symptom" Nullable="false" />
+          <NavigationProperty Name="HeadacheDiary" Relationship="HeadacheModel.HeadacheDiaryHDHeadacheProdrome" FromRole="HDHeadacheProdrome" ToRole="HeadacheDiary" />
+          <Property Type="Int32" Name="HeadacheDiaryID" Nullable="false" />
+        </EntityType>
+        <Association Name="HeadacheDiaryHDAcompanion">
+          <End Type="HeadacheModel.HeadacheDiary" Role="HeadacheDiary" Multiplicity="1" />
+          <End Type="HeadacheModel.HDAcompanion" Role="HDAcompanion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HeadacheDiary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HDAcompanion">
+              <PropertyRef Name="HeadacheDiaryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HeadacheDiaryHDheadacheplace">
+          <End Type="HeadacheModel.HeadacheDiary" Role="HeadacheDiary" Multiplicity="1" />
+          <End Type="HeadacheModel.HDheadacheplace" Role="HDheadacheplace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HeadacheDiary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HDheadacheplace">
+              <PropertyRef Name="HeadacheDiaryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HeadacheDiaryHDHeadacheProdrome">
+          <End Type="HeadacheModel.HeadacheDiary" Role="HeadacheDiary" Multiplicity="1" />
+          <End Type="HeadacheModel.HDHeadacheProdrome" Role="HDHeadacheProdrome" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HeadacheDiary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HDHeadacheProdrome">
+              <PropertyRef Name="HeadacheDiaryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HeadacheDiaryHDMitigatingFactors">
+          <End Type="HeadacheModel.HeadacheDiary" Role="HeadacheDiary" Multiplicity="1" />
+          <End Type="HeadacheModel.HDMitigatingFactors" Role="HDMitigatingFactors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HeadacheDiary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HDMitigatingFactors">
+              <PropertyRef Name="HeadacheDiaryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HeadacheDiaryHDPrecipitatingFactor">
+          <End Type="HeadacheModel.HeadacheDiary" Role="HeadacheDiary" Multiplicity="1" />
+          <End Type="HeadacheModel.HDPrecipitatingFactor" Role="HDPrecipitatingFactor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HeadacheDiary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HDPrecipitatingFactor">
+              <PropertyRef Name="HeadacheDiaryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PatBasicInforHeadacheDiary">
+          <End Type="HeadacheModel.PatBasicInfor" Role="PatBasicInfor" Multiplicity="1" />
+          <End Type="HeadacheModel.HeadacheDiary" Role="HeadacheDiary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatBasicInfor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HeadacheDiary">
+              <PropertyRef Name="PatBasicInforId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="RegionalCenterAccount">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UserName" Nullable="false" />
+          <Property Type="String" Name="PassWord" Nullable="false" />
+          <Property Type="String" Name="Region" Nullable="false" />
+          <NavigationProperty Name="NationalCenterAccount" Relationship="HeadacheModel.NationalCenterAccountRegionalCenterAccount" FromRole="RegionalCenterAccount" ToRole="NationalCenterAccount" />
+          <Property Type="Int32" Name="NationalCenterAccountID" Nullable="false" />
+          <NavigationProperty Name="DoctorAccount" Relationship="HeadacheModel.RegionalCenterAccountDoctorAccount" FromRole="RegionalCenterAccount" ToRole="DoctorAccount" />
+        </EntityType>
+        <EntityType Name="NationalCenterAccount">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UserName" Nullable="false" />
+          <Property Type="String" Name="PassWord" Nullable="false" />
+          <NavigationProperty Name="RegionalCenterAccount" Relationship="HeadacheModel.NationalCenterAccountRegionalCenterAccount" FromRole="NationalCenterAccount" ToRole="RegionalCenterAccount" />
+        </EntityType>
+        <Association Name="NationalCenterAccountRegionalCenterAccount">
+          <End Type="HeadacheModel.NationalCenterAccount" Role="NationalCenterAccount" Multiplicity="1" />
+          <End Type="HeadacheModel.RegionalCenterAccount" Role="RegionalCenterAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NationalCenterAccount">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RegionalCenterAccount">
+              <PropertyRef Name="NationalCenterAccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RegionalCenterAccountDoctorAccount">
+          <End Type="HeadacheModel.RegionalCenterAccount" Role="RegionalCenterAccount" Multiplicity="1" />
+          <End Type="HeadacheModel.DoctorAccount" Role="DoctorAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegionalCenterAccount">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DoctorAccount">
+              <PropertyRef Name="RegionalCenterAccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PatBasicInforVisitRecord">
+          <End Type="HeadacheModel.PatBasicInfor" Role="PatBasicInfor" Multiplicity="1" />
+          <End Type="HeadacheModel.VisitRecord" Role="VisitRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatBasicInfor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VisitRecord">
+              <PropertyRef Name="PatBasicInforId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PatBasicInforPreviousDrug">
+          <End Type="HeadacheModel.PatBasicInfor" Role="PatBasicInfor" Multiplicity="1" />
+          <End Type="HeadacheModel.PreviousDrug" Role="PreviousDrug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatBasicInfor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PreviousDrug">
+              <PropertyRef Name="PatBasicInforId1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VisitRecordMedicationAdvice">
+          <End Type="HeadacheModel.VisitRecord" Role="VisitRecord" Multiplicity="1" />
+          <End Type="HeadacheModel.MedicationAdvice" Role="MedicationAdvice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VisitRecord">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MedicationAdvice">
+              <PropertyRef Name="VisitRecordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PatinfoForRe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="Sex" Nullable="false" />
+          <Property Type="String" Name="Age" Nullable="false" />
+          <Property Type="String" Name="HeadacheStyle" Nullable="false" />
+          <Property Type="String" Name="Data" Nullable="false" />
+          <NavigationProperty Name="PatBasicInfor" Relationship="HeadacheModel.PatBasicInforPatinfoForRe" FromRole="PatinfoForRe" ToRole="PatBasicInfor" />
+          <Property Type="String" Name="PatBasicInforId" Nullable="false" />
+          <Property Type="String" Name="ListID" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <Association Name="PatBasicInforPatinfoForRe">
+          <End Type="HeadacheModel.PatBasicInfor" Role="PatBasicInfor" Multiplicity="1" />
+          <End Type="HeadacheModel.PatinfoForRe" Role="PatinfoForRe" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HeadacheModelStoreContainer" CdmEntityContainer="HeadacheModelContainer">
+    <EntitySetMapping Name="DoctorAccountSet">
+      <EntityTypeMapping TypeName="IsTypeOf(HeadacheModel.DoctorAccount)">
+        <MappingFragment StoreEntitySet="DoctorAccountSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+          <ScalarProperty Name="Hospital" ColumnName="Hospital" />
+          <ScalarProperty Name="ChiefDoctor" ColumnName="ChiefDoctor" />
+          <ScalarProperty Name="RegionalCenterAccountID" ColumnName="RegionalCenterAccountID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatBasicInforSet">
+      <EntityTypeMapping TypeName="IsTypeOf(HeadacheModel.PatBasicInfor)">
+        <MappingFragment StoreEntitySet="PatBasicInforSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Education" ColumnName="Education" />
+          <ScalarProperty Name="Job" ColumnName="Job" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Identity" ColumnName="Identity" />
+          <ScalarProperty Name="DoctorAccountId" ColumnName="DoctorAccountId" />
+          <ScalarProperty Name="SimilarFamily" ColumnName="SimilarFamily" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+          <ScalarProperty Name="Height" ColumnName="Height" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VisitRecordSet">
+      <EntityTypeMapping TypeName="IsTypeOf(HeadacheModel.VisitRecord)">
+        <MappingFragment StoreEntitySet="VisitRecordSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="OutpatientID" ColumnName="OutpatientID" />
+          <ScalarProperty Name="ChiefComplaint" ColumnName="ChiefComplaint" />
+          <ScalarProperty Name="VisitDate" ColumnName="VisitDate" />
+          <ScalarProperty Name="CDSSDiagnosis1" ColumnName="CDSSDiagnosis1" />
+          <ScalarProperty Name="CDSSDiagnosis2" ColumnName="CDSSDiagnosis2" />
+          <ScalarProperty Name="CDSSDiagnosis3" ColumnName="CDSSDiagnosis3" />
+          <ScalarProperty Name="DiagnosisResult1" ColumnName="DiagnosisResult1" />
+          <ScalarProperty Name="DiagnosisResult2" ColumnName="DiagnosisResult2" />
+          <ScalarProperty Name="DiagnosisResult3" ColumnName="DiagnosisResult3" />
+          <ScalarProperty Name="Prescription" ColumnName="Prescription" />
+          <ScalarProperty Name="PreviousDiagnosis" ColumnName="PreviousDiagnosis" />
+          <ScalarProperty Name="PrescriptionNote" ColumnName="PrescriptionNote" />
+          <ScalarProperty Name="PatBasicInforId" ColumnName="PatBasicInforId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PrimaryHeadacheOverViewSet">
+      <EntityTypeMapping TypeName="IsTypeOf(HeadacheModel.PrimaryHeadacheOverView)">
+        <MappingFragment StoreEntitySet="PrimaryHeadacheOverViewSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HeadacheType" ColumnName="HeadacheType" />
+          <ScalarProperty Name="HeadacheDegree" ColumnName="HeadacheDegree" />
+          <ScalarProperty Name="HeadcheTime" ColumnName="HeadcheTime" />
+          <ScalarProperty Name="HeacheTimeUnit" ColumnName="HeacheTimeUnit" />
+          <ScalarProperty Name="FrequencyPerMonth" ColumnName="FrequencyPerMonth" />
+          <ScalarProperty Name="OnsetFixedPeriod" ColumnName="OnsetFixedPeriod" />
+          <ScalarProperty Name="OnsetDate" ColumnName="OnsetDate" />
+          <ScalarProperty Name="OnsetAmount" ColumnName="OnsetAmount" />
+          <ScalarProperty Name="DailyAggravation" ColumnName="DailyAggravation" />
+          <ScalarProperty Name="FirstOnsetContinue" ColumnName="FirstOnsetContinue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LifestyleSet">
+      <EntityTypeMapping TypeName="IsTypeOf(HeadacheModel.Lifestyle)">
+        <MappingFragment StoreEntitySet="LifestyleSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SmokeState" ColumnName="SmokeState" />
+          <ScalarProperty Name="SmokeYear" ColumnName="SmokeYear" />
+          <ScalarProperty Name="DrinkState" ColumnName="DrinkState" />
+          <ScalarProperty Name="DrinkYear" ColumnName="DrinkYear" />
+          <ScalarProperty Name="TeaPerDay" ColumnName="TeaPerDay" />
+          <ScalarProperty Name="CoffePerDay" ColumnName="CoffePerDay" />
+          <ScalarProperty Name="ExerciseOften" ColumnName="ExerciseOften" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HeadachePlaceSet">
+      <EntityTypeMapping TypeName="IsTypeOf(HeadacheModel.HeadachePlace)">
+        <MappingFragment StoreEntitySet="HeadachePlaceSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="SpecificPlace" ColumnName="SpecificPlace" />
+          <ScalarProperty Name="HeadachaOverViewId" ColumnName="HeadachaOverViewId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HeadacheAccompanySet">
+      <EntityTypeMapping TypeName="IsTypeOf(HeadacheModel.HeadacheAccompany)">
+        <MappingFragment StoreEntitySet="HeadacheAccompanySet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Symptom" ColumnName="Symptom" />
+          <ScalarProperty Name="HeadachaOverViewId" ColumnName="HeadachaOverViewId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HeadacheProdromeSet">
+      <EntityTypeMapping TypeName="IsTypeOf(HeadacheModel.HeadacheProdrome)">
+        <MappingFragment StoreEntitySet="HeadacheProdromeSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Prodrome" ColumnName="Prodrome" />
+          <ScalarProperty Name="HeadachaOverViewId" ColumnName="HeadachaOverViewId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PreviousDrugSet">
+      <EntityTypeMapping TypeName="IsTypeOf(HeadacheModel.PreviousDrug)">
+        <MappingFragment StoreEntitySet="PreviousDrugSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DrugCategory" ColumnName="DrugCategory" />
+          <ScalarProperty Name="DrugName" ColumnName="DrugName" />
+          <ScalarProperty Name="DayAmoutnPerM" ColumnName="DayAmoutnPerM" />
+          <ScalarProperty Name="MonthTotalAmount" ColumnName="MonthTotalAmount" />
+          <ScalarProperty Name="PatBasicInforId" ColumnName="PatBasicInforId" />
+          <ScalarProperty Name="DrugApplication" ColumnName="DrugApplication" />
+          <ScalarProperty Name="PatBasicInforId1" ColumnName="PatBasicInforId1" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PreviousExamSet">
+      <EntityTypeMapping TypeName="IsTypeOf(HeadacheModel.PreviousExam)">
+        <MappingFragment StoreEntitySet="PreviousExamSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ExamName" ColumnName="ExamName" />
+          <ScalarProperty Name="Result" ColumnName="Result" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="PatBasicInforId" ColumnName="PatBasicInforId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HeadacheFamilyMemberSet">
+      <EntityTypeMapping TypeName="IsTypeOf(HeadacheModel.HeadacheFamilyMember)">
+        <MappingFragment StoreEntitySet="HeadacheFamilyMemberSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Person" ColumnName="Person" />
+          <ScalarProperty Name="PatBasicInforId" ColumnName="PatBasicInforId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OtherFamilyDiseaseSet">
+      <EntityTypeMapping TypeName="IsTypeOf(HeadacheModel.OtherFamilyDisease)">
+        <MappingFragment StoreEntitySet="OtherFamilyDiseaseSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DiseaseName" ColumnName="DiseaseName" />
+          <ScalarProperty Name="PatBasicInforId" ColumnName="PatBasicInforId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MedicationAdviceSet">
+      <EntityTypeMapping TypeName="IsTypeOf(HeadacheModel.MedicationAdvice)">
+        <MappingFragment StoreEntitySet="MedicationAdviceSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DrugApplication" ColumnName="DrugApplication" />
+          <ScalarProperty Name="DrugCategory" ColumnName="DrugCategory" />
+          <ScalarProperty Name="DrugName" ColumnName="DrugName" />
+          <ScalarProperty Name="DrugDose" ColumnName="DrugDose" />
+          <ScalarProperty Name="DrugDoseUnit" ColumnName="DrugDoseUnit" />
+          <ScalarProperty Name="VisitRecordId" ColumnName="VisitRecordId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PrecipitatingFactorSet">
+      <EntityTypeMapping TypeName="IsTypeOf(HeadacheModel.PrecipitatingFactor)">
+        <MappingFragment StoreEntitySet="PrecipitatingFactorSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FactorName" ColumnName="FactorName" />
+          <ScalarProperty Name="HeadachaOverViewId" ColumnName="HeadachaOverViewId" />
+          <ScalarProperty Name="FactorDetail" ColumnName="FactorDetail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MitigatingFactorsSet">
+      <EntityTypeMapping TypeName="IsTypeOf(HeadacheModel.MitigatingFactors)">
+        <MappingFragment StoreEntitySet="MitigatingFactorsSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FactorName" ColumnName="FactorName" />
+          <ScalarProperty Name="HeadachaOverViewId" ColumnName="HeadachaOverViewId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SecondaryHeadacheSymptomSet">
+      <EntityTypeMapping TypeName="IsTypeOf(HeadacheModel.SecondaryHeadacheSymptom)">
+        <MappingFragment StoreEntitySet="SecondaryHeadacheSymptomSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Symptom" ColumnName="Symptom" />
+          <ScalarProperty Name="VisitRecordId" ColumnName="VisitRecordId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PremonitorySymptom集">
+      <EntityTypeMapping TypeName="IsTypeOf(HeadacheModel.PremonitorySymptom)">
+        <MappingFragment StoreEntitySet="PremonitorySymptom集">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Symptom" ColumnName="Symptom" />
+          <ScalarProperty Name="PrimaryHeadacheOverViewId" ColumnName="PrimaryHeadacheOverViewId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PHQuestionaireSet">
+      <EntityTypeMapping TypeName="IsTypeOf(HeadacheModel.PHQuestionaire)">
+        <MappingFragment StoreEntitySet="PHQuestionaireSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Q1" ColumnName="Q1" />
+          <ScalarProperty Name="Q2" ColumnName="Q2" />
+          <ScalarProperty Name="Q3" ColumnName="Q3" />
+          <ScalarProperty Name="Q4" ColumnName="Q4" />
+          <ScalarProperty Name="Q5" ColumnName="Q5" />
+          <ScalarProperty Name="Q6" ColumnName="Q6" />
+          <ScalarProperty Name="Q7" ColumnName="Q7" />
+          <ScalarProperty Name="Q8" ColumnName="Q8" />
+          <ScalarProperty Name="Q9" ColumnName="Q9" />
+          <ScalarProperty Name="TotalScore" ColumnName="TotalScore" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GADQuestionaireSet">
+      <EntityTypeMapping TypeName="IsTypeOf(HeadacheModel.GADQuestionaire)">
+        <MappingFragment StoreEntitySet="GADQuestionaireSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Q1" ColumnName="Q1" />
+          <ScalarProperty Name="Q2" ColumnName="Q2" />
+          <ScalarProperty Name="Q3" ColumnName="Q3" />
+          <ScalarProperty Name="Q4" ColumnName="Q4" />
+          <ScalarProperty Name="Q5" ColumnName="Q5" />
+          <ScalarProperty Name="Q6" ColumnName="Q6" />
+          <ScalarProperty Name="Q7" ColumnName="Q7" />
+          <ScalarProperty Name="TotalScore" ColumnName="TotalScore" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DisabilityEvaluationSet">
+      <EntityTypeMapping TypeName="IsTypeOf(HeadacheModel.DisabilityEvaluation)">
+        <MappingFragment StoreEntitySet="DisabilityEvaluationSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HeadacheDays" ColumnName="HeadacheDays" />
+          <ScalarProperty Name="OutOfWorkDays" ColumnName="OutOfWorkDays" />
+          <ScalarProperty Name="AffectWorkDays" ColumnName="AffectWorkDays" />
+          <ScalarProperty Name="OutOfHouseWorkDays" ColumnName="OutOfHouseWorkDays" />
+          <ScalarProperty Name="AffectHouseWorkDays" ColumnName="AffectHouseWorkDays" />
+          <ScalarProperty Name="MissActivityDays" ColumnName="MissActivityDays" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SleepStatusSet">
+      <EntityTypeMapping TypeName="IsTypeOf(HeadacheModel.SleepStatus)">
+        <MappingFragment StoreEntitySet="SleepStatusSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TimePerDay" ColumnName="TimePerDay" />
+          <ScalarProperty Name="DifficultFallingAsleep" ColumnName="DifficultFallingAsleep" />
+          <ScalarProperty Name="Dreaminess" ColumnName="Dreaminess" />
+          <ScalarProperty Name="FestlessSleep" ColumnName="FestlessSleep" />
+          <ScalarProperty Name="SleepyDayTime" ColumnName="SleepyDayTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HeadacheDiarySet">
+      <EntityTypeMapping TypeName="IsTypeOf(HeadacheModel.HeadacheDiary)">
+        <MappingFragment StoreEntitySet="HeadacheDiarySet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RecordDate" ColumnName="RecordDate" />
+          <ScalarProperty Name="HeadacheTime" ColumnName="HeadacheTime" />
+          <ScalarProperty Name="HeadacheType" ColumnName="HeadacheType" />
+          <ScalarProperty Name="PatBasicInforId" ColumnName="PatBasicInforId" />
+          <ScalarProperty Name="HeadacheDegree" ColumnName="HeadacheDegree" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HDheadacheplaceSet">
+      <EntityTypeMapping TypeName="IsTypeOf(HeadacheModel.HDheadacheplace)">
+        <MappingFragment StoreEntitySet="HDheadacheplaceSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="postion" ColumnName="postion" />
+          <ScalarProperty Name="HeadacheDiaryID" ColumnName="HeadacheDiaryID" />
+          <ScalarProperty Name="detailposition" ColumnName="detailposition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HDAcompanionSet">
+      <EntityTypeMapping TypeName="IsTypeOf(HeadacheModel.HDAcompanion)">
+        <MappingFragment StoreEntitySet="HDAcompanionSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="symptom" ColumnName="symptom" />
+          <ScalarProperty Name="HeadacheDiaryID" ColumnName="HeadacheDiaryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HDPrecipitatingFactorSet">
+      <EntityTypeMapping TypeName="IsTypeOf(HeadacheModel.HDPrecipitatingFactor)">
+        <MappingFragment StoreEntitySet="HDPrecipitatingFactorSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="factor" ColumnName="factor" />
+          <ScalarProperty Name="HeadacheDiaryID" ColumnName="HeadacheDiaryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HDMitigatingFactorsSet">
+      <EntityTypeMapping TypeName="IsTypeOf(HeadacheModel.HDMitigatingFactors)">
+        <MappingFragment StoreEntitySet="HDMitigatingFactorsSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="factor" ColumnName="factor" />
+          <ScalarProperty Name="HeadacheDiaryID" ColumnName="HeadacheDiaryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HDHeadacheProdromeSet">
+      <EntityTypeMapping TypeName="IsTypeOf(HeadacheModel.HDHeadacheProdrome)">
+        <MappingFragment StoreEntitySet="HDHeadacheProdromeSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="symptom" ColumnName="symptom" />
+          <ScalarProperty Name="HeadacheDiaryID" ColumnName="HeadacheDiaryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RegionalCenterAccountSet">
+      <EntityTypeMapping TypeName="IsTypeOf(HeadacheModel.RegionalCenterAccount)">
+        <MappingFragment StoreEntitySet="RegionalCenterAccountSet">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+          <ScalarProperty Name="Region" ColumnName="Region" />
+          <ScalarProperty Name="NationalCenterAccountID" ColumnName="NationalCenterAccountID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NationalCenterAccountSet">
+      <EntityTypeMapping TypeName="IsTypeOf(HeadacheModel.NationalCenterAccount)">
+        <MappingFragment StoreEntitySet="NationalCenterAccountSet">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatinfoForReSet">
+      <EntityTypeMapping TypeName="IsTypeOf(HeadacheModel.PatinfoForRe)">
+        <MappingFragment StoreEntitySet="PatinfoForReSet">
+          <ScalarProperty Name="ListID" ColumnName="ListID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="HeadacheStyle" ColumnName="HeadacheStyle" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="PatBasicInforId" ColumnName="PatBasicInforId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="VisitRecordPrimaryHeadachaOverView" TypeName="HeadacheModel.VisitRecordPrimaryHeadachaOverView" StoreEntitySet="PrimaryHeadacheOverViewSet">
+      <EndProperty Name="VisitRecord">
+        <ScalarProperty Name="Id" ColumnName="VisitRecord_Id" />
+      </EndProperty>
+      <EndProperty Name="PrimaryHeadachaOverView">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PatBasicInforLifestyle" TypeName="HeadacheModel.PatBasicInforLifestyle" StoreEntitySet="PatBasicInforSet">
+      <EndProperty Name="Lifestyle">
+        <ScalarProperty Name="Id" ColumnName="Lifestyle_Id" />
+      </EndProperty>
+      <EndProperty Name="PatBasicInfor">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="VisitRecordGADQuestionaire" TypeName="HeadacheModel.VisitRecordGADQuestionaire" StoreEntitySet="GADQuestionaireSet">
+      <EndProperty Name="VisitRecord">
+        <ScalarProperty Name="Id" ColumnName="VisitRecord_Id" />
+      </EndProperty>
+      <EndProperty Name="GADQuestionaire">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="VisitRecordPHQuestionaire" TypeName="HeadacheModel.VisitRecordPHQuestionaire" StoreEntitySet="PHQuestionaireSet">
+      <EndProperty Name="VisitRecord">
+        <ScalarProperty Name="Id" ColumnName="VisitRecord_Id" />
+      </EndProperty>
+      <EndProperty Name="PHQuestionaire">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="VisitRecordSleepStatus" TypeName="HeadacheModel.VisitRecordSleepStatus" StoreEntitySet="SleepStatusSet">
+      <EndProperty Name="VisitRecord">
+        <ScalarProperty Name="Id" ColumnName="VisitRecord_Id" />
+      </EndProperty>
+      <EndProperty Name="SleepStatus">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="VisitRecordDisabilityEvaluation" TypeName="HeadacheModel.VisitRecordDisabilityEvaluation" StoreEntitySet="DisabilityEvaluationSet">
+      <EndProperty Name="VisitRecord">
+        <ScalarProperty Name="Id" ColumnName="VisitRecord_Id" />
+      </EndProperty>
+      <EndProperty Name="DisabilityEvaluation">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PatBasicInforPatinfoForRe" TypeName="HeadacheModel.PatBasicInforPatinfoForRe" StoreEntitySet="PatinfoForReSet">
+      <EndProperty Name="PatBasicInfor">
+        <ScalarProperty Name="Id" ColumnName="PatBasicInfor_Id" />
+      </EndProperty>
+      <EndProperty Name="PatinfoForRe">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="HeadacheModel" ZoomLevel="88" >
+        <EntityTypeShape EntityType="HeadacheModel.DoctorAccount" Width="1.5" PointX="0.625" PointY="5.375" Height="2.5430916341145826" />
+        <EntityTypeShape EntityType="HeadacheModel.PatBasicInfor" Width="1.5" PointX="3.125" PointY="0.75" Height="5.02634765625" />
+        <EntityTypeShape EntityType="HeadacheModel.VisitRecord" Width="1.875" PointX="5" PointY="0.75" Height="5.2173673502604156" IsExpanded="true" />
+        <AssociationConnector Association="HeadacheModel.DoctorAccountPatBasicInfor">
+          <ConnectorPoint PointX="2.125" PointY="5.575673828125" />
+          <ConnectorPoint PointX="2.3854166666666665" PointY="5.5756738281249989" />
+          <ConnectorPoint PointX="2.5520833333333335" PointY="5.575673828125" />
+          <ConnectorPoint PointX="3.125" PointY="5.575673828125" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="HeadacheModel.PrimaryHeadacheOverView" Width="1.75" PointX="7.875" PointY="1.25" Height="4.4532885742187487" />
+        <EntityTypeShape EntityType="HeadacheModel.Lifestyle" Width="1.875" PointX="3.125" PointY="8.625" Height="2.7341113281250014" />
+        <EntityTypeShape EntityType="HeadacheModel.HeadachePlace" Width="1.5" PointX="10.25" PointY="1.125" Height="1.9700325520833339" />
+        <EntityTypeShape EntityType="HeadacheModel.HeadacheAccompany" Width="1.5" PointX="10.25" PointY="3.375" Height="1.7790128580729165" />
+        <EntityTypeShape EntityType="HeadacheModel.HeadacheProdrome" Width="1.5" PointX="10.625" PointY="7.375" Height="1.7790128580729165" />
+        <AssociationConnector Association="HeadacheModel.HeadachaOverViewHeadachePlace">
+          <ConnectorPoint PointX="9.625" PointY="2.1725162760416667" />
+          <ConnectorPoint PointX="10.041666666666666" PointY="2.1725162760416663" />
+          <ConnectorPoint PointX="10.208333333333334" PointY="2.1725162760416667" />
+          <ConnectorPoint PointX="10.25" PointY="2.1725162760416667" />
+        </AssociationConnector>
+        <AssociationConnector Association="HeadacheModel.HeadachaOverViewHeadacheAccompany">
+          <ConnectorPoint PointX="9.625" PointY="4.2645064290364587" />
+          <ConnectorPoint PointX="10.041666666666666" PointY="4.2645064290364578" />
+          <ConnectorPoint PointX="10.208333333333334" PointY="4.2645064290364587" />
+          <ConnectorPoint PointX="10.25" PointY="4.2645064290364587" />
+        </AssociationConnector>
+        <AssociationConnector Association="HeadacheModel.HeadachaOverViewHeadacheProdrome" ManuallyRouted="false">
+          <ConnectorPoint PointX="8.1875" PointY="5.7032885742187487" />
+          <ConnectorPoint PointX="8.1875" PointY="8.9057727050781246" />
+          <ConnectorPoint PointX="10.041666666666666" PointY="8.9057727050781246" />
+          <ConnectorPoint PointX="10.208333333333334" PointY="8.9057727050781246" />
+          <ConnectorPoint PointX="10.229166666666666" PointY="8.9057727050781246" />
+          <ConnectorPoint PointX="10.395833333333334" PointY="8.9057727050781246" />
+          <ConnectorPoint PointX="10.625" PointY="8.9057727050781246" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="HeadacheModel.PreviousDrug" Width="1.5" PointX="3.25" PointY="11.75" Height="2.3520719401041656" />
+        <EntityTypeShape EntityType="HeadacheModel.PreviousExam" Width="1.5" PointX="0.875" PointY="12.375" Height="2.1610522460937496" />
+        <EntityTypeShape EntityType="HeadacheModel.HeadacheFamilyMember" Width="2" PointX="0.5" PointY="8.625" Height="1.7790128580729165" />
+        <EntityTypeShape EntityType="HeadacheModel.OtherFamilyDisease" Width="1.5" PointX="0.75" PointY="10.5" Height="1.7790128580729165" />
+        <EntityTypeShape EntityType="HeadacheModel.MedicationAdvice" Width="2" PointX="5.875" PointY="6.75" Height="2.1610522460937496" />
+        <EntityTypeShape EntityType="HeadacheModel.PrecipitatingFactor" Width="1.5" PointX="8.5" PointY="6.625" Height="1.9700325520833317" />
+        <EntityTypeShape EntityType="HeadacheModel.MitigatingFactors" Width="1.5" PointX="10.375" PointY="5.25" Height="1.7790128580729157" />
+        <AssociationConnector Association="HeadacheModel.HeadachaOverViewMitigatingFactors">
+          <ConnectorPoint PointX="9.625" PointY="5.476644287109373" />
+          <ConnectorPoint PointX="10.041666666666666" PointY="5.4766442871093721" />
+          <ConnectorPoint PointX="10.208333333333334" PointY="5.476644287109373" />
+          <ConnectorPoint PointX="10.375" PointY="5.476644287109373" />
+        </AssociationConnector>
+        <AssociationConnector Association="HeadacheModel.HeadachaOverViewPrecipitatingFactor" ManuallyRouted="false">
+          <ConnectorPoint PointX="9.0625" PointY="5.7032885742187487" />
+          <ConnectorPoint PointX="9.0625" PointY="6.625" />
+        </AssociationConnector>
+        <AssociationConnector Association="HeadacheModel.PatBasicInforPreviousExam" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.583786934589797" PointY="5.77634765625" />
+          <ConnectorPoint PointX="3.583786934589797" PointY="8.3750000000000018" />
+          <ConnectorPoint PointX="3.3752268006282322" PointY="8.3750000000000018" />
+          <ConnectorPoint PointX="3.2085601339615653" PointY="8.3750000000000018" />
+          <ConnectorPoint PointX="2.875" PointY="8.3750000000000018" />
+          <ConnectorPoint PointX="2.875" PointY="13.455526123046875" />
+          <ConnectorPoint PointX="2.375" PointY="13.455526123046875" />
+        </AssociationConnector>
+        <AssociationConnector Association="HeadacheModel.PatBasicInforHeadacheFamilyMember">
+          <ConnectorPoint PointX="3.125" PointY="5.1760359700520828" />
+          <ConnectorPoint PointX="2.46875" PointY="5.1760359700520828" />
+          <ConnectorPoint PointX="2.46875" PointY="8.625" />
+        </AssociationConnector>
+        <AssociationConnector Association="HeadacheModel.PatBasicInforOtherFamilyDisease">
+          <ConnectorPoint PointX="4.1457129218635194" PointY="5.77634765625" />
+          <ConnectorPoint PointX="4.1457129218635194" PointY="8.3593750000000018" />
+          <ConnectorPoint PointX="3.3752268006282322" PointY="8.3593750000000018" />
+          <ConnectorPoint PointX="3.2085601339615653" PointY="8.3593750000000018" />
+          <ConnectorPoint PointX="2.8125" PointY="8.3593750000000018" />
+          <ConnectorPoint PointX="2.8125" PointY="11.389506429036459" />
+          <ConnectorPoint PointX="2.25" PointY="11.389506429036459" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="HeadacheModel.SecondaryHeadacheSymptom" Width="1.5" PointX="12.125" PointY="0.625" Height="1.3969734700520831" />
+        <AssociationConnector Association="HeadacheModel.VisitRecordSecondaryHeadacheSymptom">
+          <ConnectorPoint PointX="6.875" PointY="0.785158145488799" />
+          <ConnectorPoint PointX="12.125" PointY="0.785158145488799" />
+        </AssociationConnector>
+        <AssociationConnector Association="HeadacheModel.VisitRecordPrimaryHeadachaOverView">
+          <ConnectorPoint PointX="6.875" PointY="4.4108999175617054" />
+          <ConnectorPoint PointX="7.291666666666667" PointY="4.4108999175617045" />
+          <ConnectorPoint PointX="7.458333333333333" PointY="4.4108999175617054" />
+          <ConnectorPoint PointX="7.875" PointY="4.4108999175617054" />
+        </AssociationConnector>
+        <AssociationConnector Association="HeadacheModel.PatBasicInforLifestyle">
+          <ConnectorPoint PointX="3.2918934672948987" PointY="5.77634765625" />
+          <ConnectorPoint PointX="3.2918934672948987" PointY="8.625" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="HeadacheModel.PremonitorySymptom" Width="1.5" PointX="10.375" PointY="9.375" Height="1.7790128580729157" />
+        <AssociationConnector Association="HeadacheModel.PrimaryHeadacheOverViewPremonitorySymptom">
+          <ConnectorPoint PointX="8.0312475" PointY="5.7032885742187487" />
+          <ConnectorPoint PointX="8.0312475" PointY="9.78125" />
+          <ConnectorPoint PointX="8.0416666666666661" PointY="9.78125" />
+          <ConnectorPoint PointX="8.2083333333333339" PointY="9.78125" />
+          <ConnectorPoint PointX="10.041666666666666" PointY="9.78125" />
+          <ConnectorPoint PointX="10.208333333333334" PointY="9.78125" />
+          <ConnectorPoint PointX="10.375" PointY="9.78125" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="HeadacheModel.PHQuestionaire" Width="1.5" PointX="11.125" PointY="13.5" Height="3.3071704101562496" />
+        <EntityTypeShape EntityType="HeadacheModel.GADQuestionaire" Width="1.5" PointX="8.375" PointY="10.25" Height="2.9251310221354156" />
+        <EntityTypeShape EntityType="HeadacheModel.DisabilityEvaluation" Width="1.5" PointX="9.25" PointY="13.25" Height="2.5430916341145817" />
+        <AssociationConnector Association="HeadacheModel.VisitRecordGADQuestionaire">
+          <ConnectorPoint PointX="5.34375" PointY="5.9673673502604156" />
+          <ConnectorPoint PointX="5.34375" PointY="11.09375" />
+          <ConnectorPoint PointX="8.0416666666666661" PointY="11.09375" />
+          <ConnectorPoint PointX="8.2083333333333339" PointY="11.09375" />
+          <ConnectorPoint PointX="8.375" PointY="11.09375" />
+        </AssociationConnector>
+        <AssociationConnector Association="HeadacheModel.VisitRecordPHQuestionaire" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.875" PointY="5.2203856339110608" />
+          <ConnectorPoint PointX="7.291666666666667" PointY="5.22038563391106" />
+          <ConnectorPoint PointX="7.458333333333333" PointY="5.2203856339110608" />
+          <ConnectorPoint PointX="7.8125" PointY="5.2203856339110608" />
+          <ConnectorPoint PointX="7.8125" PointY="5.76578857421875" />
+          <ConnectorPoint PointX="10.041666666666666" PointY="5.7657885742187487" />
+          <ConnectorPoint PointX="10.208333333333334" PointY="5.76578857421875" />
+          <ConnectorPoint PointX="10.3125" PointY="5.76578857421875" />
+          <ConnectorPoint PointX="10.3125" PointY="9.3125" />
+          <ConnectorPoint PointX="11.9375" PointY="9.3125" />
+          <ConnectorPoint PointX="11.9375" PointY="13.40625" />
+          <ConnectorPoint PointX="11.875" PointY="13.40625" />
+          <ConnectorPoint PointX="11.875" PointY="13.5" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="HeadacheModel.SleepStatus" Width="1.5" PointX="7.5" PointY="13.375" Height="2.3520719401041656" />
+        <AssociationConnector Association="HeadacheModel.VisitRecordSleepStatus" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.875" PointY="4.7767989058814129" />
+          <ConnectorPoint PointX="7.625" PointY="4.7767989058814129" />
+          <ConnectorPoint PointX="7.625" PointY="5.95328857421875" />
+          <ConnectorPoint PointX="7.9479141666666662" PointY="5.9532885742187487" />
+          <ConnectorPoint PointX="8.1145808333333331" PointY="5.95328857421875" />
+          <ConnectorPoint PointX="8.125" PointY="5.95328857421875" />
+          <ConnectorPoint PointX="8.125" PointY="13" />
+          <ConnectorPoint PointX="7.9374995000000013" PointY="13" />
+          <ConnectorPoint PointX="7.9374995000000013" PointY="13.375" />
+        </AssociationConnector>
+        <AssociationConnector Association="HeadacheModel.VisitRecordDisabilityEvaluation">
+          <ConnectorPoint PointX="6.875" PointY="1.0412936183241324" />
+          <ConnectorPoint PointX="10.125" PointY="1.0412936183241324" />
+          <ConnectorPoint PointX="10.125" PointY="13.25" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="HeadacheModel.HeadacheDiary" Width="1.5" PointX="5.625" PointY="12" Height="3.3071704101562496" />
+        <EntityTypeShape EntityType="HeadacheModel.HDheadacheplace" Width="1.5" PointX="7.5" PointY="15.875" Height="1.9700325520833353" />
+        <EntityTypeShape EntityType="HeadacheModel.HDAcompanion" Width="1.5" PointX="5.75" PointY="15.625" Height="1.7790128580729157" />
+        <EntityTypeShape EntityType="HeadacheModel.HDPrecipitatingFactor" Width="1.5" PointX="2.25" PointY="15.5" Height="1.7790128580729157" />
+        <EntityTypeShape EntityType="HeadacheModel.HDMitigatingFactors" Width="1.5" PointX="4" PointY="15.625" Height="1.7790128580729157" />
+        <EntityTypeShape EntityType="HeadacheModel.HDHeadacheProdrome" Width="1.5" PointX="0.5" PointY="15.5" Height="1.7790128580729174" />
+        <AssociationConnector Association="HeadacheModel.HeadacheDiaryHDAcompanion">
+          <ConnectorPoint PointX="6.4375" PointY="15.30717041015625" />
+          <ConnectorPoint PointX="6.4375" PointY="15.625" />
+        </AssociationConnector>
+        <AssociationConnector Association="HeadacheModel.HeadacheDiaryHDheadacheplace">
+          <ConnectorPoint PointX="7.1249999999999973" PointY="15.30717041015625" />
+          <ConnectorPoint PointX="7.5" PointY="15.875" />
+        </AssociationConnector>
+        <AssociationConnector Association="HeadacheModel.HeadacheDiaryHDHeadacheProdrome">
+          <ConnectorPoint PointX="5.625" PointY="14.825218432617195" />
+          <ConnectorPoint PointX="0.59375" PointY="14.825218432617195" />
+          <ConnectorPoint PointX="0.59375" PointY="15.5" />
+        </AssociationConnector>
+        <AssociationConnector Association="HeadacheModel.HeadacheDiaryHDMitigatingFactors">
+          <ConnectorPoint PointX="5.625" PointY="15.30717041015625" />
+          <ConnectorPoint PointX="5.5" PointY="15.625" />
+        </AssociationConnector>
+        <AssociationConnector Association="HeadacheModel.HeadacheDiaryHDPrecipitatingFactor">
+          <ConnectorPoint PointX="5.625" PointY="15.114389619140628" />
+          <ConnectorPoint PointX="2.65625" PointY="15.114389619140628" />
+          <ConnectorPoint PointX="2.65625" PointY="15.5" />
+        </AssociationConnector>
+        <AssociationConnector Association="HeadacheModel.PatBasicInforHeadacheDiary">
+          <ConnectorPoint PointX="4.4166084609317595" PointY="5.77634765625" />
+          <ConnectorPoint PointX="4.4166084609317595" PointY="8.3750000000000018" />
+          <ConnectorPoint PointX="5.125" PointY="8.3750000000000018" />
+          <ConnectorPoint PointX="5.125" PointY="13.42955241406251" />
+          <ConnectorPoint PointX="5.625" PointY="13.42955241406251" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="HeadacheModel.RegionalCenterAccount" Width="1.5" PointX="0.875" PointY="2.625" Height="2.1610522460937496" />
+        <EntityTypeShape EntityType="HeadacheModel.NationalCenterAccount" Width="1.5" PointX="0.875" PointY="0.625" Height="1.779012858072917" />
+        <AssociationConnector Association="HeadacheModel.NationalCenterAccountRegionalCenterAccount">
+          <ConnectorPoint PointX="1.625" PointY="2.404012858072917" />
+          <ConnectorPoint PointX="1.625" PointY="2.625" />
+        </AssociationConnector>
+        <AssociationConnector Association="HeadacheModel.RegionalCenterAccountDoctorAccount">
+          <ConnectorPoint PointX="1.5" PointY="4.9770719401041656" />
+          <ConnectorPoint PointX="1.5" PointY="5.375" />
+        </AssociationConnector>
+        <AssociationConnector Association="HeadacheModel.PatBasicInforVisitRecord">
+          <ConnectorPoint PointX="4.625" PointY="3.263173828125" />
+          <ConnectorPoint PointX="5" PointY="3.263173828125" />
+        </AssociationConnector>
+        <AssociationConnector Association="HeadacheModel.PatBasicInforPreviousDrug">
+          <ConnectorPoint PointX="3.864749928226658" PointY="5.77634765625" />
+          <ConnectorPoint PointX="3.864749928226658" PointY="8.3437500000000018" />
+          <ConnectorPoint PointX="3.3752268006282322" PointY="8.3437500000000018" />
+          <ConnectorPoint PointX="3.2085601339615653" PointY="8.3437500000000018" />
+          <ConnectorPoint PointX="2.9375" PointY="8.3437500000000018" />
+          <ConnectorPoint PointX="2.9375" PointY="12.602763561523437" />
+          <ConnectorPoint PointX="3.25" PointY="12.602763561523437" />
+        </AssociationConnector>
+        <AssociationConnector Association="HeadacheModel.VisitRecordMedicationAdvice">
+          <ConnectorPoint PointX="6.375" PointY="5.9673673502604156" />
+          <ConnectorPoint PointX="6.375" PointY="6.75" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="HeadacheModel.PatinfoForRe" Width="1.5" PointX="12.25" PointY="2.875" Height="2.7341113281249996" />
+        <AssociationConnector Association="HeadacheModel.PatBasicInforPatinfoForRe">
+          <ConnectorPoint PointX="3.875" PointY="0.75" />
+          <ConnectorPoint PointX="3.875" PointY="0.6875" />
+          <ConnectorPoint PointX="4.9375" PointY="0.6875" />
+          <ConnectorPoint PointX="4.9375" PointY="6.0298673502604156" />
+          <ConnectorPoint PointX="7.9479141666666662" PointY="6.0298673502604148" />
+          <ConnectorPoint PointX="8.2708333333333339" PointY="6.0298673502604156" />
+          <ConnectorPoint PointX="8.9791666666666661" PointY="6.0298673502604148" />
+          <ConnectorPoint PointX="9.1458333333333339" PointY="6.0298673502604156" />
+          <ConnectorPoint PointX="10.041666666666666" PointY="6.0298673502604148" />
+          <ConnectorPoint PointX="10.208333333333334" PointY="6.0298673502604156" />
+          <ConnectorPoint PointX="10.3125" PointY="6.0298673502604156" />
+          <ConnectorPoint PointX="10.3125" PointY="5.1874999999999991" />
+          <ConnectorPoint PointX="12.15625" PointY="5.1874999999999991" />
+          <ConnectorPoint PointX="12.15625" PointY="4.2420556640625" />
+          <ConnectorPoint PointX="12.25" PointY="4.2420556640625" />
+        </AssociationConnector>
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

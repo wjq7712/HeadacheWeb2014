@@ -1,0 +1,358 @@
+﻿@charset "utf-8";
+/* CSS Document */
+body {
+	margin: 0;
+	padding: 0;
+	background-color:#c0c0c0;
+	font-size: 17px;
+	color:#076FA2;
+	font-family: "Microsoft YaHei",微软雅黑,Tahoma,Helvetica,arial,sans-serif;
+	
+}
+
+body,  textarea, option {
+
+	
+	font-size: 18px;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+	color: #000000;
+	
+	
+}
+
+h1 {
+	letter-spacing: -2px;
+	font-size: 2em;
+}
+
+h2 {
+	letter-spacing: -1px;
+	font-size: 24px;
+	margin: 22px 0 0 33px;
+	padding-bottom: 5px;
+}
+/*p设置会影响button的位置*/
+p
+{
+    margin-top: 42px;
+}
+
+#wrapper {
+}
+/* Header */
+
+#header {
+	width: 962px;
+	height: 162px;
+	margin: 0 auto;
+	background: url(images/head.png) no-repeat right top;
+	
+}
+#header a
+{
+   float:right;
+   margin: 70px  25px 0 0 ;
+   color:#F0BE72;
+}
+
+/* Page */
+
+#page {
+	width: 960px;
+	margin: 0 auto;
+}
+
+/* Content */
+
+#content {
+	float: left;
+	width: 960px;
+	height:715px;
+	margin: 0;
+	background: url(images/regioncontent833-960new.png) no-repeat;	
+}
+
+#query {
+	padding: 0 0 20px 0;
+	float: left;
+	width: 960px;
+	padding:0 20px 0 20px;
+	color :#000;	
+}
+#queryinfo
+{
+  float: left;
+  width : 560px;  
+  padding:0 20px 0 89px;
+ color  :#000;	
+    }
+#but
+{
+   width  :300px;
+   display: inline;
+   }
+#detail
+{
+    float:left;
+    
+}
+#entry {
+	float: right;
+	width: 290px;
+	height: 505px;
+	border-left: 2px  solid #D3E7F2 ;
+	padding :0 50px 0 20px;
+	color:#000;
+}
+input
+{
+    font-size: 16px;
+    margin: 0 0 0 2px;
+    float : left;
+    padding: 0 0 0 3px;
+    width:150px;
+   height:28px;
+   border: 2px solid #98C2E2;
+   background-color:#D3E7F2;
+}
+select
+{
+     font-size: 16px;
+    margin: 0 0 0 2px;
+    float : left;
+    width:160px;
+    height:32px;
+    border: 2px solid #98C2E2;
+     background-color: #D3E7F2;
+}
+#content ul, ol {
+	
+	display:block;
+	padding:0;
+}
+#content li
+{
+    height: 32px;
+    text-decoration:none;
+    padding-bottom:15px;
+    padding-top:2px;
+    display:block;
+}
+#content li span
+{
+ width: 90px;
+float: left;
+text-align: right;
+padding-right: 15px;
+padding-top: 7px;
+font-size: 18px;
+
+}
+#content li p
+{
+color:Red;
+text-align:center;
+font-size: 18px;
+padding-top:7px;
+}
+.error
+{
+    display :block;
+   padding:55px 0 0 105px;
+    color: #CA471B;
+    line-height: 24px;
+}
+
+
+
+.title {
+	margin: 10 0 0 10px;
+	padding-bottom: 5px;	
+}
+.patlisttitle {
+	margin: 10 0 0 10px;
+	padding-bottom: 5px;
+}
+
+
+.button a
+{
+     text-decoration:none;
+     color: #000;
+}
+.button
+{
+    height: 37px;
+	float: right;
+	margin:10px 70px 0 10px;
+	padding-top:6px;
+	width :138px;
+    background: url(images/normal-button.png) no-repeat ;
+    text-align:center;
+    
+   
+}
+
+.button:hover
+{
+     background: url(images/hover-button.png) no-repeat ;
+      cursor:pointer;
+}
+.button.active
+{
+     background: url(images/click-button.png) no-repeat ;
+}
+.button a:hover
+{
+    cursor:pointer;
+}
+
+
+input[type="submit"]
+{
+     height: 37px;
+	float: left;
+	margin-left:28px;
+	padding:0;
+	width :138px;
+    background: url(images/normal-button.png) no-repeat ;
+    text-align:center;
+    border:0;
+    font-family:"Microsoft YaHei";
+}
+
+input[type="submit"]:hover
+{
+     background: url(images/hover-button.png) no-repeat ;
+}
+input[type="submit"]:active
+{
+     background: url(images/click-button.png) no-repeat ;
+}
+/*病人列表*/
+#docview{ width:90%; text-align :center; font-style:inherit; margin-left:5%;  margin-top :30px; border-color:white;border-collapse:collapse; border-style: solid; border-width: thin;}
+#docview  tr td {border-color:rgb(71, 128, 160);border-collapse:collapse; border-style: solid; border-width: thin; padding:9PX;}/*12/10加padding*/
+#docview th  {border-color:rgb(71, 128, 160);border-collapse:collapse; border-style: solid; border-width: thin; padding :9px; }
+
+/* Sidebar */
+
+#sidebar {
+	float: left;
+	width: 960px;
+	height: 615px;
+}
+
+#List
+{
+    height:615px;
+}
+#List ul {
+	margin: 0;
+	padding: 10px 20px 0 20px;
+	list-style: none;
+	
+}
+
+#List li
+{ 
+	background-color:#B9DCF2;
+    padding: 8px 10px 0 10px ;
+    margin-bottom:10px;
+	width: 700px;
+	height:30px;
+	text-align: center;
+	float:left;
+	
+}
+.CurrentView
+{
+    
+}
+#List h2 {
+	text-decoration: none;
+	padding: 7px 2px 0 0;
+	margin:0 0 0 52px;
+	text-align:left;
+}
+
+#List a {
+	color: #076FA2;
+	font-size:18px;
+	text-decoration: none;
+
+}
+
+#List a:hover {
+	text-decoration: none;
+	color: #E6B715;
+}
+.pagination 
+{
+    margin-left:690px;
+    margin-top:-112px;
+}
+/* Footer */
+
+#footer {
+	clear: both;
+	width: 962px;
+	height: 118px;
+	margin: 0 auto;
+	padding: 0 0 0 0;
+	background: url(images/foot-2.png) no-repeat ;
+	font-size: smaller;
+	color: #52640A;
+}
+
+#TestResult
+{
+    padding :0px 20px 0 100px; 
+    width: 510px;
+    height: 264px;
+    background: url(images/box1.png) no-repeat ;
+    background-position: right;
+}
+#test
+{
+    padding-top:40px;
+    border:0;
+}
+#TestResult td
+{
+    height: 25px;
+    width:155px
+}
+#DiagnosisResult
+{
+    padding :0 40px 0 80px;
+    width: 510px;
+    height: 92px;
+    background: url(images/box2.png) no-repeat ;
+    background-position: right;
+    text-align: center;
+    
+}
+#RecordNote
+{
+    padding :0px 20px 0 100px;
+    width: 510px;
+    height: 184px;
+    background: url(images/box3.png) no-repeat ;
+    background-position: right;
+  
+}
+#Record
+{
+    padding:30px 0 0 0;
+    overflow-y:auto; 
+   width:490px;
+   height:110px;
+   border:1px;
+}
+#Diagnosis
+{
+    padding:30px 0 0 0;
+}

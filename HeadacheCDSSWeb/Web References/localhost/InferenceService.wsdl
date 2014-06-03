@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="DoInference">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InputDataValue" type="tns:InputData" />
+            <s:element minOccurs="0" maxOccurs="1" name="strResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="InputData">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="m_nHeadache_Duration_PerTime" type="s:float" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_nHeadache_Duration_PerTime_Unit" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strHeadacheType" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="m_nHeadache_TotalNumber" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="m_nHeadache_Duration" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="m_nHeadache_Monthly_Duration" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="m_nTriptan_Total_Drugin_Duration" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="m_nTriptan_Drugin_Monthly" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="m_nNon_Triptan_Total_Drugin_Duration" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="m_nNon_Triptan_Drugin_Monthly" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_HeadacheAssociatedSymptonList" type="tns:ArrayOfHeadacheAssociatedSymptoms" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_HeadacheAuraList" type="tns:ArrayOfHeadacheAura" />
+          <s:element minOccurs="1" maxOccurs="1" name="m_HeadacheLocation" type="tns:HeadacheLocation" />
+          <s:element minOccurs="1" maxOccurs="1" name="m_bPeriodism" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="m_bWorsen_By_Physicial_Activity" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="m_nHeadacheDegree" type="tns:HeadacheDegree" />
+          <s:element minOccurs="1" maxOccurs="1" name="m_nHeadahceProperty" type="tns:HeadacheProperty" />
+          <s:element minOccurs="1" maxOccurs="1" name="m_bDaily_Headache" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfHeadacheAssociatedSymptoms">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="HeadacheAssociatedSymptoms" type="tns:HeadacheAssociatedSymptoms" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="HeadacheAssociatedSymptoms">
+        <s:restriction base="s:string">
+          <s:enumeration value="Nausea" />
+          <s:enumeration value="Vomit" />
+          <s:enumeration value="Fair_Of_Sound" />
+          <s:enumeration value="Fire_Of_Light" />
+          <s:enumeration value="Ipsilateral_Heyelids_Swelling" />
+          <s:enumeration value="Miosis_or_Blepharoptosis" />
+          <s:enumeration value="Conjunctival_congestion_or_Tears" />
+          <s:enumeration value="Frontal_facial_Sweating" />
+          <s:enumeration value="Blocked_or_Watery_Nose" />
+          <s:enumeration value="Dysphoria" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfHeadacheAura">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="HeadacheAura" type="tns:HeadacheAura" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="HeadacheAura">
+        <s:restriction base="s:string">
+          <s:enumeration value="Hemi_Visual_Aura" />
+          <s:enumeration value="Bilateral_Visual_Aura" />
+          <s:enumeration value="Feeling_Aura" />
+          <s:enumeration value="Allolalia" />
+          <s:enumeration value="Dyscinesia" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="HeadacheLocation">
+        <s:restriction base="s:string">
+          <s:enumeration value="Uni_Pain" />
+          <s:enumeration value="Bi_Pain" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="HeadacheDegree">
+        <s:restriction base="s:string">
+          <s:enumeration value="Mild" />
+          <s:enumeration value="Middle" />
+          <s:enumeration value="Heavy" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="HeadacheProperty">
+        <s:restriction base="s:string">
+          <s:enumeration value="Pulse_Pain" />
+          <s:enumeration value="Pressure_Pain" />
+          <s:enumeration value="Electric_Shock_Like_Pain" />
+          <s:enumeration value="Other" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="DoInferenceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DoInferenceResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="strResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="DoInferenceSoapIn">
+    <wsdl:part name="parameters" element="tns:DoInference" />
+  </wsdl:message>
+  <wsdl:message name="DoInferenceSoapOut">
+    <wsdl:part name="parameters" element="tns:DoInferenceResponse" />
+  </wsdl:message>
+  <wsdl:portType name="InferenceServiceSoap">
+    <wsdl:operation name="DoInference">
+      <wsdl:input message="tns:DoInferenceSoapIn" />
+      <wsdl:output message="tns:DoInferenceSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="InferenceServiceSoap" type="tns:InferenceServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DoInference">
+      <soap:operation soapAction="http://tempuri.org/DoInference" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="InferenceServiceSoap12" type="tns:InferenceServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DoInference">
+      <soap12:operation soapAction="http://tempuri.org/DoInference" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="InferenceService">
+    <wsdl:port name="InferenceServiceSoap" binding="tns:InferenceServiceSoap">
+      <soap:address location="http://localhost/HeadacheInferenceService/InferenceService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="InferenceServiceSoap12" binding="tns:InferenceServiceSoap12">
+      <soap12:address location="http://localhost/HeadacheInferenceService/InferenceService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

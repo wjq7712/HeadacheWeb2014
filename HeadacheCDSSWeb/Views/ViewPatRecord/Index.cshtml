@@ -1,0 +1,539 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/RecordViewLayout.cshtml";
+}
+@model List<HeadacheCDSSWeb.Models.VisitRecord>
+<div id="content">
+     <div id="ViewContent">
+          <div id="ocx">
+                 <object id="Reporter2" classid="clsid:466F909A-0EE1-4F40-A2CA-9906C5E36CB2" width="600"
+                       height="540">
+                  </object>
+               </div>
+
+                <div id="continue" class="button">
+                    @Html.ActionLink("继续问诊", "ContinueDiagnosis", new { id = ViewBag.patId })
+                </div>
+                <div id="diagnosis" class="button">
+                    @Html.ActionLink("开始新问诊", "GoToDiagnosis", new { id = ViewBag.patId })
+                </div>
+                <div id="delete" class="button" data-toggle="modal" data-target="#myModal">
+                    <a>删除记录</a>
+                </div>
+
+        </div>
+        <div id="DiaryView">
+        <div id="ReportView">
+        </div>
+          <div class="statics">
+           <div id="time">
+                        <table border="0">
+                 <tr>
+                <td><input type="text" name="date" id="d1" /></td>
+                <td><a>----------</a></td>
+                <td><input type="text" name="date" id="d2" /></td> 
+                <td><div  class="button"><a id="diarygraph" hef="#">确定</a></div></td>
+                </tr>
+                </table>
+        
+        
+           </div>
+           <div id="line">
+            <div id="variable1">
+            <ul>
+                <li>
+                <span>头痛持续时间</span>
+                <input type="radio" name="query1" value ="头痛时长" />
+                </li>
+                <li>
+                <span>头痛程度评分</span>
+                 <input type="radio" name="query1" value ="头痛程度"/>
+                 </li>
+             </ul>
+            </div>
+            <div id="linegraph"></div>
+            <div style="float:left;padding-left:240px"><p>平均值: 6.5</p></div>
+          </div>
+          <div id="pie">
+          <div id="variable2">
+               <ul>
+                <li>
+                <span>头痛性质</span>
+                <input type="radio" name="query2" value ="头痛性质" />
+                </li>
+                <li>
+                <span>头痛部位</span>
+                 <input type="radio" name="query2" value ="头痛部位"/>
+                 </li>
+                 <li>
+                <span>伴随症状</span>
+                 <input type="radio" name="query2" value ="伴随症状"/>
+                 </li>
+                 <li>
+                <span>头痛先兆</span>
+                 <input type="radio" name="query2" value ="头痛先兆"/>
+                 </li>
+                 <li>
+                <span>诱发因素</span>
+                 <input type="radio" name="query2" value ="诱发因素"/>
+                 </li>
+                 <li>
+                <span>缓解因素</span>
+                 <input type="radio" name="query2" value ="缓解因素"/>
+                 </li>
+             </ul>
+
+         </div>
+         <div id="piegraph"></div>
+         </div>
+     </div>
+</div>
+        <div id="@ViewBag.patId" class="PID" style="display:none;"></div>
+        <div id="RecordID" class="@ViewBag.recordId" style="display:none;"></div>
+    </div>
+    <div id="sidebar">
+    <div id="navigate">
+          <div id="accordion">
+          <h3 >头痛日志</h3>
+          <div id="ui-accordion-accordion-panel-1">
+              <ul class="diary">
+              <li ><img src="@Href("../../Content/images/chart.png")"  alt="text"/><a href="#"  id="statics">头痛情况统计分析</a></li>
+              <li ><div class="report"><div style="float:left"><img src="@Href("../../Content/images/report.png")"  alt="text"/></div><div style="padding-top:10px"><a href="#" id="report" >近三个月分析报告</a><div></div></li>
+
+              </ul>
+          </div>
+          <h3>诊疗记录</h3>
+          <div id="ui-accordion-accordion-panel-0">
+            <div id="List">
+            <ul class="paging">
+            @foreach (var item in Model)
+            {
+                <li><img src="@Href("../../Content/images/notepad.png")" class="notepad"  alt="text"/><a href="#"  id="@item.Id">@item.VisitDate.Date.ToString("yyyy-MM-dd")</a></li>
+            }
+           </ul>
+           </div>
+            <div class="pagination">
+            <a href="#" class="first" data-action="first">&laquo;</a> <a href="#" class="previous"
+                data-action="previous">&lsaquo;</a>
+            <input type="text" readonly="readonly" data-max-page="40" />
+            <a href="#" class="next" data-action="next">&rsaquo;</a> <a href="#" class="last"
+                data-action="last">&raquo;</a>
+            </div>
+          </div>
+          
+          
+    </div>
+  </div>
+  <div id="return" class="button">
+            @Html.ActionLink("返回查询", "index","EnterpatInfor")
+        </div>
+  </div>
+  <!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h2 id="myModalLabel">删除记录提示</h2>
+  </div>
+  <div class="modal-body">
+    <p>确定删除本条记录？</p>
+  </div>
+  <div class="modal-footer">
+    <button id="DeleteYes"class="btn">确定</button>
+    <button id="DeleteNo"class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+
+        var OCX = document.getElementById('Reporter2');
+        try {
+            OCX.OpenReport("D:\\CDSSOCX");          
+        }
+        catch (err) {
+            var b = confirm("是否下载显示控件");
+            if (b) {
+                var strOCXURL;
+                strOCXURL = "http://127.0.0.1" + "/HeadacheCDSS/OCXForHeadacheCDSS.exe";
+                window.location.href = strOCXURL;
+            }
+        }
+        var stringArray = new Array();
+        stringArray[0] = $(".PID").attr("id");
+        stringArray[1] = $("#RecordID").attr("class");
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("ViewVisitRecordDetail", "ViewPatRecord")',
+            data: { PostID: stringArray },
+            dataType: "json", type: "POST", traditional: true,
+            success: function (data) {
+                $("#ViewContent").show();
+                $("#DiaryView").hide();
+                //赋值
+                SetReportData(data);
+
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                alert("Error '" + jqXhr.status + "' (textStatus: '" + textStatus + "', errorThrown: '" + errorThrown + "')");
+                alert("处理失败!");
+            }
+
+        });
+
+        //打开第一个问诊记录
+        //        $("#accordion").accordion(
+        //        { collapsible: true });
+        $('.paging li a:first').addClass("CurrentView");
+        $(".CurrentView").parent().css("background-color", "#D3E7F2");
+        if ($(".paging li").length == 0) {
+            $("#continue").hide();
+            $("#delete").hide();
+            $(".paging").append("<li><a>基本信息</a></li>");
+        }
+    });
+    $(document).ready(function () {
+
+        $(".paging").find("li").hide();
+        $(".paging li:lt(7)").addClass("current").show();
+        var num = Math.ceil($(".paging li").length / 7);
+        $('.pagination').jqPagination({
+            max_page: num,
+            paged: function (page) {
+                $(".current").hide();
+                var start = (page - 1) * 7;
+                for (var i = 0; i < 7; i++) {
+                    $(".paging li:eq(" + start + ")").addClass("current").show();
+                    start = start + 1;
+                }
+                // do something with the page variable
+
+            }
+        })
+    });
+    $(function () {
+        $(".paging li  a").click(function () {
+
+            var recordToView = $(this).attr("id");
+            var stringArray = new Array();
+            stringArray[0] = $(".PID").attr("id");
+            stringArray[1] = recordToView;
+            if ($(this).text() == "基本信息") {
+                $("#ViewContent").show();
+                $("#DiaryView").hide();
+            }
+            else {
+                $.ajax({
+
+                    type: "POST",
+
+                    url: '@Url.Action("ViewVisitRecordDetail", "ViewPatRecord")',
+
+                    data: { PostID: stringArray },
+                    dataType: "json", type: "POST", traditional: true,
+                    success: function (data) {
+                        $("#ViewContent").show();
+                        $("#DiaryView").hide();
+                        //$('#ViewContent').html(data);
+                        SetReportData(data);
+                        $(".CurrentView").parent().css("background-color", "#B9DCF2");
+                        $(".CurrentView").removeClass("CurrentView");
+                        $('#' + recordToView).addClass("CurrentView");
+                        $(".CurrentView").parent().css("background-color", "#D3E7F2");
+                    },
+
+                    error: function (jqXhr, textStatus, errorThrown) {
+                        alert("Error '" + jqXhr.status + "' (textStatus: '" + textStatus + "', errorThrown: '" + errorThrown + "')");
+                        alert("处理失败!");
+                    }
+
+                });
+            }
+        });
+
+        $(".diary li a").click(function () {
+            if ($(this).attr("id") == "statics") {
+                $("#ViewContent").hide();
+                $("#DiaryView").show();
+                $("#ReportView").hide();
+                $(".statics").show();
+                $("#d1").Zebra_DatePicker();
+                $("#d2").Zebra_DatePicker();
+                // $("#linegraph").children().remove();
+
+                //$("#piegraph").children().remove();
+                var plot1 = $.jqplot('linegraph', [[4, 6, 7, 9, 3, 5, 8, 8]], { axes: { xaxis: { label: "" }, yaxis: { label: ""}} });
+                var plot2 = $.jqplot('piegraph', [[5, 7, 9, 7, 10, 11, 28, 32, 10, 11, 28, 32]], {
+                    title: '',
+                    seriesDefaults: {
+                        renderer: $.jqplot.BarRenderer,
+                        rendererOptions: {
+                            barPadding: 1,
+                            barMargin: 15,
+                            barDirection: 'vertical',
+                            barWidth: 45,
+                            varyBarColor: true
+                        },
+                        pointLabels: { show: true }
+                    },
+                    axes: {
+                        xaxis: {
+                            renderer: $.jqplot.CategoryAxisRenderer,
+                            ticks: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"]
+                        },
+                        yaxis: {
+                            tickOptions: {
+                                formatString: '%d'
+                            }
+                        }
+                    },
+                    highlighter: {
+                        sizeAdjust: 7.5
+                    },
+                    cursor: {
+                        show: true
+                    }
+                });
+            }
+            else {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("ViewDiaryReport", "ViewPatRecord")',
+                    success: function (data) {
+                        $("#ViewContent").hide();
+                        $("#ReportView").html(data);
+                        $("#ReportView").show();
+                        $("#DiaryView").show();
+                        $(".statics").hide();
+                    },
+                    error: function () {
+                        alert("处理失败!");
+                    }
+                });
+
+            }
+
+        });
+        $("#delete").click(function () {
+
+            $("#ViewContent").hide();
+
+        })
+        $("#diarygraph").live("click", function () {
+
+            var StartDate = $("#d1").val();
+            var EndDate = $("#d2").val();
+            var Pid = $(".PID").attr("id");
+            var strSDate = StartDate.slice(0, 10).replace("/", "-").replace("/", "-") + " 00:00:00";
+            var strEDate = EndDate.slice(0, 10).replace("/", "-").replace("/", "-") + " 00:00:00";
+            var selected1 = $("input:radio[name=query1]:checked").val(); //若未被选中 则val() = null
+            var selected2 = $("input:radio[name=query2]:checked").val();
+            var encoded = $.toJSON({ PID: Pid, StartDate: strSDate, EndDate: strEDate, query1: selected1, query2: selected2 });
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("ViewDiary", "ViewPatRecord")',
+                data: { postjson: encoded },
+
+
+                success: function (data) {
+                    var chartdata = new Array();
+                    var linedata = [];
+                    var axisDates = new Array();
+                    var myobj = eval(data);
+                    var flag = myobj.length;
+                    for (var i = 0; i < myobj.length; i++) {
+                        if (myobj[i].kind == "0") {
+                            flag = parseInt(i);
+                            break;
+                        }
+                        else {
+                            chartdata[i] = parseInt(myobj[i].data);
+                            axisDates[i] = myobj[i].kind;
+                        }
+                    }
+                    var lineaxis = [];
+                    var index = 0;
+                    for (var j = flag; j < myobj.length; j++) {
+
+                        linedata[index] = parseInt(myobj[j].data);
+                        lineaxis[index] = index;
+                        index++;
+                    }
+                    lineaxis[index] = index;
+                    $("#linegraph").children().remove();
+                    $("#piegraph").children().remove();
+                    if (linedata.length == 0)
+                        linedata = [0, 0, 0, 0, 0, 0, 0, 0];
+                    if (chartdata.length == 0) {
+                        axisDates = ["", "", ""];
+                        chartdata = [0, 0, 0];
+                    }
+
+                    var plot1 = $.jqplot('linegraph', [linedata], { axes: { xaxis: { ticks: lineaxis }, yaxis: { label: selected1}} });
+
+
+                    $.jqplot.config.enablePlugins = true;
+                    var plot2 = $.jqplot('piegraph', [chartdata], {
+                        title: selected2,
+                        seriesDefaults: {
+                            renderer: $.jqplot.BarRenderer,
+                            rendererOptions: {
+                                barPadding: 1,
+                                barMargin: 15,
+                                barDirection: 'vertical',
+                                barWidth: 45,
+                                varyBarColor: true
+                            },
+                            pointLabels: { show: true }
+                        },
+                        axes: {
+                            xaxis: {
+                                renderer: $.jqplot.CategoryAxisRenderer,
+                                ticks: axisDates
+                            },
+                            yaxis: {
+                                tickOptions: {
+                                    formatString: '%d'
+                                }
+                            }
+                        },
+                        highlighter: {
+                            sizeAdjust: 7.5
+                        },
+                        cursor: {
+                            show: true
+                        }
+                    });
+
+                },
+                error: function () {
+                    alert("处理失败!");
+                }
+            });
+
+        })
+        $("#DeleteYes").click(function () {
+            var pid = '@ViewBag.patId';
+            $.ajax({
+                url: '@Url.Action("DeleteRecord", "ViewPatRecord")',
+                type: "POST",
+                data: { id: pid },
+                success: function (data) {
+                    if (data.OK) {
+                        $('#' + data.Message).parent().remove();
+                        $('#myModal').modal('hide');
+                    }
+                    else {
+                        alert("删除失败");
+                    }
+                },
+                error: function (jqXhr, textStatus, errorThrown) {
+                    alert("Error '" + jqXhr.status + "' (textStatus: '" + textStatus + "', errorThrown: '" + errorThrown + "')");
+                }
+            });
+        })
+        $("#DeleteNo").click(function () {
+            $("#ViewContent").show();
+        })
+
+
+    });
+    function SetReportData(jsonData) {
+        var obj = eval('(' + jsonData + ')');
+        var OCX = document.getElementById('Reporter2');
+
+        //set doctor advice
+        var strDoctorAdvice = "";
+        var listMedicationAdvice = obj.medicationadvice;
+        for (var nIndex = 0; nIndex < listMedicationAdvice.length; ++nIndex) {
+            var strDrugName = listMedicationAdvice[nIndex].DrugName;
+            var strDrugDose = listMedicationAdvice[nIndex].DrugDose;
+            var strDrugDoseUnit = listMedicationAdvice[nIndex].DrugDoseUnit;
+            var strDrugApplication = listMedicationAdvice[nIndex].DrugApplication;
+            if (nIndex < 2)
+                strDoctorAdvice += strDrugName + " " + strDrugDose + strDrugDoseUnit + " " + strDrugApplication + "\n";
+            else
+                strDoctorAdvice += strDrugName + " " + strDrugDose + strDrugDoseUnit + " " + strDrugApplication;
+        }
+        OCX.SetObjectInfo("TextBox_24", "text", strDoctorAdvice);
+
+        //set patient basic information
+        //get data
+        var strName = "";
+        if (null != obj.Name)
+            strName = obj.Name;
+
+        var strSex = "";
+        if (null != obj.Sex)
+            strSex = obj.Sex;
+
+        var strAge = "";
+        if (null != obj.Age)
+            strAge = obj.Age;
+
+        var strEducation = "";
+        if (null != obj.Education)
+            strEducation = obj.Education;
+
+        var strJob = "";
+        if (null != obj.Job)
+            strJob = obj.Job;
+
+        var strPhone = "";
+        if (null != obj.Phone)
+            strPhone = obj.Phone;
+
+        var strAddress = "";
+        if (null != obj.Address)
+            strAddress = obj.Address;
+
+        var strChiefDoctor = "";
+        if (null != obj.ChiefDoctor)
+            strChiefDoctor = obj.ChiefDoctor;
+
+        var strPatientInfo = "姓名：" + strName;
+        strPatientInfo += "             性别:" + strSex;
+        strPatientInfo += "             年龄:" + strAge + "\n";
+        //strPatientInfo += " 教育程度:" + strEducation;
+        //strPatientInfo += " 工作:" + strJob;
+        strPatientInfo += "电话:" + strPhone;
+        //strPatientInfo += " 地址:" + strAddress;
+        //strPatientInfo += " 身份证:" + obj.Identity;
+        //strPatientInfo += "                             主治医生:" + strChiefDoctor;
+        OCX.SetObjectInfo("TextBox_21", "text", strPatientInfo);
+
+        //set chief complaint
+        if (obj.ChiefComplaint != null) {
+            var strChiefComplaint = obj.ChiefComplaint;
+            OCX.SetObjectInfo("TextBox_22", "text", strChiefComplaint);
+        }
+
+        //set diagnoses
+        var strDiagnoses = "";
+        if (null != obj.DiagnosisResult1)
+            strDiagnoses += obj.DiagnosisResult1;
+        if (null != obj.DiagnosisResult2)
+            strDiagnoses += " " + obj.DiagnosisResult2;
+        if (null != obj.DiagnosisResult3)
+            strDiagnoses += " " + obj.DiagnosisResult3;
+        if ("" != strDiagnoses)
+            OCX.SetObjectInfo("TextBox_23", "text", strDiagnoses);
+
+        //        //set doctor advice
+        //        if (obj.Prescription != null) 
+        //        {
+        //            var strDoctorAdvice = obj.Prescription;
+        //            OCX.SetObjectInfo("TextBox_24", "text", strDoctorAdvice);
+        //        }
+        OCX.ShowReport();
+        OCX.ShowThisPage("就诊记录");
+    }
+    //     $(function(){
+    //         var canvas = document.createElement("canvas");
+    //document.body.appendChild(canvas);
+    ////if($.browser.msie){
+    ////canvas=window.G_vmlCanvasManager.initElement(canvas);
+    ////}
+    ////if(canvas.getContext){alert("support");}});   
+    //  })   
+  </script>
