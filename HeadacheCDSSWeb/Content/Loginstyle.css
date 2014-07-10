@@ -101,6 +101,7 @@ input[type="submit"]
     background: url(images/normal-button.png) no-repeat ;
     text-align:center;
     border:0;
+    font-family: "Microsoft YaHei";
 }
 input[type="submit"]:hover
 {

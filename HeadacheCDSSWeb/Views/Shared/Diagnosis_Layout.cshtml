@@ -67,22 +67,23 @@
 </body>
   
 <script type="text/javascript">
-    function reurl() {
+//这段代码没用啊，导致界面一直进不去，一直在controller里循环
+//    function reurl() {
 
-        url = location.href; //把当前页面的地址赋给变量 url
+//        url = location.href; //把当前页面的地址赋给变量 url
 
-        var times = url.split("?"); //分切变量 url 分隔符号为 "?"
+//        var times = url.split("?"); //分切变量 url 分隔符号为 "?"
 
-        if (times[1] != 1) { //如果?后的值不等于1表示没有刷新
+//        if (times[1] != 1) { //如果?后的值不等于1表示没有刷新
 
-            url += "?1"; //把变量 url 的值加入 ?1
+//            url += "?1"; //把变量 url 的值加入 ?1
 
-            self.location.replace(url); //刷新页面
+//            self.location.replace(url); //刷新页面
 
-        }
-    }
+//        }
+//    }
 
-    onload = reurl
+//    onload = reurl
 
 </script>  
 

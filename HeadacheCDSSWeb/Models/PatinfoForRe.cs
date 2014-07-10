@@ -20,8 +20,8 @@ namespace HeadacheCDSSWeb.Models
         public string Age { get; set; }
         public string HeadacheStyle { get; set; }
         public string Data { get; set; }
-        public string PatBasicInforId { get; set; }
         public string ListID { get; set; }
+        public string PatBasicInforId { get; set; }
     
         public virtual PatBasicInfor PatBasicInfor { get; set; }
     }

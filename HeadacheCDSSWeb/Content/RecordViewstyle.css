@@ -27,10 +27,10 @@ h3
    border:2px solid #b7d9ef;
    
 }
-h3:hover
+/*h3:hover
 {
    color: #E6B715;
-}
+}*/
 p
 {
     margin-top: 9px;
@@ -49,6 +49,7 @@ p
    float:right;
    margin: 70px  25px 0 0 ;
    color:#F0BE72;
+   font-size: 18px;
 }
 /* Page */
 #page {
@@ -125,9 +126,10 @@ color:#002b73;
 }
 .button
 {
+   font-size : 17px;
     height: 37px;
 	float: right;
-	margin:10px 65px 0 10px;
+	margin:10px 59px 0 10px;
 	padding-top:6px;
 	width :138px;
     background: url(images/normal-button.png) no-repeat ;
@@ -202,9 +204,9 @@ input[type="submit"]:active
 }
 #List li
 { 
-	background-color:#B9DCF2;
-   padding-top:5px;
-   margin-bottom:10px;
+	background-color:#D3E7F2;
+    padding-top:5px;
+    margin-bottom:10px;
 	width: 175px;
 	height:40px;
 	padding-right:20px;
@@ -243,9 +245,9 @@ input[type="submit"]:active
 }
 .diary li
 {
-    padding-top:10px;
+    padding-top:0px;
     height:25px;
-   margin-bottom:10px;
+   margin-bottom:23px;
    text-align: center;
 }
 .diary li img{ margin-top:10px;}
@@ -289,14 +291,17 @@ input[type="submit"]:active
 #time
 {
   float:right;
-  margin:0px 25px 10px 0;
+  margin:12x 25px 0px 0;
  
   height:55px;
   width:610px;
 }
 #time input
 {
-    width:140px;
+    width:110px;
+    height:24px;
+    background-color:#D3E7F2;
+    border:2px solid #98C2E2;
 }
 #line
 {
@@ -363,6 +368,10 @@ input[type="submit"]:active
      width:604px;
     height:640px;
 }
+#diaryreport table 
+{
+    border-collapse:collapse;
+}
 #diaryreport td
 {
     width :282px;
@@ -391,7 +400,7 @@ input[type="submit"]:active
   top: 10%;
   left: 50%;
   z-index: 1050;
-  width: 560px;
+  width: 400px;
   margin-left: -280px;
   background-color: #ffffff;
   border: 1px solid #999;
@@ -418,7 +427,7 @@ input[type="submit"]:active
   top: -25%;
 }
 .modal.fade.in {
-  top: 10%;
+  top: 25%;
 }
 .modal-header {
   padding: 9px 15px;
@@ -436,6 +445,7 @@ input[type="submit"]:active
   overflow-y: auto;
   max-height: 400px;
   padding: 15px;
+  font-size:17px;
 }
 .modal-form {
   margin-bottom: 0;
@@ -482,23 +492,48 @@ button.close {
 }
 .close {
   float: right;
-  font-size: 20px;
+  font-size: 45px;
   font-weight: bold;
-  line-height: 20px;
+  line-height: 29px;
   color: #000000;
   text-shadow: 0 1px 0 #ffffff;
   opacity: 0.2;
   filter: alpha(opacity=20);
 }
 h2 {
-  font-size: 31.5px;
-  margin: 10px 0;
+ /* font-size: 31.5px;
+  margin: 10px 0;*/
+  margin: 10px 10px;
   font-family: inherit;
   font-weight: bold;
   line-height: 20px;
   color: inherit;
   text-rendering: optimizelegibility;
+  text-align: center;
 }
 .hide {
 display: none;
 }
+.btn
+{  
+    height: 37px;
+	float: left;
+	margin-left:38px;
+	padding:0;
+	width :138px;
+    background: url(images/normal-button.png) no-repeat ;
+    text-align:center;
+    border:0;
+    font-family:"Microsoft YaHei";
+}
+.btn:hover{background: url(images/hover-button.png) no-repeat ;}
+.btn:active{ background: url(images/click-button.png) no-repeat ;}
+#ReportView
+
+#datetimepicker1{width:118px;}
+#datetimepicker2{width:118px;margin-left:20px;}
+#d1{width:118px;}
+#d2{width:118px;}
+#time span{width:28px;}
+#seperateline{ display:inline;width:60px; font-size:20px;margin-left:20px;}
+#diarygraphbtn{ margin:-3px -12px 0 10px;}

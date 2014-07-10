@@ -36,7 +36,7 @@
 </div>
 </div>
 <script type="text/javascript">
-$(function () {
+$(function () { 
         var obj = eval ("(" + @Html.Raw(Json.Encode(ViewData["data"]))+ ")");
         var OCX = document.getElementById('Reporter2');
         SetDataIntoOCX(OCX, obj);
@@ -216,10 +216,12 @@ $(function () {
                             if (data.OK) {
                              var OCX = document.getElementById('Reporter2');
                                  $(".demo").html("本次问诊信息保存成功！稍候将自动退出"); 
-                                var t = setTimeout("  window.location.href = '@Url.Action("Index", "EnterPatInfor")'", 6000);
+                                var t = setTimeout("  window.location.href = '@Url.Action("Index", "EnterPatInfor")'", 3000);
                             }
                             else {
-                                document.getElementById("msg").innerHTML = data.Message.toString();
+                          $(".demo").html("抱歉，信息保存出现异常");
+                               var t = setTimeout("  window.location.href = '@Url.Action("Index", "EnterPatInfor")'", 2000);
+                            //  document.getElementById("msg").innerHTML = data.Message.toString();//这句话报错 innerHTML
                             }
 
                         },
@@ -465,8 +467,10 @@ $(function () {
     }
     function SetDataIntoOCX(OCX, obj)
     {
+    //debugger;//需要确认一下这里的obj数据是不是完整-----没止痛和预防项，主诉信息不好读，有缺失
         //set the data to OCX
         //set patient information
+        
         if(null != obj.Name)
             OCX.SetObjectInfo("TextBox_2", "text", obj.Name);
         if(null != obj.Sex)
@@ -479,40 +483,41 @@ $(function () {
             OCX.SetObjectInfo("TextBox_8", "text", obj.Address);
         var strChiefComplaint = "";
 
-        //set Secondary Headache Symptom
+        //set Secondary Headache Symptom如果继续问诊已经有新的原发性头痛诊断结果，则依据visitrecord里试最新的诊断结果
         var strSecondaryHeadacheSymptom = "";
         var lSymptomCount = obj.secondaryheadachesymptom.length;
         //set chief complaint
         if(0 != lSymptomCount)
-            strChiefComplaint = "继发性头痛:";
+            strChiefComplaint = "继发性头痛筛查:";
         for(var lSymptomIndex = 0; lSymptomIndex < lSymptomCount; ++lSymptomIndex)
         {
             strSecondaryHeadacheSymptom = obj.secondaryheadachesymptom[lSymptomIndex];
-
             //set chief complaint
             strChiefComplaint += " ";
             strChiefComplaint += strSecondaryHeadacheSymptom;
-
-            if("突然发生的头痛" == strSecondaryHeadacheSymptom)
-                OCX.SetObjectInfo("CheckBox_1", "checked", "true");
-            else if("逐渐加重的头痛" == strSecondaryHeadacheSymptom)
-                OCX.SetObjectInfo("CheckBox_2", "checked", "true");
-            else if("伴有系统性病变征象（发热、颈强直、皮疹）的头痛" == strSecondaryHeadacheSymptom)
-                OCX.SetObjectInfo("CheckBox_3", "checked", "true");
-            else if("神经系统局灶症状和体征（除典型的视觉、感觉先兆之外）" == strSecondaryHeadacheSymptom)
-                OCX.SetObjectInfo("CheckBox_4", "checked", "true");
-            else if("伴有认知障碍的头痛" == strSecondaryHeadacheSymptom)
-                OCX.SetObjectInfo("CheckBox_5", "checked", "true");
-            else if("视乳头水肿" == strSecondaryHeadacheSymptom)
-                OCX.SetObjectInfo("CheckBox_6", "checked", "true");
-            else if("由咳嗽、用力动作诱发的头痛" == strSecondaryHeadacheSymptom)
-                OCX.SetObjectInfo("CheckBox_8", "checked", "true");
-            else if("妊娠期或产后头痛" == strSecondaryHeadacheSymptom)
-                OCX.SetObjectInfo("CheckBox_9", "checked", "true");
-            else if("癌症患者或AIDS患者出现新发头痛" == strSecondaryHeadacheSymptom)
-                OCX.SetObjectInfo("CheckBox_10", "checked", "true");
-            else if("50岁后的新发头痛" == strSecondaryHeadacheSymptom)
-                OCX.SetObjectInfo("CheckBox_7", "checked", "true");
+            if(obj.ChiefComplaint.indexOf("头痛部位")<0)
+            {
+                if("突然发生的头痛" == strSecondaryHeadacheSymptom)
+                    OCX.SetObjectInfo("CheckBox_1", "checked", "true");
+                else if("逐渐加重的头痛" == strSecondaryHeadacheSymptom)
+                    OCX.SetObjectInfo("CheckBox_2", "checked", "true");
+                else if("伴有系统性病变征象（发热、颈强直、皮疹）的头痛" == strSecondaryHeadacheSymptom)
+                    OCX.SetObjectInfo("CheckBox_3", "checked", "true");
+                else if("神经系统局灶症状和体征（除典型的视觉、感觉先兆之外）" == strSecondaryHeadacheSymptom)
+                    OCX.SetObjectInfo("CheckBox_4", "checked", "true");
+                else if("伴有认知障碍的头痛" == strSecondaryHeadacheSymptom)
+                    OCX.SetObjectInfo("CheckBox_5", "checked", "true");
+                else if("视乳头水肿" == strSecondaryHeadacheSymptom)
+                    OCX.SetObjectInfo("CheckBox_6", "checked", "true");
+                else if("由咳嗽、用力动作诱发的头痛" == strSecondaryHeadacheSymptom)
+                    OCX.SetObjectInfo("CheckBox_8", "checked", "true");
+                else if("妊娠期或产后头痛" == strSecondaryHeadacheSymptom)
+                    OCX.SetObjectInfo("CheckBox_9", "checked", "true");
+                else if("癌症患者或AIDS患者出现新发头痛" == strSecondaryHeadacheSymptom)
+                    OCX.SetObjectInfo("CheckBox_10", "checked", "true");
+                else if("50岁后的新发头痛" == strSecondaryHeadacheSymptom)
+                    OCX.SetObjectInfo("CheckBox_7", "checked", "true");
+            } 
         }
 
         //set the headache overview
@@ -701,14 +706,15 @@ $(function () {
 //                OCX.SetObjectInfo("DateTime_3", "text", strDate);
 //            }
         }
-
+        //debugger;
+        //继续问诊时要用到的服用过的药物；
         //set PreviousDrug
         var strDrugCategory = "";
         var strDrugName = "";
         var strDayAmoutnPerM = "";
         var strMonthTotalAmount = "";
         var strDrugApplication = "";
-        var lPreviousDrugCount = obj.previousdrug.length;
+        var lPreviousDrugCount = obj.previousdrug.length;//这里的药物信息没有止痛、预防分类
         var nRelievePain = 0;
         for(var lPreviousDrugIndex = 0; lPreviousDrugIndex < lPreviousDrugCount; ++lPreviousDrugIndex)
         {
@@ -719,6 +725,7 @@ $(function () {
             strDrugApplication = obj.previousdrug[lPreviousDrugIndex].DrugApplication;
             if("止痛" == strDrugApplication)
             {
+           // debugger;
                 ++nRelievePain;
                 if(1 == nRelievePain)
                 {
@@ -1554,7 +1561,7 @@ $(function () {
                     strWaiZuMu = "外祖母";
                 if("true" == OCX.GetObjectInfo("CheckBox_72", "checked"))
                     strHFamilyMemberQiTa = "其他";
-
+                
                 //get OtherFamilyDisease
                 var strXinZangJiBin = "";
                 var strDianXian = "";
@@ -2950,7 +2957,71 @@ $(function () {
             {
                 strChiefComplaint += "曾服用" + strDrugCategory3 + "，每月服药" + strDayAmoutnPerM3 + "天，连续服药" + strMonthTotalAmount3 + "个月；";
             }
-                   
+            
+            //获取预防类药物信息
+                var strPNLR="";
+                var strMTLR="";
+                var strFGLQ="";
+                var strBWS="";
+                var strTBZ=""
+                var strATL=""
+                var strDRLZ=""
+                var strQT=""
+                var strNMDP="";
+                var strNYZ="";
+                var strL="";
+                var strLBT="";
+                var strADP="";
+                var strQLP="";
+                var strWFLX="";
+                var strMDP="";
+                var strNFCT="";
+                 var strAFTT="";
+                var strDLHT="";
+                var strZY="";
+ 
+                 if("true" == OCX.GetObjectInfo("CheckBox_36", "checked"))
+                 strPNLR="普萘罗尔";
+                 if("true" == OCX.GetObjectInfo("CheckBox_37", "checked"))
+                 strMTLR="、美托洛尔";
+                 if("true" == OCX.GetObjectInfo("CheckBox_38", "checked"))
+                 strFGLQ="、氟桂利嗪";
+                  if("true" == OCX.GetObjectInfo("CheckBox_40", "checked"))
+                  strBWS="、丙戊酸"
+                  if("true" == OCX.GetObjectInfo("CheckBox_39", "checked"))
+                  strTBZ="、托吡酯";
+                  if("true" == OCX.GetObjectInfo("CheckBox_53", "checked"))
+                  strATL="、阿替洛";
+                  if("true" == OCX.GetObjectInfo("CheckBox_54", "checked"))
+                  strDRLZ="、地尔硫卓";
+                  if("true" == OCX.GetObjectInfo("CheckBox_58", "checked"))
+                  strNMDP="、尼莫地平";
+                  if("true" == OCX.GetObjectInfo("CheckBox_57", "checked"))
+                  strNYZ="、脑益嗪";
+                  if("true" == OCX.GetObjectInfo("CheckBox_56", "checked"))
+                  strL="、锂";
+                  if("true" == OCX.GetObjectInfo("CheckBox_55", "checked"))
+                  strLBT="、利培酮";
+                  if("true" == OCX.GetObjectInfo("CheckBox_59", "checked"))
+                  strADP="、奥氮平"
+                  if("true" == OCX.GetObjectInfo("CheckBox_60", "checked"))
+                  strQLP="、喹硫平";
+                  if("true" == OCX.GetObjectInfo("CheckBox_63", "checked"))
+                  strWFLX="、文拉法辛";
+                  if("true" == OCX.GetObjectInfo("CheckBox_83", "checked"))
+                  strMDP="、米氮平"
+                  if("true" == OCX.GetObjectInfo("CheckBox_82", "checked"))
+                  strNFCT="、萘发唑酮";
+                  if("true" == OCX.GetObjectInfo("CheckBox_81", "checked"))
+                  strAFTT="、安非他酮";
+                  if("true" == OCX.GetObjectInfo("CheckBox_86", "checked"))
+                  strDLHT="、丁螺环酮"
+                  if("true" == OCX.GetObjectInfo("CheckBox_85", "checked"))
+                  strZY="、中药";
+                  if("true" == OCX.GetObjectInfo("CheckBox_84", "checked"))
+                  strQT="其他";
+            if("" !=strPNLR+strMTLR+ strFGLQ+strTBZ+strBWS+strTBZ+strATL+strDRLZ+strNMDP+strNYZ+strL+strLBT+strADP+strQLP+strWFLX+strMDP+strNFCT+ strAFTT+strDLHT+strZY )
+                strChiefComplaint += "曾服用预防类药物"+strPNLR+strMTLR+ strFGLQ+strTBZ+strBWS+strTBZ+strATL+strDRLZ+strNMDP+strNYZ+strL+strLBT+strADP+strQLP+strWFLX+strMDP+strNFCT+ strAFTT+strDLHT+strZY;
             //Get HeadacheFamilyMember
             var strFuQin = "";
             var strMuQin = "";
@@ -2994,7 +3065,7 @@ $(function () {
             var strPrecipitatingFactor1 = "";
             var strPrecipitatingFactor2 = "";
             var strPrecipitatingFactor3 = "";
-            var strPrecipitatingFactor4 = "";
+            var strPrecipitatingFactor4 = ""; 
             var strPrecipitatingFactor5 = "";
             var strPrecipitatingFactor6 = "";
             var strPrecipitatingFactor7 = "";

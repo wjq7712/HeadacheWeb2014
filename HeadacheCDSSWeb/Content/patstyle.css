@@ -140,17 +140,27 @@ select
 }
 #content li span
 {
-   width: 90px;
-float: left;
+   width: 21px;
+
+}
+#content li span.itemname
+{
+    width:90px;
+    float: left;
 text-align: right;
 padding-right: 15px;
 padding-top: 7px;
 font-size: 18px;
-
 }
+#entry li span{width: 90px;
+float: left;
+text-align: right;
+padding-right: 15px;
+padding-top: 7px;
+font-size: 18px;}
+
 #content li p
 {
-color:Red;
 text-align:center;
 font-size: 18px;
 padding-top:0px;
@@ -255,6 +265,7 @@ input[type="submit"]:active
 	text-align: center;
 	
 }
+#List li span{width:50px;}
 .CurrentView
 {
     
@@ -264,13 +275,14 @@ input[type="submit"]:active
 	padding: 7px 2px 0 0;
 	margin:0;
 	text-align:center;
+	font-size:24px;
 }
 
 #List a {
 	color: #076FA2;
 	font-size:18px;
 	text-decoration: none;
-
+	padding-right:0px;
 }
 
 #List a:hover {
@@ -360,7 +372,7 @@ input[type="submit"]:active
     padding-top :25px; 
      
      }
-.img_delete{width:19px;height:19px;margin-left:69px;}
+.img_delete{width:14px;height:14px;float:right;padding-right:4px;padding-top:4px;}
 
 .modal-backdrop {
   position: fixed;
@@ -408,7 +420,7 @@ input[type="submit"]:active
   -moz-transition: opacity .3s linear, top .3s ease-out;
   -o-transition: opacity .3s linear, top .3s ease-out;
   transition: opacity .3s linear, top .3s ease-out;
-  top:50%;
+  top:30%;
 }
 .modal.fade.in {
   top: 10%;
@@ -510,3 +522,7 @@ display: none;
 }
 .btn:hover{background: url(images/hover-button.png) no-repeat ;}
 .btn:active{ background: url(images/click-button.png) no-repeat ;}
+#date{width:118px;}
+.querybtn{width:138px;} 
+
+p.unit{color:Red;}

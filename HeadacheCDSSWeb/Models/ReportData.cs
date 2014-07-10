@@ -86,6 +86,7 @@ namespace HeadacheCDSSWeb.Models
         public string DrugName { get; set; }
         public string DayAmoutnPerM { get; set; }
         public string MonthTotalAmount { get; set; }
+        public string DrugApplication { get; set; }
      }
    public class Exam
     {

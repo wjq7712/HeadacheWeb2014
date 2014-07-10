@@ -115,8 +115,8 @@ $("#submenu").hide();
         });
         $('#p5').click(function (e) {
             e.preventDefault();
-            var data = $('#p5').mouseout().data('maphilight') || {};
-            data.alwaysOn = !data.alwaysOn;
+            var data = $('#p   5').mouseout().data('maphilight') || {};
+            data.alwaysOn = !data.alwaysOn;                            
             $('#p5').data('maphilight', data).trigger('alwaysOn.maphilight');
 
         });
@@ -208,6 +208,7 @@ $("#submenu").hide();
 
             if ($(".selected").last().attr("id") == "基本筛查" || $(".selected").last().attr("id") == "头痛问诊")
                {
+//               debugger;
                 OCX.SetObjectInfo("TextBox_12", "text", GetChiefComplaint(OCX));
                }
             if ($(".selected").last().attr("id") == "报告预览"||$(".selected").last().attr("id") == "头痛问诊") 
@@ -232,7 +233,10 @@ $("#submenu").hide();
                                 var t = setTimeout("  window.location.href = '@Url.Action("Index", "EnterPatInfor")'", 3000);
                             }
                             else {
-                                document.getElementById("msg").innerHTML = data.Message.toString();
+                           // debugger;
+                            $(".demo").html("抱歉，信息保存出现异常");
+                               var t = setTimeout("  window.location.href = '@Url.Action("Index", "EnterPatInfor")'", 2000);
+                             //   document.getElementById("msg").innerHTML = data.Message.toString();//JavaScript 运行时错误: 无法设置未定义或 null 引用的属性“innerHTML”
                             }
 
                         },
@@ -867,6 +871,7 @@ function SetDiagnosisIntoComplaint(OCX){
 //            }
                     
             //get PreviousDrug
+           // debugger;
             var strDrugCategory1 = OCX.GetObjectInfo("ComboBox_46", "text");
 //            var strDrugName1 = OCX.GetObjectInfo("TextBox_52", "text");
 //            if("" == strDrugName1)
@@ -895,7 +900,7 @@ function SetDiagnosisIntoComplaint(OCX){
             if("" != strDrugCategory2)
             {
                 strChiefComplaint += "曾服用" + strDrugCategory2 + "，每月服药" + strDayAmoutnPerM2 + "天，连续服药" + strMonthTotalAmount2 + "个月；";
-            }
+            }//这里药物止痛都有的，米有预防药物
                     
             var strDrugCategory3 = OCX.GetObjectInfo("ComboBox_44", "text");
 //            var strDrugName3 = OCX.GetObjectInfo("TextBox_42", "text");
@@ -911,6 +916,71 @@ function SetDiagnosisIntoComplaint(OCX){
             {
                 strChiefComplaint += "曾服用" + strDrugCategory3 + "，每月服药" + strDayAmoutnPerM3 + "天，连续服药" + strMonthTotalAmount3 + "个月；";
             }
+               
+          //获取预防类药物信息
+                var strPNLR="";
+                var strMTLR="";
+                var strFGLQ="";
+                var strBWS="";
+                var strTBZ=""
+                var strATL=""
+                var strDRLZ=""
+                var strQT=""
+                var strNMDP="";
+                var strNYZ="";
+                var strL="";
+                var strLBT="";
+                var strADP="";
+                var strQLP="";
+                var strWFLX="";
+                var strMDP="";
+                var strNFCT="";
+                 var strAFTT="";
+                var strDLHT="";
+                var strZY="";
+ 
+                 if("true" == OCX.GetObjectInfo("CheckBox_36", "checked"))
+                 strPNLR="普萘罗尔";
+                 if("true" == OCX.GetObjectInfo("CheckBox_37", "checked"))
+                 strMTLR="、美托洛尔";
+                 if("true" == OCX.GetObjectInfo("CheckBox_38", "checked"))
+                 strFGLQ="、氟桂利嗪";
+                  if("true" == OCX.GetObjectInfo("CheckBox_40", "checked"))
+                  strBWS="、丙戊酸"
+                  if("true" == OCX.GetObjectInfo("CheckBox_39", "checked"))
+                  strTBZ="、托吡酯";
+                  if("true" == OCX.GetObjectInfo("CheckBox_53", "checked"))
+                  strATL="、阿替洛";
+                  if("true" == OCX.GetObjectInfo("CheckBox_54", "checked"))
+                  strDRLZ="、地尔硫卓";
+                  if("true" == OCX.GetObjectInfo("CheckBox_58", "checked"))
+                  strNMDP="、尼莫地平";
+                  if("true" == OCX.GetObjectInfo("CheckBox_57", "checked"))
+                  strNYZ="、脑益嗪";
+                  if("true" == OCX.GetObjectInfo("CheckBox_56", "checked"))
+                  strL="、锂";
+                  if("true" == OCX.GetObjectInfo("CheckBox_55", "checked"))
+                  strLBT="、利培酮";
+                  if("true" == OCX.GetObjectInfo("CheckBox_59", "checked"))
+                  strADP="、奥氮平"
+                  if("true" == OCX.GetObjectInfo("CheckBox_60", "checked"))
+                  strQLP="、喹硫平";
+                  if("true" == OCX.GetObjectInfo("CheckBox_63", "checked"))
+                  strWFLX="、文拉法辛";
+                  if("true" == OCX.GetObjectInfo("CheckBox_83", "checked"))
+                  strMDP="、米氮平"
+                  if("true" == OCX.GetObjectInfo("CheckBox_82", "checked"))
+                  strNFCT="、萘发唑酮";
+                  if("true" == OCX.GetObjectInfo("CheckBox_81", "checked"))
+                  strAFTT="、安非他酮";
+                  if("true" == OCX.GetObjectInfo("CheckBox_86", "checked"))
+                  strDLHT="、丁螺环酮"
+                  if("true" == OCX.GetObjectInfo("CheckBox_85", "checked"))
+                  strZY="、中药";
+                  if("true" == OCX.GetObjectInfo("CheckBox_84", "checked"))
+                  strQT="其他";
+            if("" !=strPNLR+strMTLR+ strFGLQ+strTBZ+strBWS+strTBZ+strATL+strDRLZ+strNMDP+strNYZ+strL+strLBT+strADP+strQLP+strWFLX+strMDP+strNFCT+ strAFTT+strDLHT+strZY )
+                strChiefComplaint += "曾服用预防类药物"+strPNLR+strMTLR+ strFGLQ+strTBZ+strBWS+strTBZ+strATL+strDRLZ+strNMDP+strNYZ+strL+strLBT+strADP+strQLP+strWFLX+strMDP+strNFCT+ strAFTT+strDLHT+strZY;
                    
             //Get HeadacheFamilyMember
             var strFuQin = "";
@@ -1064,7 +1134,7 @@ function SetDiagnosisIntoComplaint(OCX){
             strChiefComplaint += "\n";
             strChiefComplaint += "曾诊断为：" + OCX.GetObjectInfo("ComboBox_2", "text");
         }
-        return strChiefComplaint;
+        return strChiefComplaint;//没有预防药物
     }
 
     function ChangeDataFromOCXIntoJSObject(OCX)
@@ -1278,6 +1348,7 @@ function SetDiagnosisIntoComplaint(OCX){
                 var strCoffePerDay = OCX.GetObjectInfo("TextBox_54", "text");
 
                 //get PreviousDrug
+                //debugger;
                 var strDrugCategory1 = OCX.GetObjectInfo("ComboBox_46", "text");
                 var strDrugApplication1 = "止痛";
                 var strDayAmoutnPerM1 = OCX.GetObjectInfo("TextBox_51", "text");

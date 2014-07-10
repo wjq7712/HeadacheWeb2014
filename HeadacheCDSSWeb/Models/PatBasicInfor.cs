@@ -38,6 +38,9 @@ namespace HeadacheCDSSWeb.Models
         public Nullable<bool> SimilarFamily { get; set; }
         public string Weight { get; set; }
         public string Height { get; set; }
+        public Nullable<int> HDVersion { get; set; }
+        public Nullable<int> AutoUpload { get; set; }
+        public string Password { get; set; }
     
         public virtual DoctorAccount DoctorAccount { get; set; }
         public virtual ICollection<PreviousExam> PreviousExam { get; set; }

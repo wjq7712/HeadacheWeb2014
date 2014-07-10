@@ -24,17 +24,98 @@
         </div>
         <div id="DiaryView">
         <div id="ReportView">
+        <div id="diaryreport">
+         <table border="1">
+               <caption style="font-size:28px;">头痛日志分析报告</caption>
+                <tr>
+                <td style="width:33%"><a>统计日期</a></td>
+                <td><a id="date"></a></td>
+                </tr>
+
+                <tr>
+                <td><a>头痛频率</a></td>
+                <td><a id="frequence"></a></td>  
+                </tr>
+                <tr>
+                <td><a>持续时间</a></td>
+                <td><a id="averagetime"></a></td>
+                </tr>
+                <tr>
+                <td><a>头痛程度</a></td>
+                <td><a id="degree"></a></td>
+                </tr>
+
+                <tr>
+                <td><a>头痛性质</a></td>
+                <td><a id="type"> </a></td>   
+                </tr>
+
+                <tr>
+                <td><a>头痛部位</a></td>
+                <td><a id="position"></a></td>
+                </tr>
+               
+                <tr>
+                <td><a>头痛先兆</a></td>
+                <td id="prodrome"></td>
+                </tr>
+
+                <tr>
+                <td><a>伴随症状</a></td>
+                <td><a id="accompany"></a></td> 
+                </tr>
+
+                <tr>   
+                <td><a>活动是否加剧头痛</a></td>
+                <td><a id="IfActivityAggravate"></a></td>
+                </tr>
+
+                <tr>
+                <td><a>头痛诱发因素</a></td>
+                <td><a id="precipitatingFactor"></a></td>
+                </tr>
+
+                <tr>
+                <td><a>头痛缓解因素</a></td>
+                <td><a id="mitigatingFactors"></a></td>
+                </tr>
+
+                <tr> 
+                <td><a>头痛总次数</a></td>
+                <td><a id="times"></a></td>
+                </tr>
+
+                </table>
+</div>
         </div>
           <div class="statics">
            <div id="time">
-                        <table border="0">
-                 <tr>
-                <td><input type="text" name="date" id="d1" /></td>
-                <td><a>----------</a></td>
-                <td><input type="text" name="date" id="d2" /></td> 
-                <td><div  class="button"><a id="diarygraph" hef="#">确定</a></div></td>
+            <div id="datetimepicker1" class="input-append">
+                    <input data-format="yyyy-MM-dd" type="text" name="date" id="d1"/>
+                    <span class="add-on" id="add">
+                      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                      </i>
+                    </span>
+                  </div>
+                  <div id="seperateline"><a>------</a></div>
+           <div id="datetimepicker2" class="input-append">
+                    <input data-format="yyyy-MM-dd" type="text" name="date" id="d2"/>
+                    <span class="add-on" id="add">
+                      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                      </i>
+                    </span>
+                  </div>
+           <div  class="button" id="diarygraphbtn"><a id="diarygraph" hef="#">确定</a></div>
+            @* <table border="0">
+                <tr>
+                 <td><input type="text" name="date" id="d1" /></td>
+                 <td><a>----------</a></td>
+                <td>
+                 <input type="text" name="date" id="d2" />
+                   </td> 
+                  <td><div  class="button"><a id="diarygraph" hef="#">确定</a></div></td>
                 </tr>
-                </table>
+                </table>*@
         
         
            </div>
@@ -52,7 +133,7 @@
              </ul>
             </div>
             <div id="linegraph"></div>
-            <div style="float:left;padding-left:240px"><p>平均值: 6.5</p></div>
+            <div style="float:left;padding-left:240px"><p id="averagenum"></p></div>
           </div>
           <div id="pie">
           <div id="variable2">
@@ -97,9 +178,9 @@
           <h3 >头痛日志</h3>
           <div id="ui-accordion-accordion-panel-1">
               <ul class="diary">
-              <li ><img src="@Href("../../Content/images/chart.png")"  alt="text"/><a href="#"  id="statics">头痛情况统计分析</a></li>
-              <li ><div class="report"><div style="float:left"><img src="@Href("../../Content/images/report.png")"  alt="text"/></div><div style="padding-top:10px"><a href="#" id="report" >近三个月分析报告</a><div></div></li>
-
+              <li><img src="@Href("../../Content/images/chart.png")"  alt="text"/><a href="#"  id="statics">头痛情况统计分析</a></li>
+              <li><div class="report"><div style="float:left"><img src="@Href("../../Content/images/report.png")"  alt="text"/></div>
+              <div style="padding-top:19px"><a href="#" id="report" >近三个月分析报告</a></div></div></li>
               </ul>
           </div>
           <h3>诊疗记录</h3>
@@ -145,19 +226,21 @@
 
 <script type="text/javascript">
     $(function () {
-
         var OCX = document.getElementById('Reporter2');
         try {
-            OCX.OpenReport("D:\\CDSSOCX");          
+            OCX.OpenReport("D:\\CDSSOCX");
         }
         catch (err) {
             var b = confirm("是否下载显示控件");
             if (b) {
+               // debugger;
                 var strOCXURL;
-                strOCXURL = "http://127.0.0.1" + "/HeadacheCDSS/OCXForHeadacheCDSS.exe";
+                //strOCXURL = "http://127.0.0.1" + "/HeadacheCDSS/OCXForHeadacheCDSS.exe"; //能找到，但是安装后没有用，下载前提示“JavaScript 运行时错误: 对象不支持“SetObjectInfo”属性或方法”
+                strOCXURL = "http://115.28.42.235" + "/HeadacheCDSS/OCXForHeadacheCDSS.exe"; //提示找不到资源
                 window.location.href = strOCXURL;
             }
         }
+       // debugger;
         var stringArray = new Array();
         stringArray[0] = $(".PID").attr("id");
         stringArray[1] = $("#RecordID").attr("class");
@@ -173,7 +256,7 @@
                 SetReportData(data);
 
             },
-            error: function (jqXhr, textStatus, errorThrown) {
+            error: function (jqXhr, textStatus, errorThrown) {//？
                 alert("Error '" + jqXhr.status + "' (textStatus: '" + textStatus + "', errorThrown: '" + errorThrown + "')");
                 alert("处理失败!");
             }
@@ -184,15 +267,16 @@
         //        $("#accordion").accordion(
         //        { collapsible: true });
         $('.paging li a:first').addClass("CurrentView");
-        $(".CurrentView").parent().css("background-color", "#D3E7F2");
+        $(".CurrentView").parent().css("background-color", "#B9DCF2");
         if ($(".paging li").length == 0) {
             $("#continue").hide();
             $("#delete").hide();
             $(".paging").append("<li><a>基本信息</a></li>");
         }
     });
-    $(document).ready(function () {
 
+    //列表分页
+    $(document).ready(function () {
         $(".paging").find("li").hide();
         $(".paging li:lt(7)").addClass("current").show();
         var num = Math.ceil($(".paging li").length / 7);
@@ -212,7 +296,6 @@
     });
     $(function () {
         $(".paging li  a").click(function () {
-
             var recordToView = $(this).attr("id");
             var stringArray = new Array();
             stringArray[0] = $(".PID").attr("id");
@@ -223,11 +306,8 @@
             }
             else {
                 $.ajax({
-
                     type: "POST",
-
                     url: '@Url.Action("ViewVisitRecordDetail", "ViewPatRecord")',
-
                     data: { PostID: stringArray },
                     dataType: "json", type: "POST", traditional: true,
                     success: function (data) {
@@ -235,17 +315,15 @@
                         $("#DiaryView").hide();
                         //$('#ViewContent').html(data);
                         SetReportData(data);
-                        $(".CurrentView").parent().css("background-color", "#B9DCF2");
+                        $(".CurrentView").parent().css("background-color", "#D3E7F2");
                         $(".CurrentView").removeClass("CurrentView");
                         $('#' + recordToView).addClass("CurrentView");
-                        $(".CurrentView").parent().css("background-color", "#D3E7F2");
+                        $(".CurrentView").parent().css("background-color", "#B9DCF2");
                     },
-
                     error: function (jqXhr, textStatus, errorThrown) {
                         alert("Error '" + jqXhr.status + "' (textStatus: '" + textStatus + "', errorThrown: '" + errorThrown + "')");
                         alert("处理失败!");
                     }
-
                 });
             }
         });
@@ -254,53 +332,72 @@
             if ($(this).attr("id") == "statics") {
                 $("#ViewContent").hide();
                 $("#DiaryView").show();
-                $("#ReportView").hide();
-                $(".statics").show();
-                $("#d1").Zebra_DatePicker();
-                $("#d2").Zebra_DatePicker();
-                // $("#linegraph").children().remove();
-
-                //$("#piegraph").children().remove();
-                var plot1 = $.jqplot('linegraph', [[4, 6, 7, 9, 3, 5, 8, 8]], { axes: { xaxis: { label: "" }, yaxis: { label: ""}} });
-                var plot2 = $.jqplot('piegraph', [[5, 7, 9, 7, 10, 11, 28, 32, 10, 11, 28, 32]], {
-                    title: '',
-                    seriesDefaults: {
-                        renderer: $.jqplot.BarRenderer,
-                        rendererOptions: {
-                            barPadding: 1,
-                            barMargin: 15,
-                            barDirection: 'vertical',
-                            barWidth: 45,
-                            varyBarColor: true
-                        },
-                        pointLabels: { show: true }
-                    },
-                    axes: {
-                        xaxis: {
-                            renderer: $.jqplot.CategoryAxisRenderer,
-                            ticks: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"]
-                        },
-                        yaxis: {
-                            tickOptions: {
-                                formatString: '%d'
-                            }
-                        }
-                    },
-                    highlighter: {
-                        sizeAdjust: 7.5
-                    },
-                    cursor: {
-                        show: true
-                    }
+                $("#ReportView").hide(); //近三个月分析报告
+                $(".statics").show(); //统计分析，这里的图没有数据源，是不是只是示意图？
+                //624更换时间插件
+                $('#datetimepicker1').datetimepicker({
+                    pickTime: false
                 });
+                $('#datetimepicker2').datetimepicker({
+                    pickTime: false
+                });
+                //                var plot1 = $.jqplot('linegraph', [[4, 6, 7, 9, 3, 5, 8, 8]], { axes: { xaxis: { label: "" }, yaxis: { label: ""}} });
+                //                var plot2 = $.jqplot('piegraph', [[5, 7, 9, 7, 10, 11, 28, 32, 10, 11, 28, 32]], {
+                //                    title: '',
+                //                    seriesDefaults: {
+                //                        renderer: $.jqplot.BarRenderer,
+                //                        rendererOptions: {
+                //                            barPadding: 1,
+                //                            barMargin: 15,
+                //                            barDirection: 'vertical',
+                //                            barWidth: 45,
+                //                            varyBarColor: true
+                //                        },
+                //                        pointLabels: { show: true }
+                //                    },
+                //                    axes: {
+                //                        xaxis: {
+                //                            renderer: $.jqplot.CategoryAxisRenderer,
+                //                            ticks: ["a1", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"]
+                //                        },
+                //                        yaxis: {
+                //                            tickOptions: {
+                //                                formatString: '%d'
+                //                            }
+                //                        }
+                //                    },
+                //                    highlighter: {
+                //                        sizeAdjust: 7.5
+                //                    },
+                //                    cursor: {
+                //                        show: true
+                //                    }
+                //                });
             }
             else {
+
+                //近三个月分析报告页 
+                debugger;
+                var Pid = $(".PID").attr("id");
                 $.ajax({
                     type: "POST",
                     url: '@Url.Action("ViewDiaryReport", "ViewPatRecord")',
-                    success: function (data) {
+                    data: { PatID: Pid },
+                    success: function (data) {  //这个data来源？ViewDiaryReport里调数据库？
                         $("#ViewContent").hide();
-                        $("#ReportView").html(data);
+                        //debugger;620
+                        document.getElementById('frequence').innerHTML = data.HDRfrequence;
+                        document.getElementById('date').innerHTML = data.HDRdata;
+                        document.getElementById('averagetime').innerHTML = data.AverageTime;
+                        document.getElementById('degree').innerHTML = data.HDRdegree;
+                        document.getElementById('type').innerHTML = data.HDRtype;
+                        document.getElementById('position').innerHTML = data.HDRplace + "<br />" + data.IfAroundEye;
+                        document.getElementById('prodrome').innerHTML = data.HDRprodrome
+                        document.getElementById('accompany').innerHTML = data.HDRacompanion
+                        document.getElementById('IfActivityAggravate').innerHTML = data.IfActivityAggravate
+                        document.getElementById('precipitatingFactor').innerHTML = data.HDRprecipitatingFactor
+                        document.getElementById('mitigatingFactors').innerHTML = data.HDRmitigatingFactors
+                        document.getElementById('times').innerHTML = data.HDRtimes + "次"
                         $("#ReportView").show();
                         $("#DiaryView").show();
                         $(".statics").hide();
@@ -309,110 +406,161 @@
                         alert("处理失败!");
                     }
                 });
-
             }
 
         });
-        $("#delete").click(function () {
 
-            $("#ViewContent").hide();
 
-        })
-        $("#diarygraph").live("click", function () {
-
+        $("#diarygraph").live("click", function () {//日期选择--确定
+            debugger;
             var StartDate = $("#d1").val();
             var EndDate = $("#d2").val();
             var Pid = $(".PID").attr("id");
             var strSDate = StartDate.slice(0, 10).replace("/", "-").replace("/", "-") + " 00:00:00";
             var strEDate = EndDate.slice(0, 10).replace("/", "-").replace("/", "-") + " 00:00:00";
+            var long = EndDate - StartDate;
+
             var selected1 = $("input:radio[name=query1]:checked").val(); //若未被选中 则val() = null
             var selected2 = $("input:radio[name=query2]:checked").val();
             var encoded = $.toJSON({ PID: Pid, StartDate: strSDate, EndDate: strEDate, query1: selected1, query2: selected2 });
-
             $.ajax({
                 type: "POST",
                 url: '@Url.Action("ViewDiary", "ViewPatRecord")',
                 data: { postjson: encoded },
-
-
                 success: function (data) {
                     var chartdata = new Array();
-                    var linedata = [];
                     var axisDates = new Array();
-                    var myobj = eval(data);
+                    // var interval="";
+                    debugger;
+                    var myobj = eval(data); //jsonstring 转回对象形式
                     var flag = myobj.length;
                     for (var i = 0; i < myobj.length; i++) {
-                        if (myobj[i].kind == "0") {
+                        if (myobj[i].kind == "0") {//数据中插入了【0,0】作为断点
                             flag = parseInt(i);
+                            // interval=myobj[i].data.toString();
                             break;
                         }
                         else {
+
                             chartdata[i] = parseInt(myobj[i].data);
-                            axisDates[i] = myobj[i].kind;
+                            axisDates[i] = myobj[i].kind; //图2的数据
                         }
                     }
+                    var linedata = [];
                     var lineaxis = [];
+                    var newobj = new Array(new Array(), new Array());
                     var index = 0;
-                    for (var j = flag; j < myobj.length; j++) {
-
-                        linedata[index] = parseInt(myobj[j].data);
-                        lineaxis[index] = index;
+                    var sum = 0;
+                    for (var j = flag + 1; j < myobj.length; j++) {
+                        newobj[index] = [myobj[j].kind, parseInt(myobj[j].data)];
                         index++;
+                        sum += myobj[j].data;
                     }
-                    lineaxis[index] = index;
+                    var averagenum = (sum / (index)).toFixed(1);
+                    document.getElementById('averagenum').innerHTML = "平均值：" + averagenum.toString();
                     $("#linegraph").children().remove();
                     $("#piegraph").children().remove();
-                    if (linedata.length == 0)
-                        linedata = [0, 0, 0, 0, 0, 0, 0, 0];
+                    if (newobj.length == 0)
+                        newobj = [[0, 0], [0, 0], [0, ], [0, 0], [0, 0], [0, 0]];
+                    //图1
+                    var ylabel = "";
+                    if (selected1 == "头痛时长") {
+                        ylabel = "小时"
+                    } else { ylabel = "分数"; }
+
+                    var plot1 = $.jqplot('linegraph', [newobj],
+                                        { axes:
+                                           {
+                                               xaxis: {
+                                                   renderer: $.jqplot.DateAxisRenderer,
+                                                   tickOptions: { formatString: '%b&nbsp;%#d' }
+                                               },
+                                               yaxis: { label: ylabel }
+                                           }
+                                        });
+                    $.jqplot.config.enablePlugins = true;
+
+
+                    //图2
                     if (chartdata.length == 0) {
                         axisDates = ["", "", ""];
                         chartdata = [0, 0, 0];
                     }
-
-                    var plot1 = $.jqplot('linegraph', [linedata], { axes: { xaxis: { ticks: lineaxis }, yaxis: { label: selected1}} });
-
-
-                    $.jqplot.config.enablePlugins = true;
-                    var plot2 = $.jqplot('piegraph', [chartdata], {
-                        title: selected2,
-                        seriesDefaults: {
-                            renderer: $.jqplot.BarRenderer,
-                            rendererOptions: {
-                                barPadding: 1,
-                                barMargin: 15,
-                                barDirection: 'vertical',
-                                barWidth: 45,
-                                varyBarColor: true
-                            },
-                            pointLabels: { show: true }
-                        },
-                        axes: {
-                            xaxis: {
-                                renderer: $.jqplot.CategoryAxisRenderer,
-                                ticks: axisDates
-                            },
-                            yaxis: {
-                                tickOptions: {
-                                    formatString: '%d'
-                                }
-                            }
-                        },
-                        highlighter: {
-                            sizeAdjust: 7.5
-                        },
-                        cursor: {
-                            show: true
+                    if (selected2 == "头痛性质" || selected2 == "头痛部位") {
+                        //饼状图
+                        var databar = new Array(new Array(), new Array());
+                        var abc = 0;
+                        for (var j = 0; j < chartdata.length; j++) {
+                            databar[abc] = [axisDates[j], chartdata[j]];
+                            abc++;
                         }
-                    });
+                        if (databar.length == 0) {
+                            databar = [["", 0], ["", 0], ["", 0]]
+                        }
+                        var plot2 = $.jqplot('piegraph', [databar], {
+                            title: selected2,
+                            seriesDefaults: {
+                                // Make this a pie chart.
+                                renderer: jQuery.jqplot.PieRenderer,
+                                rendererOptions: {
+                                    // Put data labels on the pie slices.
+                                    // By default, labels show the percentage of the slice.
+                                    showDataLabels: true
+                                }
+                            },
+                            legend: { show: true, location: 'e' }
+                        });
 
-                },
+                    } else {
+                        // 百分比柱状图
+                        var plot2 = $.jqplot('piegraph', [chartdata], {
+                            title: selected2,
+                            seriesDefaults: {
+                                renderer: $.jqplot.BarRenderer,
+                                rendererOptions: {
+                                    barPadding: 1,
+                                    barMargin: 15,
+                                    barDirection: 'vertical',
+                                    barWidth: 45,
+                                    varyBarColor: true
+                                },
+                                pointLabels: { show: true }
+                            },
+                            axes: {
+                                xaxis: {
+                                    renderer: $.jqplot.CategoryAxisRenderer,
+                                    ticks: axisDates
+                                },
+                                yaxis: {
+                                    label: '百分比',
+                                    tickOptions: {
+                                        formatString: '%d'
+                                    }
+                                }
+                            },
+                            highlighter: {
+                                sizeAdjust: 7.5
+                            },
+                            cursor: {
+                                show: true
+                            }
+                        });
+                    } //else
+                }, //success
                 error: function () {
                     alert("处理失败!");
                 }
-            });
+            }); //ajax
+        })//click
 
+
+        $("#delete").click(function () {
+            debugger;
+            $("#ViewContent").hide();
+            $("#myModal").show();
         })
         $("#DeleteYes").click(function () {
+            debugger;
             var pid = '@ViewBag.patId';
             $.ajax({
                 url: '@Url.Action("DeleteRecord", "ViewPatRecord")',
@@ -439,6 +587,7 @@
 
     });
     function SetReportData(jsonData) {
+        //debugger;
         var obj = eval('(' + jsonData + ')');
         var OCX = document.getElementById('Reporter2');
 
@@ -462,7 +611,6 @@
         var strName = "";
         if (null != obj.Name)
             strName = obj.Name;
-
         var strSex = "";
         if (null != obj.Sex)
             strSex = obj.Sex;
@@ -502,7 +650,8 @@
         //strPatientInfo += "                             主治医生:" + strChiefDoctor;
         OCX.SetObjectInfo("TextBox_21", "text", strPatientInfo);
 
-        //set chief complaint
+        //set chief complaint 主诉这里的OBJ信息不全 
+        //debugger;
         if (obj.ChiefComplaint != null) {
             var strChiefComplaint = obj.ChiefComplaint;
             OCX.SetObjectInfo("TextBox_22", "text", strChiefComplaint);

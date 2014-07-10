@@ -14,27 +14,26 @@ namespace HeadacheCDSSWeb.Models
 {
     public partial class HeadacheDiary
     {
-        public HeadacheDiary()
-        {
-            this.HDAcompanion = new HashSet<HDAcompanion>();
-            this.HDheadacheplace = new HashSet<HDheadacheplace>();
-            this.HDHeadacheProdrome = new HashSet<HDHeadacheProdrome>();
-            this.HDMitigatingFactors = new HashSet<HDMitigatingFactors>();
-            this.HDPrecipitatingFactor = new HashSet<HDPrecipitatingFactor>();
-        }
-    
         public int Id { get; set; }
-        public System.DateTime RecordDate { get; set; }
-        public int HeadacheTime { get; set; }
-        public string HeadacheType { get; set; }
+        public System.DateTime RecordTime { get; set; }
+        public Nullable<System.DateTime> StartTime { get; set; }
         public string PatBasicInforId { get; set; }
-        public int HeadacheDegree { get; set; }
+        public Nullable<int> Degree { get; set; }
+        public Nullable<int> Position { get; set; }
+        public Nullable<System.DateTime> EndTime { get; set; }
+        public Nullable<int> IfAroundEye { get; set; }
+        public Nullable<int> Type { get; set; }
+        public string TypeComment { get; set; }
+        public Nullable<int> IfActivityAggravate { get; set; }
+        public string Prodrome { get; set; }
+        public string Companion { get; set; }
+        public string Precipiating { get; set; }
+        public string PrecipiatingComment { get; set; }
+        public string Mitigating { get; set; }
+        public string DrugList { get; set; }
+        public Nullable<int> AidDiagnosis { get; set; }
+        public string MitigatingComment { get; set; }
     
-        public virtual ICollection<HDAcompanion> HDAcompanion { get; set; }
-        public virtual ICollection<HDheadacheplace> HDheadacheplace { get; set; }
-        public virtual ICollection<HDHeadacheProdrome> HDHeadacheProdrome { get; set; }
-        public virtual ICollection<HDMitigatingFactors> HDMitigatingFactors { get; set; }
-        public virtual ICollection<HDPrecipitatingFactor> HDPrecipitatingFactor { get; set; }
         public virtual PatBasicInfor PatBasicInfor { get; set; }
     }
     

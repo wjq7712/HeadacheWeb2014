@@ -19,13 +19,21 @@
             new SelectListItem {Text = "很可能的偏头痛", Value = "很可能的偏头痛"},
             new SelectListItem {Text = "无先兆性偏头痛", Value = "无先兆性偏头痛"},
              new SelectListItem {Text = "先兆性偏头痛", Value = "先兆性偏头痛"},
+             new SelectListItem {Text = "慢性偏头痛", Value = "慢性偏头痛"},
+             
+               new SelectListItem {Text = "很可能的紧张型头痛", Value = "很可能的紧张型头痛"},
+               new SelectListItem {Text = "慢性紧张型头痛", Value = "慢性紧张型头痛"},
              new SelectListItem {Text = "偶尔发作性紧张型头痛", Value = "偶尔发作性紧张型头痛"},
             new SelectListItem {Text = "频繁阵发性紧张型头痛", Value = "频繁阵发性紧张型头痛"},
-             new SelectListItem {Text = "丛集性头痛或其他三叉自主神经痛", Value = "丛集性头痛或其他三叉自主神经痛"},
-             new SelectListItem {Text = "药物滥用引起的头痛", Value = "药物滥用引起的头痛"},
-            new SelectListItem {Text = "慢性偏头痛", Value = "慢性偏头痛"},
-             /*new SelectListItem {Text = "先兆性偏头痛", Value = "先兆性偏头痛"},*/
-             new SelectListItem {Text = "慢性紧张型头痛", Value = "慢性紧张型头痛"},
+            
+             new SelectListItem {Text = "丛集性头痛", Value = "丛集性头痛"},
+             new SelectListItem {Text = "很可能的丛集性头痛", Value = "很可能的丛集性头痛"},
+              new SelectListItem {Text = "阵发性偏侧头痛", Value = "阵发性偏侧头痛"},
+               new SelectListItem {Text = "很可能的阵发性偏侧头痛", Value = "很可能的阵发性偏侧头痛"},
+                 new SelectListItem {Text = "SUNCT", Value = "SUNCT"},
+                 new SelectListItem {Text = "很可能的SUNCT", Value = "很可能的SUNCT"},
+                 
+             new SelectListItem {Text = "药物滥用引起的头痛", Value = "药物滥用引起的头痛"},          
             new SelectListItem {Text = "新发每日持续性头痛", Value = "新发每日持续性头痛"},
              new SelectListItem {Text = "其他慢性每日头痛", Value = "其他慢性每日头痛"},
               new SelectListItem {Text = "其他原发性头痛", Value = "其他原发性头痛"},
@@ -48,20 +56,28 @@
             <h2 class="title">
                 查询病人</h2>
             <ul>
-                <li><span>姓名</span>
+                <li><span class="itemname">姓名</span>
                     @Html.TextBox("name")
                 </li>
-                <li><span>性别</span>
+                <li><span class="itemname">性别</span>
                     @Html.DropDownList("sex", @items)
                 </li>
-                <li><span>就诊日期</span><input type="text" name="date" id="date" />
+                <li><span class="itemname">就诊日期</span>@*<input type="text" name="date" class="easyui-datebox" /> <input class="easyui-datebox"/>*@
+                  <div id="datetimepicker4" class="input-append">
+                    <input data-format="yyyy-MM-dd" type="text" name="date" id="date"/>
+                    <span class="add-on" id="add">
+                      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                      </i>
+                    </span>
+                  </div>
+            
                 </li>
-                <li><span>诊断结论</span> @Html.DropDownList("diagnosis", @diagnosis)
+                <li><span class="itemname">诊断结论</span> @Html.DropDownList("diagnosis", @diagnosis)
                 </li>
             </ul>
          
             <p>
-                <input type="submit" value="查询病人" /></p>
+                <input type="submit" value="查询病人" class="querybtn" /></p>
         
         }
     </div>
@@ -74,12 +90,12 @@
                 <ul>
                     
                     
-                    <li><span>姓名</span>@Html.EditorFor(model => model.Name)<p>*</p></li>
-                    <li><span>性别</span>@Html.DropDownListFor(model => model.Sex, @items) <p>*</p></li>
-                    <li><span>年龄</span> @Html.EditorFor(model => model.Age)<p>*</p></li>
-                    <li><span>手机</span>@Html.EditorFor(model => model.Phone)<p>*</p></li>
-                    <li><span>身高</span>@Html.EditorFor(model => model.Height)<a>cm</a></li>
-                    <li><span>体重</span>@Html.EditorFor(model => model.Weight)<a>kg</a> </li>
+                    <li><span>姓名</span>@Html.EditorFor(model => model.Name)<p  class="unit">*</p></li>
+                    <li><span>性别</span>@Html.DropDownListFor(model => model.Sex, @items) <p class="unit">*</p></li>
+                    <li><span>年龄</span> @Html.EditorFor(model => model.Age)<p class="unit">*</p></li>
+                    <li><span>手机</span>@Html.EditorFor(model => model.Phone)<p class="unit">*</p></li>
+                    <li><span>身高</span>@Html.EditorFor(model => model.Height)<p>cm</p></li>
+                    <li><span>体重</span>@Html.EditorFor(model => model.Weight)<p>kg</p> </li>
                     <li><span>教育</span>@Html.DropDownListFor(model => model.Education, @education)</li>
                     <li><span>职业</span>@Html.EditorFor(model => model.Job) </li>
                     <li><span>住址</span> @Html.EditorFor(model => model.Address)</li>
@@ -87,7 +103,7 @@
                 </ul>
             
                 <p>
-                    <input type="submit" value="注册新患者" /></p>
+                    <input type="submit" value="注册新患者"class="querybtn"  /></p>
             
             }
         </div>
@@ -99,36 +115,39 @@
     <div id="List">
         <h2>病人列表</h2>
     </div>
-     <div class="pagination">
+    @* <div class="pagination">
         <a href="#" class="first" data-action="first">&laquo;</a>
         <a href="#" class="previous" data-action="previous">&lsaquo;</a>
         <input type="text" readonly="readonly" data-max-page="40" />
         <a href="#" class="next" data-action="next">&rsaquo;</a>
         <a href="#" class="last" data-action="last">&raquo;</a>
-    </div>
+    </div>*@
 </div>
-
-@*<div id="deletediv" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="deletedivLabel" aria-hidden="true">
-  <div class="deletediv-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h2 id="deletedivLabel">删除病人提示</h2>
-  </div>
-  <div class="deletediv-body">
-    <p>确定删除此病人信息？</p>
-  </div>
-  <div class="deletediv-footer">
-    <button id="DeletePtYes"class="btn">确定</button>
-    <button id="DeletePtNo"class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-  </div>
-</div>*@
-
 
 <script type="text/javascript">
     $(function () {
+        //debugger;
         $(".pagination").hide();
-        $("#date").Zebra_DatePicker();
+        $('#datetimepicker4').datetimepicker({
+            pickTime: false
+        });
+        $.ajax({
+            url: '@Url.Action("Query", "EnterPatInfor")',
+            type: "POST",
+            async: false
+        }).done(function (data) {
+            $("#List").html(data);
+            //分页部分动态生成；
+            var htmlString = "<div class=\"pagination\"><a href=\"#\" class=\"first\" data-action=\"first\">&laquo;</a><a href=\"#\" class=\"previous\" data-action=\"previous\">&lsaquo;</a><input type=\"text\" readonly=\"readonly\" data-max-page=\"40\" /><a href=\"#\" class=\"next\" data-action=\"next\">&rsaquo;</a><a href=\"#\" class=\"last\" data-action=\"last\">&raquo;</a></div>";
+            $("#sidebar").append(htmlString);
+            ListPage();
+
+        })
     });
     function ListPage() {
+        $(".pagination").remove();
+        var htmlString = "<div class=\"pagination\"><a href=\"#\" class=\"first\" data-action=\"first\">&laquo;</a><a href=\"#\" class=\"previous\" data-action=\"previous\">&lsaquo;</a><input type=\"text\" readonly=\"readonly\" data-max-page=\"40\" /><a href=\"#\" class=\"next\" data-action=\"next\">&rsaquo;</a><a href=\"#\" class=\"last\" data-action=\"last\">&raquo;</a></div>";
+        $("#sidebar").append(htmlString);
         $(".page").find("li").hide();
         $(".pagination").show();
         $(".page li:lt(12)").addClass("current").show();
@@ -139,13 +158,13 @@
                 $(".current").hide();
                 var start = (page - 1) * 12;
                 for (var i = 0; i < 12; i++) {
-
                     $(".page li:eq(" + start + ")").addClass("current").show();
                     start = start + 1;
                 }
 
             }
         })
+        
     }
    
 </script>

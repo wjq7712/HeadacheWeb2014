@@ -195,15 +195,19 @@ namespace HeadacheCDSSWeb.Models
                     string total = vd.PHeadacheOverview.OnsetAmount;
                     if (total.Contains("5"))
                     {
-                        InputDataValue.m_nHeadache_TotalNumber = 3;
+                        InputDataValue.m_nHeadache_TotalNumber = 1;
                     }
                     if (total.Contains("9"))
                     {
                         InputDataValue.m_nHeadache_TotalNumber = 7;
                     }
-                    if (total.Contains("10") || total.Contains("持续头痛"))
+                    if (total.Contains("10"))
                     {
-                        InputDataValue.m_nHeadache_TotalNumber = 12;
+                        InputDataValue.m_nHeadache_TotalNumber = 15;
+                    }
+                    if (total.Contains("持续头痛"))
+                    {
+                        InputDataValue.m_nHeadache_TotalNumber = 25;
                     }
                 }
                 else
@@ -328,23 +332,24 @@ namespace HeadacheCDSSWeb.Models
                     {
                         int day = int.Parse(pdrug.DayAmoutnPerM);
                         int month = int.Parse(pdrug.MonthTotalAmount);
-                        if (pdrug.DrugCategory == "曲普坦")
+
+                        if (pdrug.DrugCategory == "阿司匹林" || pdrug.DrugCategory == "扑热息痛" || pdrug.DrugCategory == "非甾体类抗炎药")
                         {
 
-                            if (day > 10 && month >= 3)
-                            {
-                                InputDataValue.m_nTriptan_Drugin_Monthly = day;
-                                InputDataValue.m_nTriptan_Total_Drugin_Duration = month;
-
-                            }
-                        }
-                        if (pdrug.DrugCategory != "曲普坦")
-                        {
-
-                            if (day > 15 && month > 3)
+                            if (day >= 15 && month >= 3)
                             {
                                 InputDataValue.m_nNon_Triptan_Drugin_Monthly = day;
                                 InputDataValue.m_nNon_Triptan_Total_Drugin_Duration = month;
+
+                            }
+                        }
+
+                        else
+                        {
+                            if (day >= 10 && month >=3)
+                            {
+                                InputDataValue.m_nTriptan_Drugin_Monthly = day;
+                                InputDataValue.m_nTriptan_Total_Drugin_Duration = month;
 
                             }
                         }
@@ -378,6 +383,31 @@ namespace HeadacheCDSSWeb.Models
             return result;
 
         }
+        public string DrugInfor(VisitData vData)
+        {
+            VisitData vd = vdataoperation.DataPreprocess(vData);
+            List<string> drugError = new List<string>();
+            string drugResult = "";
+            foreach (PreviousDrug pdrug in vd.PDrug)
+            {
+                if (pdrug.DrugApplication == "止痛")
+                {
+                    if ((pdrug.DrugCategory != "") ||( pdrug.DayAmoutnPerM != "") ||( pdrug.MonthTotalAmount != ""))
+                    {
+                        if (!((pdrug.DrugCategory != "" )&&( pdrug.DayAmoutnPerM != "") && (pdrug.MonthTotalAmount!= "")))
+                        {
+                            drugError.Add(pdrug.DrugCategory);
+                        }
+                    }
+                } 
+            }
+            if (drugError.Count > 0) 
+            {
+                drugResult = "曾用过的止痛药信息未填写完整,请补全";
+            }
+            return drugResult;
+        }
+        
         private void adddisease(List<string> disease, string[] newdisease)
         {
             foreach (string d in newdisease)

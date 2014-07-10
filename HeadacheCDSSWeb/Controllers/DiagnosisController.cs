@@ -16,16 +16,7 @@ namespace HeadacheCDSSWeb.Controllers
         //
         // GET: /Diagnosis/
         VisitDataOperation vr = new VisitDataOperation();
-     //[HttpPost]
-        //public void jsonToXml(string jsonString) {
-        //    string json = jsonString;
-        //    JavaScriptSerializer aa = new JavaScriptSerializer();
-        //    VisitData test2 = aa.Deserialize<VisitData>(json);
-        //    XmlSerializer xml1 = new XmlSerializer(typeof(List<string>));
-        //    XmlSerializer xmls = new XmlSerializer(typeof(VisitData));
-        //    TextWriter writer = new StreamWriter(@"C:\Users\wjq\Documents\test.xml");
-        //     xmls.Serialize(writer,test2);
-        //}
+     
         public ActionResult Index(string ID)
         {
             this.TempData["PatID"] = ID;
@@ -37,7 +28,7 @@ namespace HeadacheCDSSWeb.Controllers
         }
         public ActionResult ContinueVisit(string identity)
         {
-            string[] IDs = identity.Split(new Char[] { '%' });
+            string[] IDs = identity.Split(new Char[] { '%','?' });
             this.TempData["PatID"] = IDs[0];
             this.TempData["ContinueVisitID"] = IDs[1];
            ReportData  RData= vr.ViewDetail(IDs[0], IDs[1]);
@@ -53,18 +44,25 @@ namespace HeadacheCDSSWeb.Controllers
             
             string jsonStr = Request.Params["postjson"];
             string PatID = this.TempData["PatID"].ToString();
+            bool res;
 
             try
             {
-                VisitData obj = JsonConvert.DeserializeObject<VisitData>(jsonStr);             
-                 vr.SaveRecord(PatID, obj);           
+                VisitData obj = JsonConvert.DeserializeObject<VisitData>(jsonStr);//反序列化成指定对象  
+                 res=vr.SaveRecord(PatID, obj);
+                  
+                
             }
             catch (Exception e)
             {
                 return this.Json(new { OK = false, Message = "保存失败" });
             }
-            
-            return this.Json(new { OK = true, Message = "保存成功" });
+            //加一个判断，返回的是true or false,现在是return false还是保存成功的
+            if (res == false)
+            {
+                return this.Json(new { OK = false, Message = "保存失败" });
+            }
+            return this.Json(new { OK = true, Message ="保存成功" });
         }
         [HttpPost]
         public JsonResult Update()
@@ -82,8 +80,7 @@ namespace HeadacheCDSSWeb.Controllers
                     vr.UpdateRecord(PatID, VisitID, obj);
                 }
             }
-            catch (Exception e)
-            {
+            catch (Exception e)            {
                 return this.Json(new { OK = false, Message = "保存失败" });
             }
            
@@ -93,26 +90,34 @@ namespace HeadacheCDSSWeb.Controllers
         public JsonResult CDSSdiagnosis()
         {
             string strResult = null;
+            string drugResult = null;
             try{
                 string jsonStr = Request.Params["postjson"];
                 VisitData obj = JsonConvert.DeserializeObject<VisitData>(jsonStr);//jsonStr.FromJsonTo<VisitData>();
-                //HeadachePlace h1=new HeadachePlace();
-                //h1.Position = "左侧为主";
-                //obj.PHeadacheOverview.HeadachePlace.Add(h1);//629演示
                 HeadacheDiagnosis HDiagnosis = new HeadacheDiagnosis();
-                strResult= HDiagnosis.GetDiagnosis(obj);
+                strResult = HDiagnosis.GetDiagnosis(obj);
+                drugResult = HDiagnosis.DrugInfor(obj);
             }
             catch (Exception e)
             {
                 return this.Json(new { OK = false, Message = e.Message + "推理出错" });
             }
             //strResult = "123";
-            if(!strResult.Contains("必填项")){
-                if (strResult.Length < 20)
-                    strResult = "\n" + "                          " + strResult;
-                return this.Json(new { OK = true, Message = strResult});
+            if (!strResult.Contains("必填项"))
+            {
+                if (drugResult == "")
+                {
+                    if (strResult.Length < 20)
+                        strResult = "\n" + "                          " + strResult;
+                    return this.Json(new { OK = true, Message = strResult });
+                }
+                else
+                {
+                    return this.Json(new { OK = false, Message = drugResult });
+                }
             }
-            else{
+            else
+            {
                 return this.Json(new { OK = false, Message = strResult });
             }
             

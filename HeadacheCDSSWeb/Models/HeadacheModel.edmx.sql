@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 11/29/2013 22:57:17
--- Generated from EDMX file: E:\可变动程序(77)\NewheadacheWeb\HeadacheCDSSWeb\Models\HeadacheModel.edmx
+-- Date Created: 07/01/2014 16:27:55
+-- Generated from EDMX file: E:\可变动程序(77)\出bug版本\627-2\NewheadacheWeb\HeadacheCDSSWeb\Models\HeadacheModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [HeadacheDatabase];
+USE [Headache528];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -20,11 +20,11 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_DoctorAccountPatBasicInfor]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[PatBasicInforSet] DROP CONSTRAINT [FK_DoctorAccountPatBasicInfor];
 GO
-IF OBJECT_ID(N'[dbo].[FK_HeadachaOverViewHeadachePlace]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[HeadachePlaceSet] DROP CONSTRAINT [FK_HeadachaOverViewHeadachePlace];
-GO
 IF OBJECT_ID(N'[dbo].[FK_HeadachaOverViewHeadacheAccompany]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[HeadacheAccompanySet] DROP CONSTRAINT [FK_HeadachaOverViewHeadacheAccompany];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HeadachaOverViewHeadachePlace]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HeadachePlaceSet] DROP CONSTRAINT [FK_HeadachaOverViewHeadachePlace];
 GO
 IF OBJECT_ID(N'[dbo].[FK_HeadachaOverViewHeadacheProdrome]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[HeadacheProdromeSet] DROP CONSTRAINT [FK_HeadachaOverViewHeadacheProdrome];
@@ -35,103 +35,118 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_HeadachaOverViewPrecipitatingFactor]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[PrecipitatingFactorSet] DROP CONSTRAINT [FK_HeadachaOverViewPrecipitatingFactor];
 GO
-IF OBJECT_ID(N'[dbo].[FK_PatBasicInforPreviousExam]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PreviousExamSet] DROP CONSTRAINT [FK_PatBasicInforPreviousExam];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PatBasicInforHeadacheFamilyMember]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[HeadacheFamilyMemberSet] DROP CONSTRAINT [FK_PatBasicInforHeadacheFamilyMember];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PatBasicInforOtherFamilyDisease]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[OtherFamilyDiseaseSet] DROP CONSTRAINT [FK_PatBasicInforOtherFamilyDisease];
-GO
-IF OBJECT_ID(N'[dbo].[FK_VisitRecordSecondaryHeadacheSymptom]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[SecondaryHeadacheSymptomSet] DROP CONSTRAINT [FK_VisitRecordSecondaryHeadacheSymptom];
-GO
-IF OBJECT_ID(N'[dbo].[FK_VisitRecordPrimaryHeadachaOverView]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PrimaryHeadacheOverViewSet] DROP CONSTRAINT [FK_VisitRecordPrimaryHeadachaOverView];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PatBasicInforLifestyle]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PatBasicInforSet] DROP CONSTRAINT [FK_PatBasicInforLifestyle];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PrimaryHeadacheOverViewPremonitorySymptom]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PremonitorySymptom集] DROP CONSTRAINT [FK_PrimaryHeadacheOverViewPremonitorySymptom];
-GO
-IF OBJECT_ID(N'[dbo].[FK_VisitRecordGADQuestionaire]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[GADQuestionaireSet] DROP CONSTRAINT [FK_VisitRecordGADQuestionaire];
-GO
-IF OBJECT_ID(N'[dbo].[FK_VisitRecordPHQuestionaire]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PHQuestionaireSet] DROP CONSTRAINT [FK_VisitRecordPHQuestionaire];
-GO
-IF OBJECT_ID(N'[dbo].[FK_VisitRecordSleepStatus]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[SleepStatusSet] DROP CONSTRAINT [FK_VisitRecordSleepStatus];
-GO
-IF OBJECT_ID(N'[dbo].[FK_VisitRecordDisabilityEvaluation]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[DisabilityEvaluationSet] DROP CONSTRAINT [FK_VisitRecordDisabilityEvaluation];
-GO
-IF OBJECT_ID(N'[dbo].[FK_HeadacheDiaryHDAcompanion]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[HDAcompanionSet] DROP CONSTRAINT [FK_HeadacheDiaryHDAcompanion];
-GO
-IF OBJECT_ID(N'[dbo].[FK_HeadacheDiaryHDheadacheplace]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[HDheadacheplaceSet] DROP CONSTRAINT [FK_HeadacheDiaryHDheadacheplace];
-GO
-IF OBJECT_ID(N'[dbo].[FK_HeadacheDiaryHDHeadacheProdrome]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[HDHeadacheProdromeSet] DROP CONSTRAINT [FK_HeadacheDiaryHDHeadacheProdrome];
-GO
-IF OBJECT_ID(N'[dbo].[FK_HeadacheDiaryHDMitigatingFactors]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[HDMitigatingFactorsSet] DROP CONSTRAINT [FK_HeadacheDiaryHDMitigatingFactors];
-GO
-IF OBJECT_ID(N'[dbo].[FK_HeadacheDiaryHDPrecipitatingFactor]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[HDPrecipitatingFactorSet] DROP CONSTRAINT [FK_HeadacheDiaryHDPrecipitatingFactor];
+IF OBJECT_ID(N'[dbo].[FK_NationalCenterAccountRegionalCenterAccount]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[RegionalCenterAccountSet] DROP CONSTRAINT [FK_NationalCenterAccountRegionalCenterAccount];
 GO
 IF OBJECT_ID(N'[dbo].[FK_PatBasicInforHeadacheDiary]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[HeadacheDiarySet] DROP CONSTRAINT [FK_PatBasicInforHeadacheDiary];
 GO
-IF OBJECT_ID(N'[dbo].[FK_NationalCenterAccountRegionalCenterAccount]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[RegionalCenterAccountSet] DROP CONSTRAINT [FK_NationalCenterAccountRegionalCenterAccount];
+IF OBJECT_ID(N'[dbo].[FK_PatBasicInforHeadacheFamilyMember]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HeadacheFamilyMemberSet] DROP CONSTRAINT [FK_PatBasicInforHeadacheFamilyMember];
 GO
-IF OBJECT_ID(N'[dbo].[FK_RegionalCenterAccountDoctorAccount]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[DoctorAccountSet] DROP CONSTRAINT [FK_RegionalCenterAccountDoctorAccount];
+IF OBJECT_ID(N'[dbo].[FK_PatBasicInforLifestyle]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PatBasicInforSet] DROP CONSTRAINT [FK_PatBasicInforLifestyle];
 GO
-IF OBJECT_ID(N'[dbo].[FK_PatBasicInforVisitRecord]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[VisitRecordSet] DROP CONSTRAINT [FK_PatBasicInforVisitRecord];
+IF OBJECT_ID(N'[dbo].[FK_PatBasicInforOtherFamilyDisease]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[OtherFamilyDiseaseSet] DROP CONSTRAINT [FK_PatBasicInforOtherFamilyDisease];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PatBasicInforPatinfoForRe]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PatinfoForReSet] DROP CONSTRAINT [FK_PatBasicInforPatinfoForRe];
 GO
 IF OBJECT_ID(N'[dbo].[FK_PatBasicInforPreviousDrug]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[PreviousDrugSet] DROP CONSTRAINT [FK_PatBasicInforPreviousDrug];
 GO
+IF OBJECT_ID(N'[dbo].[FK_PatBasicInforPreviousExam]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PreviousExamSet] DROP CONSTRAINT [FK_PatBasicInforPreviousExam];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PatBasicInforVisitRecord]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[VisitRecordSet] DROP CONSTRAINT [FK_PatBasicInforVisitRecord];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PrimaryHeadacheOverViewPremonitorySymptom]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PremonitorySymptom集] DROP CONSTRAINT [FK_PrimaryHeadacheOverViewPremonitorySymptom];
+GO
+IF OBJECT_ID(N'[dbo].[FK_RegionalCenterAccountDoctorAccount]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DoctorAccountSet] DROP CONSTRAINT [FK_RegionalCenterAccountDoctorAccount];
+GO
+IF OBJECT_ID(N'[dbo].[FK_VisitRecordDisabilityEvaluation]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DisabilityEvaluationSet] DROP CONSTRAINT [FK_VisitRecordDisabilityEvaluation];
+GO
+IF OBJECT_ID(N'[dbo].[FK_VisitRecordGADQuestionaire]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GADQuestionaireSet] DROP CONSTRAINT [FK_VisitRecordGADQuestionaire];
+GO
 IF OBJECT_ID(N'[dbo].[FK_VisitRecordMedicationAdvice]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[MedicationAdviceSet] DROP CONSTRAINT [FK_VisitRecordMedicationAdvice];
 GO
-IF OBJECT_ID(N'[dbo].[FK_PatBasicInforPatinfoForRe]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PatinfoForReSet] DROP CONSTRAINT [FK_PatBasicInforPatinfoForRe];
+IF OBJECT_ID(N'[dbo].[FK_VisitRecordPHQuestionaire]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PHQuestionaireSet] DROP CONSTRAINT [FK_VisitRecordPHQuestionaire];
+GO
+IF OBJECT_ID(N'[dbo].[FK_VisitRecordPrimaryHeadachaOverView]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PrimaryHeadacheOverViewSet] DROP CONSTRAINT [FK_VisitRecordPrimaryHeadachaOverView];
+GO
+IF OBJECT_ID(N'[dbo].[FK_VisitRecordSecondaryHeadacheSymptom]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[SecondaryHeadacheSymptomSet] DROP CONSTRAINT [FK_VisitRecordSecondaryHeadacheSymptom];
+GO
+IF OBJECT_ID(N'[dbo].[FK_VisitRecordSleepStatus]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[SleepStatusSet] DROP CONSTRAINT [FK_VisitRecordSleepStatus];
 GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[DisabilityEvaluationSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[DisabilityEvaluationSet];
+GO
 IF OBJECT_ID(N'[dbo].[DoctorAccountSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[DoctorAccountSet];
 GO
-IF OBJECT_ID(N'[dbo].[PatBasicInforSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[PatBasicInforSet];
-GO
-IF OBJECT_ID(N'[dbo].[VisitRecordSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[VisitRecordSet];
-GO
-IF OBJECT_ID(N'[dbo].[PrimaryHeadacheOverViewSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[PrimaryHeadacheOverViewSet];
-GO
-IF OBJECT_ID(N'[dbo].[LifestyleSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[LifestyleSet];
-GO
-IF OBJECT_ID(N'[dbo].[HeadachePlaceSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[HeadachePlaceSet];
+IF OBJECT_ID(N'[dbo].[GADQuestionaireSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[GADQuestionaireSet];
 GO
 IF OBJECT_ID(N'[dbo].[HeadacheAccompanySet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[HeadacheAccompanySet];
 GO
+IF OBJECT_ID(N'[dbo].[HeadacheDiarySet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HeadacheDiarySet];
+GO
+IF OBJECT_ID(N'[dbo].[HeadacheFamilyMemberSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HeadacheFamilyMemberSet];
+GO
+IF OBJECT_ID(N'[dbo].[HeadachePlaceSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HeadachePlaceSet];
+GO
 IF OBJECT_ID(N'[dbo].[HeadacheProdromeSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[HeadacheProdromeSet];
+GO
+IF OBJECT_ID(N'[dbo].[LifestyleSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[LifestyleSet];
+GO
+IF OBJECT_ID(N'[dbo].[MedicationAdviceSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MedicationAdviceSet];
+GO
+IF OBJECT_ID(N'[dbo].[MitigatingFactorsSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MitigatingFactorsSet];
+GO
+IF OBJECT_ID(N'[dbo].[NationalCenterAccountSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[NationalCenterAccountSet];
+GO
+IF OBJECT_ID(N'[dbo].[OtherFamilyDiseaseSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[OtherFamilyDiseaseSet];
+GO
+IF OBJECT_ID(N'[dbo].[PatBasicInforSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PatBasicInforSet];
+GO
+IF OBJECT_ID(N'[dbo].[PatinfoForReSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PatinfoForReSet];
+GO
+IF OBJECT_ID(N'[dbo].[PHQuestionaireSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PHQuestionaireSet];
+GO
+IF OBJECT_ID(N'[dbo].[PrecipitatingFactorSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PrecipitatingFactorSet];
+GO
+IF OBJECT_ID(N'[dbo].[PremonitorySymptom集]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PremonitorySymptom集];
 GO
 IF OBJECT_ID(N'[dbo].[PreviousDrugSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[PreviousDrugSet];
@@ -139,65 +154,20 @@ GO
 IF OBJECT_ID(N'[dbo].[PreviousExamSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[PreviousExamSet];
 GO
-IF OBJECT_ID(N'[dbo].[HeadacheFamilyMemberSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[HeadacheFamilyMemberSet];
-GO
-IF OBJECT_ID(N'[dbo].[OtherFamilyDiseaseSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[OtherFamilyDiseaseSet];
-GO
-IF OBJECT_ID(N'[dbo].[MedicationAdviceSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[MedicationAdviceSet];
-GO
-IF OBJECT_ID(N'[dbo].[PrecipitatingFactorSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[PrecipitatingFactorSet];
-GO
-IF OBJECT_ID(N'[dbo].[MitigatingFactorsSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[MitigatingFactorsSet];
-GO
-IF OBJECT_ID(N'[dbo].[SecondaryHeadacheSymptomSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[SecondaryHeadacheSymptomSet];
-GO
-IF OBJECT_ID(N'[dbo].[PremonitorySymptom集]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[PremonitorySymptom集];
-GO
-IF OBJECT_ID(N'[dbo].[PHQuestionaireSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[PHQuestionaireSet];
-GO
-IF OBJECT_ID(N'[dbo].[GADQuestionaireSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[GADQuestionaireSet];
-GO
-IF OBJECT_ID(N'[dbo].[DisabilityEvaluationSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[DisabilityEvaluationSet];
-GO
-IF OBJECT_ID(N'[dbo].[SleepStatusSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[SleepStatusSet];
-GO
-IF OBJECT_ID(N'[dbo].[HeadacheDiarySet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[HeadacheDiarySet];
-GO
-IF OBJECT_ID(N'[dbo].[HDheadacheplaceSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[HDheadacheplaceSet];
-GO
-IF OBJECT_ID(N'[dbo].[HDAcompanionSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[HDAcompanionSet];
-GO
-IF OBJECT_ID(N'[dbo].[HDPrecipitatingFactorSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[HDPrecipitatingFactorSet];
-GO
-IF OBJECT_ID(N'[dbo].[HDMitigatingFactorsSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[HDMitigatingFactorsSet];
-GO
-IF OBJECT_ID(N'[dbo].[HDHeadacheProdromeSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[HDHeadacheProdromeSet];
+IF OBJECT_ID(N'[dbo].[PrimaryHeadacheOverViewSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PrimaryHeadacheOverViewSet];
 GO
 IF OBJECT_ID(N'[dbo].[RegionalCenterAccountSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[RegionalCenterAccountSet];
 GO
-IF OBJECT_ID(N'[dbo].[NationalCenterAccountSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[NationalCenterAccountSet];
+IF OBJECT_ID(N'[dbo].[SecondaryHeadacheSymptomSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[SecondaryHeadacheSymptomSet];
 GO
-IF OBJECT_ID(N'[dbo].[PatinfoForReSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[PatinfoForReSet];
+IF OBJECT_ID(N'[dbo].[SleepStatusSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[SleepStatusSet];
+GO
+IF OBJECT_ID(N'[dbo].[VisitRecordSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[VisitRecordSet];
 GO
 
 -- --------------------------------------------------
@@ -230,6 +200,9 @@ CREATE TABLE [dbo].[PatBasicInforSet] (
     [SimilarFamily] bit  NULL,
     [Weight] nvarchar(max)  NULL,
     [Height] nvarchar(max)  NULL,
+    [HDVersion] int  NULL,
+    [AutoUpload] nchar(10)  NULL,
+    [Password] nchar(10)  NULL,
     [Lifestyle_Id] int  NOT NULL
 );
 GO
@@ -311,8 +284,8 @@ GO
 -- Creating table 'PreviousDrugSet'
 CREATE TABLE [dbo].[PreviousDrugSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [DrugCategory] nvarchar(max)  NOT NULL,
-    [DrugName] nvarchar(max)  NOT NULL,
+    [DrugCategory] nvarchar(max)  NULL,
+    [DrugName] nvarchar(max)  NULL,
     [DayAmoutnPerM] nvarchar(max)  NULL,
     [MonthTotalAmount] nvarchar(max)  NULL,
     [PatBasicInforId] nvarchar(255)  NOT NULL,
@@ -452,52 +425,24 @@ GO
 -- Creating table 'HeadacheDiarySet'
 CREATE TABLE [dbo].[HeadacheDiarySet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [RecordDate] datetime  NOT NULL,
-    [HeadacheTime] int  NOT NULL,
-    [HeadacheType] nvarchar(max)  NULL,
+    [RecordTime] datetime  NOT NULL,
+    [StartTime] datetime  NULL,
     [PatBasicInforId] nvarchar(255)  NOT NULL,
-    [HeadacheDegree] int  NOT NULL
-);
-GO
-
--- Creating table 'HDheadacheplaceSet'
-CREATE TABLE [dbo].[HDheadacheplaceSet] (
-    [Id] int IDENTITY(1,1) NOT NULL,
-    [postion] nvarchar(max)  NOT NULL,
-    [HeadacheDiaryID] int  NOT NULL,
-    [detailposition] nvarchar(max)  NOT NULL
-);
-GO
-
--- Creating table 'HDAcompanionSet'
-CREATE TABLE [dbo].[HDAcompanionSet] (
-    [Id] int IDENTITY(1,1) NOT NULL,
-    [symptom] nvarchar(max)  NOT NULL,
-    [HeadacheDiaryID] int  NOT NULL
-);
-GO
-
--- Creating table 'HDPrecipitatingFactorSet'
-CREATE TABLE [dbo].[HDPrecipitatingFactorSet] (
-    [Id] int IDENTITY(1,1) NOT NULL,
-    [factor] nvarchar(max)  NOT NULL,
-    [HeadacheDiaryID] int  NOT NULL
-);
-GO
-
--- Creating table 'HDMitigatingFactorsSet'
-CREATE TABLE [dbo].[HDMitigatingFactorsSet] (
-    [Id] int IDENTITY(1,1) NOT NULL,
-    [factor] nvarchar(max)  NOT NULL,
-    [HeadacheDiaryID] int  NOT NULL
-);
-GO
-
--- Creating table 'HDHeadacheProdromeSet'
-CREATE TABLE [dbo].[HDHeadacheProdromeSet] (
-    [Id] int IDENTITY(1,1) NOT NULL,
-    [symptom] nvarchar(max)  NOT NULL,
-    [HeadacheDiaryID] int  NOT NULL
+    [Degree] int  NULL,
+    [Position] int  NULL,
+    [EndTime] datetime  NULL,
+    [IfAroundEye] int  NULL,
+    [Type] int  NULL,
+    [TypeComment] nvarchar(max)  NULL,
+    [IfActivityAggravate] int  NULL,
+    [Prodrome] nvarchar(max)  NULL,
+    [Companion] nvarchar(max)  NULL,
+    [Precipiating] nvarchar(max)  NULL,
+    [PrecipiatingComment] nvarchar(max)  NULL,
+    [Mitigating] nvarchar(max)  NULL,
+    [DrugList] nvarchar(max)  NULL,
+    [AidDiagnosis] int  NULL,
+    [MitigatingComment] nvarchar(max)  NULL
 );
 GO
 
@@ -526,9 +471,9 @@ CREATE TABLE [dbo].[PatinfoForReSet] (
     [Sex] nvarchar(max)  NOT NULL,
     [Age] nvarchar(max)  NOT NULL,
     [HeadacheStyle] nvarchar(max)  NOT NULL,
-    [Data] datetime  NOT NULL,
-    [PatBasicInforId] nvarchar(max)  NOT NULL,
-    [PatBasicInfor_Id] nvarchar(255)  NOT NULL
+    [Data] nvarchar(max)  NOT NULL,
+    [ListID] nchar(10)  NOT NULL,
+    [PatBasicInforId] nvarchar(255)  NOT NULL
 );
 GO
 
@@ -665,36 +610,6 @@ GO
 -- Creating primary key on [Id] in table 'HeadacheDiarySet'
 ALTER TABLE [dbo].[HeadacheDiarySet]
 ADD CONSTRAINT [PK_HeadacheDiarySet]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [Id] in table 'HDheadacheplaceSet'
-ALTER TABLE [dbo].[HDheadacheplaceSet]
-ADD CONSTRAINT [PK_HDheadacheplaceSet]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [Id] in table 'HDAcompanionSet'
-ALTER TABLE [dbo].[HDAcompanionSet]
-ADD CONSTRAINT [PK_HDAcompanionSet]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [Id] in table 'HDPrecipitatingFactorSet'
-ALTER TABLE [dbo].[HDPrecipitatingFactorSet]
-ADD CONSTRAINT [PK_HDPrecipitatingFactorSet]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [Id] in table 'HDMitigatingFactorsSet'
-ALTER TABLE [dbo].[HDMitigatingFactorsSet]
-ADD CONSTRAINT [PK_HDMitigatingFactorsSet]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [Id] in table 'HDHeadacheProdromeSet'
-ALTER TABLE [dbo].[HDHeadacheProdromeSet]
-ADD CONSTRAINT [PK_HDHeadacheProdromeSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -958,76 +873,6 @@ ON [dbo].[DisabilityEvaluationSet]
     ([VisitRecord_Id]);
 GO
 
--- Creating foreign key on [HeadacheDiaryID] in table 'HDAcompanionSet'
-ALTER TABLE [dbo].[HDAcompanionSet]
-ADD CONSTRAINT [FK_HeadacheDiaryHDAcompanion]
-    FOREIGN KEY ([HeadacheDiaryID])
-    REFERENCES [dbo].[HeadacheDiarySet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_HeadacheDiaryHDAcompanion'
-CREATE INDEX [IX_FK_HeadacheDiaryHDAcompanion]
-ON [dbo].[HDAcompanionSet]
-    ([HeadacheDiaryID]);
-GO
-
--- Creating foreign key on [HeadacheDiaryID] in table 'HDheadacheplaceSet'
-ALTER TABLE [dbo].[HDheadacheplaceSet]
-ADD CONSTRAINT [FK_HeadacheDiaryHDheadacheplace]
-    FOREIGN KEY ([HeadacheDiaryID])
-    REFERENCES [dbo].[HeadacheDiarySet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_HeadacheDiaryHDheadacheplace'
-CREATE INDEX [IX_FK_HeadacheDiaryHDheadacheplace]
-ON [dbo].[HDheadacheplaceSet]
-    ([HeadacheDiaryID]);
-GO
-
--- Creating foreign key on [HeadacheDiaryID] in table 'HDHeadacheProdromeSet'
-ALTER TABLE [dbo].[HDHeadacheProdromeSet]
-ADD CONSTRAINT [FK_HeadacheDiaryHDHeadacheProdrome]
-    FOREIGN KEY ([HeadacheDiaryID])
-    REFERENCES [dbo].[HeadacheDiarySet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_HeadacheDiaryHDHeadacheProdrome'
-CREATE INDEX [IX_FK_HeadacheDiaryHDHeadacheProdrome]
-ON [dbo].[HDHeadacheProdromeSet]
-    ([HeadacheDiaryID]);
-GO
-
--- Creating foreign key on [HeadacheDiaryID] in table 'HDMitigatingFactorsSet'
-ALTER TABLE [dbo].[HDMitigatingFactorsSet]
-ADD CONSTRAINT [FK_HeadacheDiaryHDMitigatingFactors]
-    FOREIGN KEY ([HeadacheDiaryID])
-    REFERENCES [dbo].[HeadacheDiarySet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_HeadacheDiaryHDMitigatingFactors'
-CREATE INDEX [IX_FK_HeadacheDiaryHDMitigatingFactors]
-ON [dbo].[HDMitigatingFactorsSet]
-    ([HeadacheDiaryID]);
-GO
-
--- Creating foreign key on [HeadacheDiaryID] in table 'HDPrecipitatingFactorSet'
-ALTER TABLE [dbo].[HDPrecipitatingFactorSet]
-ADD CONSTRAINT [FK_HeadacheDiaryHDPrecipitatingFactor]
-    FOREIGN KEY ([HeadacheDiaryID])
-    REFERENCES [dbo].[HeadacheDiarySet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_HeadacheDiaryHDPrecipitatingFactor'
-CREATE INDEX [IX_FK_HeadacheDiaryHDPrecipitatingFactor]
-ON [dbo].[HDPrecipitatingFactorSet]
-    ([HeadacheDiaryID]);
-GO
-
 -- Creating foreign key on [PatBasicInforId] in table 'HeadacheDiarySet'
 ALTER TABLE [dbo].[HeadacheDiarySet]
 ADD CONSTRAINT [FK_PatBasicInforHeadacheDiary]
@@ -1112,10 +957,10 @@ ON [dbo].[MedicationAdviceSet]
     ([VisitRecordId]);
 GO
 
--- Creating foreign key on [PatBasicInfor_Id] in table 'PatinfoForReSet'
+-- Creating foreign key on [PatBasicInforId] in table 'PatinfoForReSet'
 ALTER TABLE [dbo].[PatinfoForReSet]
 ADD CONSTRAINT [FK_PatBasicInforPatinfoForRe]
-    FOREIGN KEY ([PatBasicInfor_Id])
+    FOREIGN KEY ([PatBasicInforId])
     REFERENCES [dbo].[PatBasicInforSet]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -1123,7 +968,7 @@ ADD CONSTRAINT [FK_PatBasicInforPatinfoForRe]
 -- Creating non-clustered index for FOREIGN KEY 'FK_PatBasicInforPatinfoForRe'
 CREATE INDEX [IX_FK_PatBasicInforPatinfoForRe]
 ON [dbo].[PatinfoForReSet]
-    ([PatBasicInfor_Id]);
+    ([PatBasicInforId]);
 GO
 
 -- --------------------------------------------------

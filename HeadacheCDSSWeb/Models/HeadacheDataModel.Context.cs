@@ -47,11 +47,6 @@ namespace HeadacheCDSSWeb.Models
         public DbSet<DisabilityEvaluation> DisabilityEvaluationSet { get; set; }
         public DbSet<SleepStatus> SleepStatusSet { get; set; }
         public DbSet<HeadacheDiary> HeadacheDiarySet { get; set; }
-        public DbSet<HDheadacheplace> HDheadacheplaceSet { get; set; }
-        public DbSet<HDAcompanion> HDAcompanionSet { get; set; }
-        public DbSet<HDPrecipitatingFactor> HDPrecipitatingFactorSet { get; set; }
-        public DbSet<HDMitigatingFactors> HDMitigatingFactorsSet { get; set; }
-        public DbSet<HDHeadacheProdrome> HDHeadacheProdromeSet { get; set; }
         public DbSet<RegionalCenterAccount> RegionalCenterAccountSet { get; set; }
         public DbSet<NationalCenterAccount> NationalCenterAccountSet { get; set; }
         public DbSet<PatinfoForRe> PatinfoForReSet { get; set; }

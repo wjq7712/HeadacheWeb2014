@@ -3,32 +3,36 @@
 <script type="text/javascript">
     var li;
     function delete_patient(item) {
-        debugger;
+       // debugger;
         $("#deleteModal").show();
         li = item.parentElement;
         window["id"]=li.id;
 }
 
-        $("#DeletePtYes").click(function () {
-            debugger;
-            $.ajax({
-                url: '@Url.Action("DeletePatient", "EnterPatInfor")',
-                type: "POST",
-                data: { id: window["id"] },
-                success: function (data) {
-                    if (data.OK) {
-                        li.style.display = 'none';
-                        $("#deleteModal").hide();
-                    }
-                    else {
-                        alert("删除失败");
-                    }
-                },
-                error: function (jqXhr, textStatus, errorThrown) {
-                    alert("Error '" + jqXhr.status + "' (textStatus: '" + textStatus + "', errorThrown: '" + errorThrown + "')");
-                }
-            });
-        })
+$("#DeletePtYes").click(function () {
+   // debugger;
+    $.ajax({
+        url: '@Url.Action("DeletePatient", "EnterPatInfor")',
+        type: "POST",
+        data: { id: window["id"] },
+        success: function (data) {
+            if (data.OK) {
+                var stringseletor = "#" + li.id;
+                var selector = stringseletor.toString();
+                $(selector).remove();
+
+                $("#deleteModal").hide();
+
+            }
+            else {
+                alert("删除失败");
+            }
+        },
+        error: function (jqXhr, textStatus, errorThrown) {
+            alert("Error '" + jqXhr.status + "' (textStatus: '" + textStatus + "', errorThrown: '" + errorThrown + "')");
+        }
+    });
+})
 
     $("#DeletePtNo").click(function () {
         $("#deleteModal").hide();
@@ -41,10 +45,9 @@
 <ul class="page">
     @foreach (var item in Model)
     {
-        
     <li id="@item.Id">
-          <span>@Html.ActionLink(@item.Name + "   " + @item.Sex, "ViewRecord", new { id = item.Id })</span>
-           <img class="img_delete" alt="delete" src="../../Content/images/delete.png"  onclick="delete_patient(this)"/>
+          <span>@Html.ActionLink(@item.Name + "__" + @item.Sex + "__" + @item.Age, "ViewRecord", new { id = item.Id })</span>
+           <img class="img_delete" alt="delete" src="@Url.Content("~/Content/images/cancel.png")"  onclick="delete_patient(this)"/>
         </li>
     }
 </ul>
