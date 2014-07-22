@@ -452,7 +452,7 @@
                     var index = 0;
                     var sum = 0;
                     for (var j = flag + 1; j < myobj.length; j++) {
-                        newobj[index] = [myobj[j].kind, parseInt(myobj[j].data)];
+                        newobj[index] = [myobj[j].kind, parseFloat(myobj[j].data)];
                         index++;
                         sum += myobj[j].data;
                     }
@@ -463,6 +463,7 @@
                     if (newobj.length == 0)
                         newobj = [[0, 0], [0, 0], [0, ], [0, 0], [0, 0], [0, 0]];
                     //图1
+                    debugger;
                     var ylabel = "";
                     if (selected1 == "头痛时长") {
                         ylabel = "小时"

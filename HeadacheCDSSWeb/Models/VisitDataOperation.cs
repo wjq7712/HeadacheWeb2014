@@ -702,12 +702,12 @@ namespace HeadacheCDSSWeb.Models
                         var tsD=newlastTime.Days;
                         var tsH=newlastTime.Hours;
                         var tsM=newlastTime.Minutes;
-                        double tss = tsH + tsD * 24 + tsM / 60;
-                        var nt = Math.Round(tss, 1);
+                        double tss = tsH+ tsD * 24 + tsM / 60.0;
+                        //var nt = Math.Round(tss, 1);
                         //NumericData.Add(tsD);
                         //NumericData.Add(tsH);
                         //NumericData.Add(tsM);
-                        ddn.headacheNum = nt;
+                        ddn.headacheNum = tss;
                     }
                     dnum.Add(ddn);
                 }
@@ -999,13 +999,20 @@ namespace HeadacheCDSSWeb.Models
             var str = "";
             if (Data.Count() != 0)
             {
-                newdata = explanable(Query, Data);
+               // newdata = explanable(Query, Data);
                 if (Query == "眼眶周围" || Query == "运动加剧")
                 {
-                    str += newdata[1].kind + newdata[1].data.ToString("0.0") + "%";
+                    if (Data[0].kind == "0")
+                    {
+                        Data[0].kind = "1";
+                        Data[0].data = 100 - Data[0].data;
+                    }
+                    newdata = explanable(Query, Data);
+                    str += newdata[0].kind + newdata[0].data.ToString("0.0") + "%";
                 }
                 else
                 {
+                    newdata = explanable(Query, Data);
                     for (int i = 0; i < newdata.Count; i++)
                     {
                         if (i == 0)
