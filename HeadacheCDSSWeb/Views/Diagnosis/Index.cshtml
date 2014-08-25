@@ -69,6 +69,9 @@ $("#Hplace").hide();
 $("#direct ul").hide();
 $("#submenu").hide();
    var obj = eval ("(" + @Html.Raw(Json.Encode(ViewData["data"]))+ ")");
+  // debugger;
+   var patientId= @Html.Raw(Json.Encode(ViewData["id"]));
+   var visitId="";
    //OCX 赋值
     var OCX = document.getElementById('Reporter2');
     //set the data to OCX
@@ -84,7 +87,7 @@ $("#submenu").hide();
     if(null != obj.Address)
         OCX.SetObjectInfo("TextBox_8", "text", obj.Address);
         //头疼部位点击
-        debugger;
+     //   debugger;
            $('#p1').click(function (e) {
             e.preventDefault();
             var data = $('#p1').mouseout().data('maphilight') || {};
@@ -208,7 +211,6 @@ $("#submenu").hide();
 
             if ($(".selected").last().attr("id") == "基本筛查" || $(".selected").last().attr("id") == "头痛问诊")
                {
-//               debugger;
                 OCX.SetObjectInfo("TextBox_12", "text", GetChiefComplaint(OCX));
                }
             if ($(".selected").last().attr("id") == "报告预览"||$(".selected").last().attr("id") == "头痛问诊") 
@@ -216,15 +218,16 @@ $("#submenu").hide();
                
                 var encoded = $.toJSON(ChangeDataFromOCXIntoJSObject(OCX));
                 }
+
             if($(".selected").last().attr("id") == "报告预览")
                 {
-                    deletemenu();
+                    deletemenu();     
                     $("#ocx").hide();
-                    $(".active").wBox({title: "提示信息", html: "<div class='demo'><img src='../../Content/images/wait.gif'/></div>", show: true  });
+                    $(".active").wBox({title: "提示信息", html: "<div class='demo'><img src='"+'@Url.Content("~/Content/images/wait.gif")'+"'/></div>", show: true  });
                     $.ajax({
                         url: '@Url.Action("Save", "Diagnosis")',
                         type: "POST",
-                        data: { postjson: encoded },
+                        data: { postjson: encoded,VisitId:visitId},
                         success: function (data) {
                             if (data.OK) {
                              var OCX = document.getElementById('Reporter2');
@@ -246,7 +249,6 @@ $("#submenu").hide();
                     });
                  }
              else {
-                        
                        if($(".selected").last().attr("id")!="头痛问诊")
                        {  
                             $(".selected").next().addClass("selected");
@@ -260,8 +262,7 @@ $("#submenu").hide();
                             }
                             else if(name=="医嘱处置")
                             {
-                              name=SetDrugPage(OCX);
-                             
+                              name=SetDrugPage(OCX);                            
                             }
                             OCX.ShowThisPage(name);
                             if(name=="报告预览"){
@@ -269,49 +270,47 @@ $("#submenu").hide();
                              OCX.SetObjectInfo("TextBox_11", "text", GetDoctorAdvice(OCX));
                              $("#btn1").html("保存并退出");
                              addprint();
-
                              }
                          }
                          else
                          {
-                               
-                                    $.ajax({
-                                        url: '@Url.Action("CDSSdiagnosis", "Diagnosis")',
-                                        type: "POST",
-                                        data: { postjson: encoded },
-                                        success: function (data) {
-                                            if (data.OK) {
-                                                  //OCX.SetObjectInfo("TextBox_14", "text",data.Message);
-                                                  SetDiagnoses(OCX, data.Message); 
-                                                   $(".selected").next().addClass("selected");
-                                                   var name = $(".selected").last().attr("id");
-                                                   $(".active").next().addClass("active");
-                                                    $(".active").first().removeClass("active");
-                                                 // OCX.SetData("Data_source/VisitRecord/CDSSDiagnosis", "        " + "正在推理中。。。");
-                                                  deletemenu();
-                                                   OCX.ShowReport();
-                                                  OCX.ShowThisPage(name);
-                                            }
-                                            else {
-                                                alert(data.Message.toString());
-                                                
-                                            }
-
-                                        },
-                                        error: function (jqXhr, textStatus, errorThrown) {
-                                            alert("Error '" + jqXhr.status + "' (textStatus: '" + textStatus + "', errorThrown: '" + errorThrown + "')");
-                                        }
-                                    });
-                               
-                            
+                          
+                          $(".active").wBox({title: "提示信息", html: "<div class='demo'><img width='50' height='50' src='"+'@Url.Content("~/Content/images/wait.gif")'+"'/><div class='demo_text'>正在推理中....</div></div>", show: true  });
+                            $.ajax({
+                                url: '@Url.Action("CDSSdiagnosis", "Diagnosis")',
+                                type: "POST",
+                                data: { postjson: encoded,patId:patientId},
+                                success: function (data) {
+                                    if (data.OK) {
+                                            debugger;
+                                            SetDiagnoses(OCX, data.Message); 
+                                            visitId=data.VisitID;
+                                            $(".selected").next().addClass("selected");
+                                            var name = $(".selected").last().attr("id");
+                                            $(".active").next().addClass("active");
+                                            $(".active").first().removeClass("active"); 
+                                            $("#wBox").remove();
+                                            $("#wBox_overlay").remove();
+                                            deletemenu();
+                                            OCX.ShowReport();
+                                            OCX.ShowThisPage(name);
+                                    }
+                                    else {
+                                        alert(data.Message.toString());
+                                          $("#wBox").remove();
+                                          $("#wBox_overlay").remove();       
+                                    }
+                                },
+                                error: function (jqXhr, textStatus, errorThrown) {
+                                    alert("Error '" + jqXhr.status + "' (textStatus: '" + textStatus + "', errorThrown: '" + errorThrown + "')");
+                                }
+                            });                                
                          }
-                  
-                }
-                
-
-        
+                } 
      });
     });
+
+
     function SetDrugPage(OCX)
     {
        var diagnosis=OCX.GetObjectInfo("ComboBox_31", "text");
@@ -853,29 +852,10 @@ function SetDiagnosisIntoComplaint(OCX){
                 strChiefComplaint += "做过" + strExamName3 + "，检查结果" + strExamResult3 + "；";
             }
                     
-//            var strExamName4 = OCX.GetObjectInfo("ComboBox_50", "text");
-//            var strExamResult4 = "";
-//            if("true" == OCX.GetObjectInfo("RadioBox_29", "checked"))
-//                strExamResult4 = "正常";
-//            else if("true" == OCX.GetObjectInfo("RadioBox_33", "checked"))
-//                strExamResult4 = "异常";
-//            var strExamDate4 = OCX.GetObjectInfo("DateTime_3", "text");
-//            strExamDate4 = strExamDate4.substring(0, strExamDate4.length-3);
-//            if ("///" != strExamDate4 && "" == strExamResult4) 
-//            {
-//                strChiefComplaint += "曾于" + strExamDate4 + "做过" + strExamName4 + "，检查结果" + strExamResult4 + "；";
-//            }
-//            else if ("///" == strExamDate4 && "" == strExamResult4) 
-//            {
-//                strChiefComplaint += "做过" + strExamName4 + "，检查结果" + strExamResult4 + "；";
-//            }
                     
             //get PreviousDrug
            // debugger;
             var strDrugCategory1 = OCX.GetObjectInfo("ComboBox_46", "text");
-//            var strDrugName1 = OCX.GetObjectInfo("TextBox_52", "text");
-//            if("" == strDrugName1)
-//                strDrugName1 = " ";
             var strDayAmoutnPerM1 = OCX.GetObjectInfo("TextBox_51", "text");
             if("" == strDayAmoutnPerM1)
                 strDayAmoutnPerM1 = " ";
@@ -1050,12 +1030,10 @@ function SetDiagnosisIntoComplaint(OCX){
                 strChiefComplaint += " 多于";               
                 if("无" != strPrecipitatingFactorDetail1)
                 {
-                    //strChiefComplaint += " " + "睡眠";
                     strChiefComplaint += "睡眠不佳、";
                 }
                 if("无" != strPrecipitatingFactorDetail2)
-                {
-                    //strChiefComplaint += " " + "感觉刺激";
+                {   
                     strChiefComplaint += strPrecipitatingFactorDetail2 + "、";
                 }
                 if("无" != strPrecipitatingFactorDetail3)
@@ -1064,17 +1042,14 @@ function SetDiagnosisIntoComplaint(OCX){
                 }
                 if("无" != strPrecipitatingFactorDetail4)
                 {
-                    //strChiefComplaint += " " + "食物";
                     strChiefComplaint += strPrecipitatingFactorDetail4 + "、";
                 }
                 if("无" != strPrecipitatingFactorDetail5)
                 {
-                    //strChiefComplaint += " " + "活动";
                     strChiefComplaint += strPrecipitatingFactorDetail5 + "、";
                 }
                 if("无" != strPrecipitatingFactorDetail6)
                 {
-                    //strChiefComplaint += " " + "气候";
                     strChiefComplaint += strPrecipitatingFactorDetail6 + "、";
                 }
                 if("无" != strPrecipitatingFactorDetail7)
@@ -1083,17 +1058,14 @@ function SetDiagnosisIntoComplaint(OCX){
                 }
                 if("无" != strPrecipitatingFactorDetail8)
                 {
-                    //strChiefComplaint += " " + "激素变化";
                     strChiefComplaint += strPrecipitatingFactorDetail8 + "、";
                 }
                 if("无" != strPrecipitatingFactorDetail9)
                 {
-                    //strChiefComplaint += " " + "体位";
                     strChiefComplaint += strPrecipitatingFactorDetail9 + "、";
                 }
                 if("" != strPrecipitatingFactorDetail10)
                 {
-                    //strChiefComplaint += " " + "其他";
                     strChiefComplaint += strPrecipitatingFactorDetail10;
                 }
                 strChiefComplaint += "后诱发。";
