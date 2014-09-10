@@ -24,6 +24,7 @@ namespace HeadacheCDSSWeb.Controllers
             System.Web.Script.Serialization.JavaScriptSerializer oSerializer = new System.Web.Script.Serialization.JavaScriptSerializer();
             string sJSON = JsonHelper.JsonSerializer(RData);
             ViewData["data"] = sJSON;
+            ViewData["id"] = ID;
             return View();
         }
         public ActionResult ContinueVisit(string identity)
@@ -35,22 +36,24 @@ namespace HeadacheCDSSWeb.Controllers
            System.Web.Script.Serialization.JavaScriptSerializer oSerializer = new System.Web.Script.Serialization.JavaScriptSerializer();
            string sJSON = JsonHelper.JsonSerializer(RData);
            ViewData["data"] = sJSON;
+           ViewData["id"] = IDs[0];
+           ViewData["visitId"] = IDs[1];
            return View();
           //  return View(RData);
         }
         [HttpPost]
         public JsonResult Save()
-        {
-            
+        {            
             string jsonStr = Request.Params["postjson"];
+             string VisitID = Request.Params["VisitId"];
             string PatID = this.TempData["PatID"].ToString();
             bool res;
-
             try
             {
                 VisitData obj = JsonConvert.DeserializeObject<VisitData>(jsonStr);//反序列化成指定对象  
-                 res=vr.SaveRecord(PatID, obj);
-                  
+               //  res=vr.SaveRecord(PatID, obj);
+                res = vr.UpdateRecord(PatID, VisitID, obj);
+     
                 
             }
             catch (Exception e)
@@ -67,10 +70,9 @@ namespace HeadacheCDSSWeb.Controllers
         [HttpPost]
         public JsonResult Update()
         {
-
             string jsonStr = Request.Params["postjson"];
-            string PatID = this.TempData["PatID"].ToString();
-
+          //  string PatID = Request.Params["patId"];
+            string PatID = this.TempData["PatID"].ToString();            
             try
             {
                 VisitData obj = JsonConvert.DeserializeObject<VisitData>(jsonStr);
@@ -89,37 +91,77 @@ namespace HeadacheCDSSWeb.Controllers
         [HttpPost]
         public JsonResult CDSSdiagnosis()
         {
-            string strResult = null;
+            string completeResult = null;
             string drugResult = null;
-            try{
+            string cdssResult = null;
+            string strSecond = null;
+            string vid = null;
+            string PatID = Request.Params["patId"];
+            string visitID = Request.Params["visitId"];
+            VisitData obj = new VisitData();
+            HeadacheDiagnosis HDiagnosis = new HeadacheDiagnosis();
+
                 string jsonStr = Request.Params["postjson"];
-                VisitData obj = JsonConvert.DeserializeObject<VisitData>(jsonStr);//jsonStr.FromJsonTo<VisitData>();
-                HeadacheDiagnosis HDiagnosis = new HeadacheDiagnosis();
-                strResult = HDiagnosis.GetDiagnosis(obj);
+                obj = JsonConvert.DeserializeObject<VisitData>(jsonStr);//jsonStr.FromJsonTo<VisitData>();
+                strSecond = HDiagnosis.secondaryScreen(obj);
+                completeResult = HDiagnosis.completeTest(obj);
                 drugResult = HDiagnosis.DrugInfor(obj);
-            }
-            catch (Exception e)
-            {
-                return this.Json(new { OK = false, Message = e.Message + "推理出错" });
-            }
-            //strResult = "123";
-            if (!strResult.Contains("必填项"))
-            {
-                if (drugResult == "")
+                if (strSecond == "")//排除继发性
                 {
-                    if (strResult.Length < 20)
-                        strResult = "\n" + "                          " + strResult;
-                    return this.Json(new { OK = true, Message = strResult });
+                    if (!completeResult.Contains("必填项"))
+                    {
+                        if (drugResult == "")
+                        {
+                            //if (completeResult.Length < 20)
+                            //    completeResult = "\n" + "                          " + completeResult;
+                            if (visitID != null)
+                            {
+                                bool updateResult = vr.UpdateRecord(PatID, visitID, obj);
+                                vid = visitID;
+                            }
+                            else
+                            {
+                                bool res = vr.SaveRecord(PatID, obj);//在点击下一步进行推理之前先判断数据完整性，再保存，最后推理（20140814），后面的保存按钮保存前面未存的辅助诊断结果和医嘱信息
+                                vid = obj.visitrecord.Id.ToString();
+                            }
+                            try
+                            {
+                                cdssResult = HDiagnosis.GetDiagnosis(obj);
+                                if (cdssResult.Length < 20)
+                                {
+                                    cdssResult = "\n" + "                          " + cdssResult;
+                                }
+                            }
+                            catch (Exception e)
+                            {
+                                return this.Json(new { OK = false, Message = e.Message + "推理出错" });
+                            }
+                            return this.Json(new { OK = true, Message = cdssResult, VisitID = vid });
+                        }
+                        else
+                        {
+                            return this.Json(new { OK = false, Message = drugResult });
+                        }
+                    }
+                    else
+                    {
+                        return this.Json(new { OK = false, Message = completeResult });
+                    }
                 }
-                else
+                else 
                 {
-                    return this.Json(new { OK = false, Message = drugResult });
+                    if (visitID != null)
+                    {
+                        bool updateResult = vr.UpdateRecord(PatID, visitID, obj);
+                        vid = visitID;
+                    }
+                    else
+                    {
+                        bool res = vr.SaveRecord(PatID, obj);
+                        vid = obj.visitrecord.Id.ToString();
+                    }
+                    return this.Json(new { OK = true, Message = strSecond, VisitID = vid }); 
                 }
-            }
-            else
-            {
-                return this.Json(new { OK = false, Message = strResult });
-            }
             
          }
         public ActionResult GetHPlace()

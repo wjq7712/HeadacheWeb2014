@@ -215,10 +215,21 @@ background:url(images/foot.png) no-repeat bottom;
 
 .demo
 {
-    height:70px;
+    height:90px;
     width:400px;
     font-size:18px;
 }
+.demo a
+{
+    width:200px;
+    float:right;
+    font-size:18px;
+    margin-top:-5px;
+    }
+.demo_text
+{font-size:18px;
+ margin-top:-2px;
+ }
 #submenu
 {
     height:38px;
