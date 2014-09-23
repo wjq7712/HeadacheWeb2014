@@ -1013,8 +1013,10 @@ namespace HeadacheCDSSWeb.Models
             {
                 docSuggestion.PatBasicInforId = id;
                 docSuggestion.Suggestion = strAdvice;
+                docSuggestion.IfNew = 1;
                 docSuggestion.SuggestionTime = DateTime.Now;
                 pt.DocSuggestionSet.Add(docSuggestion);
+                pt.LastSuggestionTime = docSuggestion.SuggestionTime;
                 context.SaveChanges();
                 return true;
             }
