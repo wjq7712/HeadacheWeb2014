@@ -20,29 +20,7 @@ namespace HeadacheCDSSWeb.Models
             List<PatBasicInfor> Unormalpat = new List<PatBasicInfor>();
             try
             {
-                //if ((string.IsNullOrEmpty(Condition[0])) && (string.IsNullOrEmpty(Condition[1])) && (string.IsNullOrEmpty(Condition[2])) && (string.IsNullOrEmpty(Condition[3])))
-                //{
-                //    var patients = from p in context.PatBasicInforSet.ToList() where (string.IsNullOrEmpty(Condition[4]) ? true : p.DoctorAccount.UserName == Condition[4]) select p;
-                //    if (patients != null)
-                //    {
-                //        foreach (PatBasicInfor pt in patients)
-                //        {
-                //            if (pt.VisitRecord != null && pt.VisitRecord.Count != 0)
-                //            {
-                //                SelectedPats.Add(pt);
-                //            }
-                //            else
-                //            {
-                //                Unormalpat.Add(pt);//没有诊断记录的病人，只有基本信息
-                //            }
-                //        }
-                //        InsertSort(SelectedPats);
-                //        SelectedPats.AddRange(Unormalpat);
-                //    }
-                //}
-                //else
-                //{
-                    var pats = from p in context.PatBasicInforSet.ToList()
+                   var pats = from p in context.PatBasicInforSet.ToList()
                                where (string.IsNullOrEmpty(Condition[0]) ? true : p.Name == Condition[0])
                               && (string.IsNullOrEmpty(Condition[1]) ? true : p.Sex == Condition[1])
                              && (string.IsNullOrEmpty(Condition[4]) ? true : p.DoctorAccount.UserName == Condition[4])
@@ -714,7 +692,6 @@ namespace HeadacheCDSSWeb.Models
             }
             return dnum;
         }
-
         public List<DiaryDataPoint> GetDiaryQualitativeData(string PatID, DateTime StartDate, DateTime EndDate, string Query)
         {
             List<DiaryDataPoint> Result = new List<DiaryDataPoint>();
@@ -818,7 +795,6 @@ namespace HeadacheCDSSWeb.Models
             Result = Count(Hdata);
             return Result;
         }
-
         public List<DiaryDataPoint> Count(List<string> HData)
         {
             List<DiaryDataPoint> Result = new List<DiaryDataPoint>();
@@ -925,7 +901,6 @@ namespace HeadacheCDSSWeb.Models
             Result = reportcontent(Result, HData.Count);
                 return Result;
         }
-
         public List<DiaryDataPoint> reportcontent(List<DiaryDataPoint> Data,int headachetime)
         {
             List<DiaryDataPoint> percent = new List<DiaryDataPoint>();
@@ -1030,9 +1005,31 @@ namespace HeadacheCDSSWeb.Models
         {
             throw new NotImplementedException();//？
         }
-        //public class diarydata
-        //{
-        //    public Int64 data { get; set; }
-        //}
+        public bool SaveAdvice(string id,string strAdvice)
+        { 
+            PatBasicInfor pt = context.PatBasicInforSet.Find(id);
+            DocSuggestionSet docSuggestion=new DocSuggestionSet();
+            try
+            {
+                docSuggestion.PatBasicInforId = id;
+                docSuggestion.Suggestion = strAdvice;
+                docSuggestion.SuggestionTime = DateTime.Now;
+                pt.DocSuggestionSet.Add(docSuggestion);
+                context.SaveChanges();
+                return true;
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        Trace.TraceInformation("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
+                    }
+                }
+                return false;
+            }
+        
+        }
     }
 }

@@ -117,16 +117,7 @@ namespace HeadacheCDSSWeb.Controllers
             return PartialView("PatList", pts);
         }
 
-        //public ActionResult PatShow()
-        //{           
-        //    string user = HttpContext.Request.Cookies["username"].Value.ToString();
-        //    List<string> query = new List<string>();
-        //    query.Add(user);
-        //    VisitDataOperation visitop = new VisitDataOperation();
-        //    List<PatBasicInfor> pts = visitop.GetPatforDoc(query);
-        //    return PartialView("PatList", pts);
-        //}
-
+      
         PatOperation PO = new PatOperation();
         public ActionResult DeletePatient(string ID){
             string PatID = ID;

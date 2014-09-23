@@ -37,6 +37,15 @@
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="GetuiServerApiSDK">
+      <HintPath>C:\Users\wjq\Desktop\GETUI_SERVER_SDK\GETUI_SERVER_SDK\Demo工程\C# Demo\GetuiServerApiSDKDemo\bin\Debug\GetuiServerApiSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.ProtocolBuffers">
+      <HintPath>C:\Users\wjq\Desktop\GETUI_SERVER_SDK\GETUI_SERVER_SDK\Demo工程\C# Demo\GetuiServerApiSDKDemo\bin\Debug\Google.ProtocolBuffers.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>C:\Users\wjq\Desktop\GETUI_SERVER_SDK\GETUI_SERVER_SDK\Demo工程\C# Demo\GetuiServerApiSDKDemo\bin\Debug\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\wjq（来自GitHup）\HeadacheCDSS\HeadacheCDSSWeb\HeadacheCDSSWeb\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -82,6 +91,9 @@
     <Compile Include="Models\diaryData.cs" />
     <Compile Include="Models\DiaryDataPoint.cs" />
     <Compile Include="Models\DisabilityEvaluation.cs">
+      <DependentUpon>HeadacheDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DocSuggestionSet.cs">
       <DependentUpon>HeadacheDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DoctorAccount.cs">
@@ -148,6 +160,7 @@
     <Compile Include="Models\PrimaryHeadacheOverView.cs">
       <DependentUpon>HeadacheDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Push.cs" />
     <Compile Include="Models\RegionalCenterAccount.cs">
       <DependentUpon>HeadacheDataModel.tt</DependentUpon>
     </Compile>
@@ -240,6 +253,7 @@
     <Content Include="Content\images\phead.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\images\push.png" />
     <Content Include="Content\images\regioncontent833-960new.png" />
     <Content Include="Content\images\report.png" />
     <Content Include="Content\images\sidebar.png" />
@@ -350,6 +364,8 @@
     <Content Include="Views\Shared\Regionview.cshtml" />
     <Content Include="Views\Shared\PatlistForRe.cshtml" />
     <Content Include="Views\Diagnosis\Push.cshtml" />
+    <None Include="ClassDiagram1.cd" />
+    <Content Include="Views\Shared\AdviceList.cshtml" />
     <None Include="Web References\localhost\InferenceService.wsdl">
       <SubType>Designer</SubType>
     </None>
@@ -438,7 +454,6 @@
     <Content Include="Views\Shared\HeadacheDiaryView.cshtml" />
     <Content Include="Views\Shared\VisitContentView.cshtml" />
     <Content Include="Views\Diagnosis\ContinueVisit.cshtml" />
-    <Content Include="Views\Shared\DiaryReportView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

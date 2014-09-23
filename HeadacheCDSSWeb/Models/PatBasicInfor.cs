@@ -23,6 +23,7 @@ namespace HeadacheCDSSWeb.Models
             this.VisitRecord = new HashSet<VisitRecord>();
             this.PreviousDrug = new HashSet<PreviousDrug>();
             this.PatinfoForRe = new HashSet<PatinfoForRe>();
+            this.DocSuggestionSet = new HashSet<DocSuggestionSet>();
         }
     
         public string Id { get; set; }
@@ -41,6 +42,8 @@ namespace HeadacheCDSSWeb.Models
         public Nullable<int> HDVersion { get; set; }
         public Nullable<int> AutoUpload { get; set; }
         public string Password { get; set; }
+        public string PushClientId { get; set; }
+        public Nullable<System.DateTime> LastSuggestionTime { get; set; }
     
         public virtual DoctorAccount DoctorAccount { get; set; }
         public virtual ICollection<PreviousExam> PreviousExam { get; set; }
@@ -51,6 +54,7 @@ namespace HeadacheCDSSWeb.Models
         public virtual ICollection<VisitRecord> VisitRecord { get; set; }
         public virtual ICollection<PreviousDrug> PreviousDrug { get; set; }
         public virtual ICollection<PatinfoForRe> PatinfoForRe { get; set; }
+        public virtual ICollection<DocSuggestionSet> DocSuggestionSet { get; set; }
     }
     
 }

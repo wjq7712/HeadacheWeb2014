@@ -1,0 +1,11 @@
+﻿@model  ICollection<HeadacheCDSSWeb.Models.DocSuggestionSet>
+
+<ul class="listPage">
+ @foreach (var item in Model)
+    {
+    <li id="@item.Id">
+          <p>@item.SuggestionTime</p>
+          <div>@item.Suggestion</div>
+        </li>
+    }
+</ul>

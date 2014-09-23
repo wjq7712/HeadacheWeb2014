@@ -189,7 +189,7 @@ input[type="submit"]:active
 #ui-accordion-accordion-panel-1
 {
    border:2px solid #b7d9ef;
-    height:125px;
+    height:165px;
 }
 #List
 {
@@ -266,9 +266,14 @@ input[type="submit"]:active
 .report
 {
     float:left;
-    width:196px;
-    
+    width:196px;    
 }
+.suggestion
+{
+    float:left;
+    width:196px;    
+}
+#suggestion{margin-left:-67px;}
 /* Footer */
 
 #footer {
@@ -537,3 +542,71 @@ display: none;
 #time span{width:28px;}
 #seperateline{ display:inline;width:60px; font-size:20px;margin-left:20px;}
 #diarygraphbtn{ margin:-3px -12px 0 10px;}
+
+#reportTable
+{
+  margin-top:10px;
+  font-size:17px;
+  
+    }
+#reportTable caption
+{
+   margin-bottom:30px;
+   font-size:18px;
+   font-family:"微软雅黑";
+    }
+#reportTable tr
+{
+    height:30px;
+    }
+    
+#suggestionView
+{
+    width:700px; 
+    height:350px;              
+ }
+ .edit
+ {
+     width:680px;
+     height:200px;
+     margin-left:40px;
+     }
+ .edit textarea {width:600px;height:180px;}
+ #sendAdvice{  margin:0 0px 0 350px; float:left;}
+ #giveUp
+ {
+     margin:0 30px 0 0px;
+     float:right;
+     padding-top:0px;
+     border: 0px none;
+     font-family:  "Microsoft YaHei";}
+  .noticeTitle
+  {
+     font-size:18px;
+     font-weight: bold;
+     text-indent:40px;
+     font-family: "Microsoft YaHei";     
+      }  
+      /*历史建议*/  
+      #History
+   { width:615px;
+     height:300px;
+     margin-left:40px; 
+     overflow-x:hidden;
+     overflow-y:no-display;
+      }
+     
+    .listPage li span{ font-weight:bold;}
+    .listPage li p
+    { font-family: "Microsoft YaHei";
+      text-indent:0px;
+      }
+    .listPage li div
+    {
+        font-size:17px;
+        width:600px;
+        height: auto;
+        text-indent:2em;
+        border-bottom: 2px solid #EEE;
+        padding-bottom: 15px;
+     }

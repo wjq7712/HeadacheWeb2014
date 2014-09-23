@@ -50,6 +50,57 @@ namespace HeadacheCDSSWeb.Controllers
         {
             return RedirectToAction("Index", "Diagnosis", new { ID = ID });
         }
+        public ActionResult SendAdvice(string id,string strAdvice)
+        {
+            VisitDataOperation dataOperation = new VisitDataOperation();
+            var correctPatient=from p in context.PatBasicInforSet.ToList() where p.Id==id select p;
+            if (correctPatient != null)
+            {
+                string clientID = correctPatient.First().PushClientId;
+                if (clientID != null)
+                {
+                    bool saveResult = dataOperation.SaveAdvice(id, strAdvice);
+                    if (saveResult == true)
+                    {
+                        Push pushAdvice = new Push();
+                        string pushResult = pushAdvice.PushAdvice(strAdvice, clientID);
+                        PushReturn pushReturnInfo = JsonConvert.DeserializeObject<PushReturn>(pushResult);
+                        if (pushReturnInfo.result == "ok")
+                        {
+                            return this.Json(new { OK = true, Message = id });
+                        }
+                        else
+                        {
+                            return this.Json(new { OK = true, Message = pushReturnInfo.result });
+                        }
+                    }
+                    else
+                    {
+                        return this.Json(new { OK = false, Message = "保存失败" });
+                    }
+                }
+                else
+                {
+                    return this.Json(new { OK = false, Message = "该用户尚未使用移动端" });
+                }
+
+            }
+            else { return this.Json(new { OK = false, Message = "没有找到对应的病人" }); }
+            }
+        public ActionResult HistoryAdvice(string PatID)
+        {
+            List<DocSuggestionSet> adviceList=new List<DocSuggestionSet> ();
+            var advice = from p in context.DocSuggestionSet.ToList() where p.PatBasicInforId == PatID select p;
+            if (advice != null)
+            {
+                foreach (DocSuggestionSet docS in advice)
+                {
+                    if (docS.Suggestion != "")
+                    { adviceList.Add(docS); }
+                }
+            }
+            return PartialView("AdviceList", adviceList);
+        }
         public ActionResult DeleteRecord(string ID)
         {
             string PatID = ID;
@@ -102,7 +153,6 @@ namespace HeadacheCDSSWeb.Controllers
             {
                 headFrequency = 90 / recordCount;
             }
-
             List<DiaryDateNum> nData = new List<DiaryDateNum>();
            
             nData = visitop.GetDiaryNumericData(pid, firstdiaryDate, lastdiaryDate, "头痛程度");//头痛程度数据，返回的是数组，需要对数组数据求均值[5,5,9]
@@ -193,6 +243,13 @@ namespace HeadacheCDSSWeb.Controllers
            public DateTime EndDate;
            public string query1;
            public string query2;
+        }
+        public class PushReturn
+        {
+            public string taskId { get; set; }
+            public string result { get; set; }
+            public string status { get; set; }
+
         }
     }
 }

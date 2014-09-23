@@ -50,5 +50,6 @@ namespace HeadacheCDSSWeb.Models
         public DbSet<RegionalCenterAccount> RegionalCenterAccountSet { get; set; }
         public DbSet<NationalCenterAccount> NationalCenterAccountSet { get; set; }
         public DbSet<PatinfoForRe> PatinfoForReSet { get; set; }
+        public DbSet<DocSuggestionSet> DocSuggestionSet { get; set; }
     }
 }

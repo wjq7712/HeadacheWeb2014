@@ -20,12 +20,11 @@
                 <div id="delete" class="button" data-toggle="modal" data-target="#myModal">
                     <a>删除记录</a>
                 </div>
-
-        </div>
+     </div>
         <div id="DiaryView">
-        <div id="ReportView">
-        <div id="diaryreport">
-         <table border="1">
+          <div id="ReportView">
+            <div id="diaryreport">
+              <table border="1" id="reportTable">
                <caption style="font-size:28px;">头痛日志分析报告</caption>
                 <tr>
                 <td style="width:33%"><a>统计日期</a></td>
@@ -105,19 +104,7 @@
                       </i>
                     </span>
                   </div>
-           <div  class="button" id="diarygraphbtn"><a id="diarygraph" hef="#">确定</a></div>
-            @* <table border="0">
-                <tr>
-                 <td><input type="text" name="date" id="d1" /></td>
-                 <td><a>----------</a></td>
-                <td>
-                 <input type="text" name="date" id="d2" />
-                   </td> 
-                  <td><div  class="button"><a id="diarygraph" hef="#">确定</a></div></td>
-                </tr>
-                </table>*@
-        
-        
+           <div  class="button" id="diarygraphbtn"><a id="diarygraph" hef="#">确定</a></div>            
            </div>
            <div id="line">
             <div id="variable1">
@@ -168,6 +155,19 @@
          <div id="piegraph"></div>
          </div>
      </div>
+     <div id="suggestionView">
+     <p class="noticeTitle">历史建议：</p>
+     <div id="History">    
+     <div id="ListOfAdvice"></div>    
+     </div>
+     </div>
+     <div class="adviceBox">
+     <p class="noticeTitle">给患者的建议</p>
+     <div class="edit"><textarea id="editAdvice"></textarea></div> 
+     <input id="sendAdvice" class="button" type="submit" value="发送" />
+     <input id="giveUp" class="button"  value="取消" />
+     </div> 
+
 </div>
         <div id="@ViewBag.patId" class="PID" style="display:none;"></div>
         <div id="RecordID" class="@ViewBag.recordId" style="display:none;"></div>
@@ -179,8 +179,16 @@
           <div id="ui-accordion-accordion-panel-1">
               <ul class="diary">
               <li><img src="@Href("../../Content/images/chart.png")"  alt="text"/><a href="#"  id="statics">头痛情况统计分析</a></li>
-              <li><div class="report"><div style="float:left"><img src="@Href("../../Content/images/report.png")"  alt="text"/></div>
-              <div style="padding-top:19px"><a href="#" id="report" >近三个月分析报告</a></div></div></li>
+              <li><div class="report">
+                  <div style="float:left"><img src="@Href("../../Content/images/report.png")"  alt="text"/></div>
+                  <div style="padding-top:19px"><a href="#" id="report" >近三个月分析报告</a></div>
+                  </div>
+               </li>
+                <li><div class="sugestion">
+                  <div style="float:left"><img src="@Href("../../Content/images/push.png")"  style="margin-left:2px;" alt="text"/></div>
+                  <div style="padding-top:13px"><a href="#" id="suggestion" > 医生建议</a></div>
+                  </div>
+                  </li>
               </ul>
           </div>
           <h3>诊疗记录</h3>
@@ -233,9 +241,7 @@
         catch (err) {
             var b = confirm("是否下载显示控件");
             if (b) {
-               // debugger;
                 var strOCXURL;
-                //strOCXURL = "http://127.0.0.1" + "/HeadacheCDSS/OCXForHeadacheCDSS.exe"; //能找到，但是安装后没有用，下载前提示“JavaScript 运行时错误: 对象不支持“SetObjectInfo”属性或方法”
                 strOCXURL = "http://115.28.42.235" + "/HeadacheCDSS/OCXForHeadacheCDSS.exe"; //提示找不到资源
                 window.location.href = strOCXURL;
             }
@@ -254,18 +260,14 @@
                 $("#DiaryView").hide();
                 //赋值
                 SetReportData(data);
-
             },
             error: function (jqXhr, textStatus, errorThrown) {//？
                 alert("Error '" + jqXhr.status + "' (textStatus: '" + textStatus + "', errorThrown: '" + errorThrown + "')");
                 alert("处理失败!");
             }
-
         });
 
         //打开第一个问诊记录
-        //        $("#accordion").accordion(
-        //        { collapsible: true });
         $('.paging li a:first').addClass("CurrentView");
         $(".CurrentView").parent().css("background-color", "#B9DCF2");
         if ($(".paging li").length == 0) {
@@ -289,8 +291,6 @@
                     $(".paging li:eq(" + start + ")").addClass("current").show();
                     start = start + 1;
                 }
-                // do something with the page variable
-
             }
         })
     });
@@ -332,8 +332,9 @@
             if ($(this).attr("id") == "statics") {
                 $("#ViewContent").hide();
                 $("#DiaryView").show();
-                $("#ReportView").hide(); //近三个月分析报告
-                $(".statics").show(); //统计分析，这里的图没有数据源，是不是只是示意图？
+                $(".statics").show();
+                $("#ReportView").hide();
+                $("#suggestionView").hide();
                 //624更换时间插件
                 $('#datetimepicker1').datetimepicker({
                     pickTime: false
@@ -341,71 +342,57 @@
                 $('#datetimepicker2').datetimepicker({
                     pickTime: false
                 });
-                //                var plot1 = $.jqplot('linegraph', [[4, 6, 7, 9, 3, 5, 8, 8]], { axes: { xaxis: { label: "" }, yaxis: { label: ""}} });
-                //                var plot2 = $.jqplot('piegraph', [[5, 7, 9, 7, 10, 11, 28, 32, 10, 11, 28, 32]], {
-                //                    title: '',
-                //                    seriesDefaults: {
-                //                        renderer: $.jqplot.BarRenderer,
-                //                        rendererOptions: {
-                //                            barPadding: 1,
-                //                            barMargin: 15,
-                //                            barDirection: 'vertical',
-                //                            barWidth: 45,
-                //                            varyBarColor: true
-                //                        },
-                //                        pointLabels: { show: true }
-                //                    },
-                //                    axes: {
-                //                        xaxis: {
-                //                            renderer: $.jqplot.CategoryAxisRenderer,
-                //                            ticks: ["a1", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"]
-                //                        },
-                //                        yaxis: {
-                //                            tickOptions: {
-                //                                formatString: '%d'
-                //                            }
-                //                        }
-                //                    },
-                //                    highlighter: {
-                //                        sizeAdjust: 7.5
-                //                    },
-                //                    cursor: {
-                //                        show: true
-                //                    }
-                //                });
             }
             else {
-
-                //近三个月分析报告页 
-                debugger;
-                var Pid = $(".PID").attr("id");
-                $.ajax({
-                    type: "POST",
-                    url: '@Url.Action("ViewDiaryReport", "ViewPatRecord")',
-                    data: { PatID: Pid },
-                    success: function (data) {  //这个data来源？ViewDiaryReport里调数据库？
-                        $("#ViewContent").hide();
-                        //debugger;620
-                        document.getElementById('frequence').innerHTML = data.HDRfrequence;
-                        document.getElementById('date').innerHTML = data.HDRdata;
-                        document.getElementById('averagetime').innerHTML = data.AverageTime;
-                        document.getElementById('degree').innerHTML = data.HDRdegree;
-                        document.getElementById('type').innerHTML = data.HDRtype;
-                        document.getElementById('position').innerHTML = data.HDRplace + "<br />" + data.IfAroundEye;
-                        document.getElementById('prodrome').innerHTML = data.HDRprodrome
-                        document.getElementById('accompany').innerHTML = data.HDRacompanion
-                        document.getElementById('IfActivityAggravate').innerHTML = data.IfActivityAggravate
-                        document.getElementById('precipitatingFactor').innerHTML = data.HDRprecipitatingFactor
-                        document.getElementById('mitigatingFactors').innerHTML = data.HDRmitigatingFactors
-                        document.getElementById('times').innerHTML = data.HDRtimes + "次"
-                        $("#ReportView").show();
-                        $("#DiaryView").show();
-                        $(".statics").hide();
-                    },
-                    error: function () {
-                        alert("处理失败!");
-                    }
-                });
+                if ($(this).attr("id") == "suggestion") {
+                    //医生建议
+                    $("#ViewContent").hide();
+                    $("#suggestionView").show();
+                    $("#DiaryView").show();
+                    $(".statics").hide();
+                    $("#ReportView").hide();
+                    var Pid = $(".PID").attr("id");
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("HistoryAdvice", "ViewPatRecord")',
+                        data: { PatID: Pid },
+                        success: function (data) {
+                            $("#ListOfAdvice").html(data);
+                        }
+                    })
+                }
+                else {
+                    //近三个月分析报告页 
+                    var Pid = $(".PID").attr("id");
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("ViewDiaryReport", "ViewPatRecord")',
+                        data: { PatID: Pid },
+                        success: function (data) {  //这个data来源？ViewDiaryReport里调数据库？
+                            $("#ViewContent").hide();
+                            //debugger;620
+                            document.getElementById('frequence').innerHTML = data.HDRfrequence;
+                            document.getElementById('date').innerHTML = data.HDRdata;
+                            document.getElementById('averagetime').innerHTML = data.AverageTime;
+                            document.getElementById('degree').innerHTML = data.HDRdegree;
+                            document.getElementById('type').innerHTML = data.HDRtype;
+                            document.getElementById('position').innerHTML = data.HDRplace + "<br />" + data.IfAroundEye;
+                            document.getElementById('prodrome').innerHTML = data.HDRprodrome
+                            document.getElementById('accompany').innerHTML = data.HDRacompanion
+                            document.getElementById('IfActivityAggravate').innerHTML = data.IfActivityAggravate
+                            document.getElementById('precipitatingFactor').innerHTML = data.HDRprecipitatingFactor
+                            document.getElementById('mitigatingFactors').innerHTML = data.HDRmitigatingFactors
+                            document.getElementById('times').innerHTML = data.HDRtimes + "次"
+                            $("#ReportView").show();
+                            $("#DiaryView").show();
+                            $(".statics").hide();
+                            $("#suggestionView").hide();
+                        },
+                        error: function () {
+                            alert("处理失败!");
+                        }
+                    });
+                }
             }
 
         });
@@ -561,7 +548,6 @@
             $("#myModal").show();
         })
         $("#DeleteYes").click(function () {
-            debugger;
             var pid = '@ViewBag.patId';
             $.ajax({
                 url: '@Url.Action("DeleteRecord", "ViewPatRecord")',
@@ -585,6 +571,43 @@
             $("#ViewContent").show();
         })
 
+        $("#sendAdvice").click(function () {
+            debugger;
+            var pid = '@ViewBag.patId';
+            var strAdvice = $("#editAdvice").val();
+            $.ajax({
+                url: '@Url.Action("SendAdvice", "ViewPatRecord")',
+                type: "POST",
+                data: { id: pid, strAdvice: strAdvice },
+                success: function (data) {
+                    if (data.OK) {
+                        debugger;
+                        var PatID = data.Message;
+                        $.ajax({
+                            type: "POST",
+                            url: '@Url.Action("HistoryAdvice", "ViewPatRecord")',
+                            data: { PatID: PatID },
+                            success: function (data) {
+                                $("#ListOfAdvice").html(data);
+                                $("#editAdvice").val("");
+                                alert("发送成功");
+                            }
+                        })
+
+                    } else {
+                        alert(data.Message);
+                    }
+                },
+                error: function (jqXhr, textStatus, errorThrown) {
+                    alert("Error '" + jqXhr.status + "' (textStatus: '" + textStatus + "', errorThrown: '" + errorThrown + "')");
+                }
+            })
+
+        })
+        $("#giveUp").click(function () {
+            $("#editAdvice").val("");
+        })
+
 
     });
     function SetReportData(jsonData) {
@@ -606,7 +629,6 @@
                 strDoctorAdvice += strDrugName + " " + strDrugDose + strDrugDoseUnit + " " + strDrugApplication;
         }
         OCX.SetObjectInfo("TextBox_24", "text", strDoctorAdvice);
-
         //set patient basic information
         //get data
         var strName = "";
@@ -643,16 +665,8 @@
         var strPatientInfo = "姓名：" + strName;
         strPatientInfo += "             性别:" + strSex;
         strPatientInfo += "             年龄:" + strAge + "\n";
-        //strPatientInfo += " 教育程度:" + strEducation;
-        //strPatientInfo += " 工作:" + strJob;
-        strPatientInfo += "电话:" + strPhone;
-        //strPatientInfo += " 地址:" + strAddress;
-        //strPatientInfo += " 身份证:" + obj.Identity;
-        //strPatientInfo += "                             主治医生:" + strChiefDoctor;
+        strPatientInfo += "电话:" + strPhone;     
         OCX.SetObjectInfo("TextBox_21", "text", strPatientInfo);
-
-        //set chief complaint 主诉这里的OBJ信息不全 
-        //debugger;
         if (obj.ChiefComplaint != null) {
             var strChiefComplaint = obj.ChiefComplaint;
             OCX.SetObjectInfo("TextBox_22", "text", strChiefComplaint);
@@ -668,22 +682,7 @@
             strDiagnoses += " " + obj.DiagnosisResult3;
         if ("" != strDiagnoses)
             OCX.SetObjectInfo("TextBox_23", "text", strDiagnoses);
-
-        //        //set doctor advice
-        //        if (obj.Prescription != null) 
-        //        {
-        //            var strDoctorAdvice = obj.Prescription;
-        //            OCX.SetObjectInfo("TextBox_24", "text", strDoctorAdvice);
-        //        }
         OCX.ShowReport();
         OCX.ShowThisPage("就诊记录");
-    }
-    //     $(function(){
-    //         var canvas = document.createElement("canvas");
-    //document.body.appendChild(canvas);
-    ////if($.browser.msie){
-    ////canvas=window.G_vmlCanvasManager.initElement(canvas);
-    ////}
-    ////if(canvas.getContext){alert("support");}});   
-    //  })   
+    } 
   </script>
