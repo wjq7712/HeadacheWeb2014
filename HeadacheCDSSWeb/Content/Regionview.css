@@ -5,7 +5,6 @@ body {
 	padding: 0;
 	background-color:#c0c0c0;
 	font-size: 17px;
-	color:#076FA2;
 	font-family: "Microsoft YaHei",微软雅黑,Tahoma,Helvetica,arial,sans-serif;
 	
 }
@@ -13,7 +12,7 @@ body {
 body,  textarea, option {
 
 	
-	font-size: 18px;
+	font-size: 16px;
 }
 
 h1, h2, h3 {
@@ -30,7 +29,7 @@ h1 {
 
 h2 {
 	letter-spacing: -1px;
-	font-size: 24px;
+	font-size: 22px;
 	margin: 22px 0 0 33px;
 	padding-bottom: 5px;
 }
@@ -72,7 +71,7 @@ p
 	width: 960px;
 	height:715px;
 	margin: 0;
-	background: url(images/regioncontent833-960new.png) no-repeat;	
+	background: url(images/regioncontent833-960.png) no-repeat;	
 }
 
 #query {
@@ -87,7 +86,8 @@ p
   float: left;
   width : 560px;  
   padding:0 20px 0 89px;
- color  :#000;	
+  color  :#000;	
+  margin-top: -20px;
     }
 #but
 {
@@ -111,7 +111,6 @@ input
 {
     font-size: 16px;
     margin: 0 0 0 2px;
-    float : left;
     padding: 0 0 0 3px;
     width:150px;
    height:28px;
@@ -135,7 +134,7 @@ select
 }
 #content li
 {
-    height: 32px;
+    height: 26px;
     text-decoration:none;
     padding-bottom:15px;
     padding-top:2px;
@@ -216,6 +215,7 @@ input[type="submit"]
      height: 37px;
 	float: left;
 	margin-left:28px;
+	margin-top:-24px;
 	padding:0;
 	width :138px;
     background: url(images/normal-button.png) no-repeat ;
@@ -355,4 +355,16 @@ input[type="submit"]:active
 #Diagnosis
 {
     padding:30px 0 0 0;
+}
+#patientTable_wrapper
+{
+    width:94%;
+    margin-left:3%;
+    margin-top:10px;
+    }
+#patientTable tbody tr {height:50px;}
+#patientTable tbody td { text-align:center;}
+#patientTable_filter{}
+.div.dataTables_wrapper {
+    background-color: #719ba7;
 }

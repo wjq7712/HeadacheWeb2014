@@ -96,16 +96,16 @@
                       </i>
                     </span>
                   </div>
-                  <div id="seperateline"><a>------</a></div>
+                  <div id="seperateline"><a>--</a></div>
            <div id="datetimepicker2" class="input-append">
                     <input data-format="yyyy-MM-dd" type="text" name="date" id="d2"/>
                     <span class="add-on" id="add">
                       <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                       </i>
                     </span>
-                  </div>
-           <div  class="button" id="diarygraphbtn"><a id="diarygraph" hef="#">确定</a></div>            
-           </div>
+                  </div>              
+           </div> 
+           <input type="submit" id="diarygraph" value="确定"/>        
            <div id="line">
             <div id="variable1">
             <ul>
@@ -160,14 +160,14 @@
      <div id="History">    
      <div id="ListOfAdvice"></div>    
      </div>
-     </div>
+ 
      <div class="adviceBox">
      <p class="noticeTitle">给患者的建议</p>
      <div class="edit"><textarea id="editAdvice"></textarea></div> 
      <input id="sendAdvice" class="button" type="submit" value="发送" />
      <input id="giveUp" class="button"  value="取消" />
      </div> 
-
+    </div>
 </div>
         <div id="@ViewBag.patId" class="PID" style="display:none;"></div>
         <div id="RecordID" class="@ViewBag.recordId" style="display:none;"></div>
@@ -202,20 +202,16 @@
            </ul>
            </div>
             <div class="pagination">
-            <a href="#" class="first" data-action="first">&laquo;</a> <a href="#" class="previous"
-                data-action="previous">&lsaquo;</a>
+            <a href="#" class="first" data-action="first">&laquo;</a> <a href="#" class="previous" data-action="previous">&lsaquo;</a>
             <input type="text" readonly="readonly" data-max-page="40" />
-            <a href="#" class="next" data-action="next">&rsaquo;</a> <a href="#" class="last"
-                data-action="last">&raquo;</a>
+            <a href="#" class="next" data-action="next">&rsaquo;</a> <a href="#" class="last" data-action="last">&raquo;</a>
             </div>
           </div>
           
           
     </div>
   </div>
-  <div id="return" class="button">
-            @Html.ActionLink("返回查询", "index","EnterpatInfor")
-        </div>
+  <input type="submit" id="return" value="返回查询" onclick="returnSearch()"/>
   </div>
   <!-- Modal -->
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -276,6 +272,30 @@
             $(".paging").append("<li><a>基本信息</a></li>");
         }
     });
+
+    //返回  查询
+    function returnSearch() {
+        var userName = "@ViewBag.UserName";
+        $.ajax({
+            url: '@Url.Action("returnSearch", "ViewPatRecord")',
+            data: { userName: userName },
+            type: "POST",
+            traditional: true,
+            success: function (data) {
+                if (data.OK) {
+                    if (data.Message == "region") {
+                        var t = setTimeout("  window.location.href = '@Url.Action("Index", "Region")'", 30);
+                    } 
+                    else { 
+                        var t = setTimeout("  window.location.href = '@Url.Action("Index", "EnterPatInfor")'", 30);
+                     }
+                } else {
+                        alert("Error '" + data.Message);
+                }
+            }
+        });
+        
+    }
 
     //列表分页
     $(document).ready(function () {
@@ -394,7 +414,6 @@
                     });
                 }
             }
-
         });
 
 
@@ -602,14 +621,12 @@
                     alert("Error '" + jqXhr.status + "' (textStatus: '" + textStatus + "', errorThrown: '" + errorThrown + "')");
                 }
             })
-
         })
         $("#giveUp").click(function () {
             $("#editAdvice").val("");
         })
-
-
     });
+
     function SetReportData(jsonData) {
         //debugger;
         var obj = eval('(' + jsonData + ')');

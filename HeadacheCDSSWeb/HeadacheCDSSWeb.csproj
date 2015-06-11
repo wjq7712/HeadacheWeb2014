@@ -85,6 +85,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\tableData.cs" />
     <Compile Include="Models\Diagnosis.cs">
       <DependentUpon>HeadacheDataModel.tt</DependentUpon>
     </Compile>
@@ -232,6 +233,7 @@
     <Content Include="Content\images\datebox_arrow.png" />
     <Content Include="Content\images\delete.png" />
     <Content Include="Content\images\dropdown.png" />
+    <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\foot-2.png" />
     <Content Include="Content\images\foot.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
@@ -257,6 +259,11 @@
     <Content Include="Content\images\regioncontent833-960new.png" />
     <Content Include="Content\images\report.png" />
     <Content Include="Content\images\sidebar.png" />
+    <Content Include="Content\images\sort_asc.png" />
+    <Content Include="Content\images\sort_asc_disabled.png" />
+    <Content Include="Content\images\sort_both.png" />
+    <Content Include="Content\images\sort_desc.png" />
+    <Content Include="Content\images\sort_desc_disabled.png" />
     <Content Include="Content\images\split.png" />
     <Content Include="Content\images\tab-selected.png" />
     <Content Include="Content\images\title.png" />
@@ -277,6 +284,9 @@
     <Content Include="Content\images\二维码.png" />
     <Content Include="Content\indexstyle.css" />
     <Content Include="Content\jqpagination.css" />
+    <Content Include="Content\jquery.dataTables.css" />
+    <Content Include="Content\jquery.dataTables.min.css" />
+    <Content Include="Content\jquery.dataTables_themeroller.css" />
     <Content Include="Content\jquery.jqplot.min.css" />
     <Content Include="Content\Loginstyle.css" />
     <Content Include="Content\patstyle.css" />
@@ -327,8 +337,11 @@
     <Content Include="Scripts\jquery-ui-1.8.11.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
     <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery.dataTables.js" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.jqpagination.js" />
     <Content Include="Scripts\jquery.jqpagination.min.js" />
+    <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\jquery.json-2.4.js" />
     <Content Include="Scripts\jquery.json-2.4.min.js" />
     <Content Include="Scripts\jquery.min.js" />
@@ -366,6 +379,7 @@
     <Content Include="Views\Diagnosis\Push.cshtml" />
     <None Include="ClassDiagram1.cd" />
     <Content Include="Views\Shared\AdviceList.cshtml" />
+    <None Include="Content\images\Sorting icons.psd" />
     <None Include="Web References\localhost\InferenceService.wsdl">
       <SubType>Designer</SubType>
     </None>

@@ -18,6 +18,8 @@ namespace HeadacheCDSSWeb.Controllers
         [OutputCache(Location=System.Web.UI.OutputCacheLocation.None)]
         public ActionResult Index(string ID)
         {
+            string userName = HttpContext.Request.Cookies["username"].Value.ToString();
+            this.ViewBag.UserName = userName;
             this.TempData["PatID"] = ID;
             this.ViewBag.patId = ID;
             List<VisitRecord> Lvisit = visitop.GetVistRecord(ID);
@@ -236,6 +238,26 @@ namespace HeadacheCDSSWeb.Controllers
             string identity = ID + "%";
             identity = identity + this.TempData["recordID"].ToString();
             return RedirectToAction("ContinueVisit", "Diagnosis", new { identity = identity });
+        }
+
+        public ActionResult returnSearch(string UserName) {
+            try
+            {
+                var Users = from s in context.RegionalCenterAccountSet.ToList() select s;
+                var user = Users.Where(s => s.UserName == UserName).FirstOrDefault();
+                if (user != null)
+                {
+                    return this.Json(new { OK = true, Message = "region" });
+                }
+                else
+                {
+                    return this.Json(new { OK = true, Message = "doctor" });
+                }
+            }
+            catch (System.Exception ex)
+            {
+                return this.Json(new { OK = false, Message = ex.Message });
+            }
         }
         public class QueryCondition{
            public string PID;

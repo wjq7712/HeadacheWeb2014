@@ -18,9 +18,10 @@
             new SelectListItem {Text = "很可能的偏头痛", Value = "很可能的偏头痛"},
             new SelectListItem {Text = "无先兆性偏头痛", Value = "无先兆性偏头痛"},
              new SelectListItem {Text = "先兆性偏头痛", Value = "先兆性偏头痛"},
+             
              new SelectListItem {Text = "偶尔发作性紧张型头痛", Value = "偶尔发作性紧张型头痛"},
             new SelectListItem {Text = "频繁阵发性紧张型头痛", Value = "频繁阵发性紧张型头痛"},
-             new SelectListItem {Text = "丛集性头痛或其他三叉自主神经痛", Value = "丛集性头痛或其他三叉自主神经痛"},
+             new SelectListItem {Text = "丛集性头痛和其他三叉自主神经痛", Value = "丛集性头痛和其他三叉自主神经痛"},
              new SelectListItem {Text = "药物滥用引起的头痛", Value = "药物滥用引起的头痛"},
             new SelectListItem {Text = "慢性偏头痛", Value = "慢性偏头痛"},
              new SelectListItem {Text = "慢性紧张型头痛", Value = "慢性紧张型头痛"},
@@ -32,8 +33,6 @@
 
 <div id="content" style=" display:inline">
     <div id="query">
-        @using (Ajax.BeginForm("Query", new AjaxOptions { UpdateTargetId = "List", HttpMethod = "POST", InsertionMode = InsertionMode.Replace, OnSuccess = "ListPage" }))
-        {
             <h2 class="title">
                 查询病人</h2>
             <div id="queryinfo">
@@ -49,13 +48,12 @@
                 <li><span>诊断结论</span> @Html.DropDownList("diagnosis", @diagnosis)
                 </li>
             </ul></div>
-           <div  id="but"><p><input type="submit" value="查询病人" /></p></div>    
-        }
+           <div id="btn"><p><input type="submit" value="查询病人" onclick="search()"/></p></div>    
     </div>
 
     <div id="sidebar">
-    <div id="List">
-    </div>
+    <table id="patientTable" class="display" cellspacing="0" width="100%">
+    </table>
      <div class="pagination">
         <a href="#" class="first" data-action="first">&laquo;</a> 
         <a href="#" class="previous" data-action="previous">&lsaquo;</a>
@@ -67,10 +65,49 @@
 
 <script type="text/javascript">
     $(function () {
-        $(".pagination").hide();//隐藏有效（注释掉下面的function测试）
+        $(".pagination").hide();//隐藏
         $("#date").Zebra_DatePicker();
     });
-    function ListPage() {
+
+    function search() {
+
+        var name = $("#name").val();
+        var sex = $("#sex").val();
+        var date = $("#date").val();
+        var diagnosis = $("#diagnosis").val();
+        $.ajax({
+            url: '@Url.Action("Query", "Region")',
+            data: { "name": name, "sex": sex, "date": date, "diagnosis": diagnosis },
+            dataType: "json",
+            type: "POST"
+        }).done(function (data) {
+            var datasource = data;
+            $("#patientTable").dataTable({
+                "bDestroy": true,
+                "lengthChange":false,
+                "language":{
+                    "lengthMenu": "显示 _MENU_ 条记录每页",
+                    "zeroRecords": "找不到记录 - 抱歉",
+                    "info": "当前页 _PAGE_ of _PAGES_",
+                    "infoFiltered": "(从总共 _MAX_ 条记录中过滤)",
+                    "infoEmpty": "没有记录",
+                    "paginate": {"first": "第一页",
+                                 "last":"最后一页",
+                                  "next": "后一页",
+                                 "previous":"前一页"
+                          },
+                     "search": "表内查找:"
+                },                
+                "data": datasource,
+                "columns": [{ "title": "序号", "data": "ListID", "width": "8%" }, { "title": "姓名", "data": "Name", "width": "10%" }, { "title": "性别", "data": "Sex", "width": "8%" }, { "title": "年龄", "data": "Age", "width": "8%" }, { "title": "头痛类型", "data": "HeadacheStyle" },
+                            { "title": "诊断日期", "data": "Date" },{"title": "详细信息", "data": "PatBasicInforId", "render": function (data, type, full) { return "<a href='/ViewPatRecord/Index/" + data + "'>查看</a>" } }]
+            })
+        });
+    }
+
+    function ListPage(e) {
+        var js = e.get_response().get_object();
+        alert(data);
        $(".page").find("tr").hide(); //查询到的病人姓名分页显示
        $(".pagination").show();
         $("tr:lt(6)").addClass("current").show();

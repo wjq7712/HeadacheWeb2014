@@ -11,18 +11,18 @@ namespace HeadacheCDSSWeb.Models
     public class RegionViewData
     {
         HeadacheModelContainer container=new HeadacheModelContainer ();
-        public List< PatinfoForRe> GetPatforView(List<PatBasicInfor> Patlist)
+        public List<tableData> GetPatforView(List<PatBasicInfor> Patlist)
         {
-            List <PatinfoForRe> patforre=new List<PatinfoForRe>();
+            List<tableData> dataset = new List<tableData>();
             var count=Patlist.Count;
             for (int i = 0; i < count; i++)
             {
-                PatinfoForRe pr = new PatinfoForRe();
-                pr.Name = Patlist[i].Name;
-                pr.Sex = Patlist[i].Sex;
-                pr.Age = Patlist[i].Age;
-                pr.ListID = Convert.ToString(i+1);
-                pr.PatBasicInforId = Patlist[i].Id;
+                tableData rd = new tableData();
+                rd.Name = Patlist[i].Name;
+                rd.Sex = Patlist[i].Sex;
+                rd.Age = Patlist[i].Age;
+                rd.ListID = Convert.ToString(i+1);
+                rd.PatBasicInforId = Patlist[i].Id;
                 var record = from p in container.VisitRecordSet.ToList()
                              where (p.PatBasicInfor.Id == Patlist[i].Id)
                              select p;
@@ -31,15 +31,15 @@ namespace HeadacheCDSSWeb.Models
                 if (num != 0)
                 {
                     VisitRecord vt = record.First();
-                    pr.Data = vt.VisitDate.ToShortDateString().ToString();
+                    rd.Date = vt.VisitDate.ToShortDateString().ToString();
                     if (vt.DiagnosisResult1 != null || vt.DiagnosisResult2 != null || vt.DiagnosisResult3 != null)
                     {
-                        pr.HeadacheStyle = vt.DiagnosisResult1 + vt.DiagnosisResult2 + vt.DiagnosisResult3;
+                        rd.HeadacheStyle = vt.DiagnosisResult1 + vt.DiagnosisResult2 + vt.DiagnosisResult3;
                     }
                 }
-                patforre.Add(pr);
+                dataset.Add(rd);
             }
-            return patforre;
+            return dataset;
         }
     }
 }

@@ -153,12 +153,13 @@ input[type="submit"]
 {
      height: 37px;
 	float: left;
-	margin-left:70px;
+	margin-left:60px;
 	padding:0;
 	width :138px;
     background: url(images/normal-button.png) no-repeat ;
     text-align:center;
     border:0;
+    font-size:18px;
     font-family:"Microsoft YaHei";
 }
 input[type="submit"]:hover
@@ -587,14 +588,15 @@ display: none;
      text-indent:40px;
      font-family: "Microsoft YaHei";     
       }  
-      /*历史建议*/  
-      #History
-   { width:615px;
+/*历史建议*/  
+#History
+{
+     width:615px;
      height:300px;
      margin-left:40px; 
      overflow-x:hidden;
      overflow-y:no-display;
-      }
+   }
      
     .listPage li span{ font-weight:bold;}
     .listPage li p
@@ -610,3 +612,5 @@ display: none;
         border-bottom: 2px solid #EEE;
         padding-bottom: 15px;
      }
+     
+  #diarygraph{float: right;margin-top: -57px;}
