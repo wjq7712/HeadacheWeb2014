@@ -34,7 +34,11 @@ namespace HeadacheCDSSWeb.Models
                     rd.Date = vt.VisitDate.ToShortDateString().ToString();
                     if (vt.DiagnosisResult1 != null || vt.DiagnosisResult2 != null || vt.DiagnosisResult3 != null)
                     {
-                        rd.HeadacheStyle = vt.DiagnosisResult1 + vt.DiagnosisResult2 + vt.DiagnosisResult3;
+                        if(vt.DiagnosisResult1.Contains("慢性每日头痛")){
+                        var style = vt.DiagnosisResult1.Split(new Char[] { ':'});
+                        rd.HeadacheStyle = style[1]; 
+                            }else{
+                        rd.HeadacheStyle = vt.DiagnosisResult1 + vt.DiagnosisResult2 + vt.DiagnosisResult3;}
                     }
                 }
                 dataset.Add(rd);

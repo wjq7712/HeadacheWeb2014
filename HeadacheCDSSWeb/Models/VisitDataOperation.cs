@@ -70,7 +70,7 @@ namespace HeadacheCDSSWeb.Models
                             bool flag = false;
                             foreach (VisitRecord vr in SelectedPats[i].VisitRecord)
                             {
-                                if (vr.DiagnosisResult1 == Condition[3] || vr.DiagnosisResult2 == Condition[3] || vr.DiagnosisResult3 == Condition[3])
+                                if (vr.DiagnosisResult1.Contains(Condition[3]) || vr.DiagnosisResult2.Contains(Condition[3]) || vr.DiagnosisResult3.Contains(Condition[3]))
                                 {
                                     flag = true;
                                     break;
@@ -283,6 +283,10 @@ namespace HeadacheCDSSWeb.Models
                     {
                         context.MitigatingFactorsSet.Remove(r.PrimaryHeadachaOverView.MitigatingFactors.First());
                     }
+                    while (r.PrimaryHeadachaOverView.PremonitorySymptom.Count != 0)
+                    {
+                        context.PremonitorySymptom集.Remove(r.PrimaryHeadachaOverView.PremonitorySymptom.First());
+                    }
                     context.PrimaryHeadacheOverViewSet.Remove(r.PrimaryHeadachaOverView);
                 }
 
@@ -322,10 +326,16 @@ namespace HeadacheCDSSWeb.Models
                 context.SaveChanges();
                 return true;
             }
-            catch (System.Exception e)
+            catch (DbEntityValidationException dbEx)
             {
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        Trace.TraceInformation("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
+                    }
+                }
                 return false;
-
             }
         }
         public ReportData ViewDetail(string PatID, string RecordID)

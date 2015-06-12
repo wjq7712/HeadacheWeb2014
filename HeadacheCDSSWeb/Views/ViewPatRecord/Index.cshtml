@@ -1,4 +1,4 @@
-﻿@{
+﻿ @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/RecordViewLayout.cshtml";
 }
@@ -98,14 +98,14 @@
                   </div>
                   <div id="seperateline"><a>--</a></div>
            <div id="datetimepicker2" class="input-append">
-                    <input data-format="yyyy-MM-dd" type="text" name="date" id="d2"/>
+                    <input data-format="yyyy-MM-dd" type="text" name="date" id="d2" />
                     <span class="add-on" id="add">
                       <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                       </i>
                     </span>
                   </div>              
            </div> 
-           <input type="submit" id="diarygraph" value="确定"/>        
+         <!--  <input type="submit" id="diarygraph" value="确定"/>    -->    
            <div id="line">
             <div id="variable1">
             <ul>
@@ -150,23 +150,23 @@
                  <input type="radio" name="query2" value ="缓解因素"/>
                  </li>
              </ul>
-
          </div>
          <div id="piegraph"></div>
          </div>
      </div>
+
      <div id="suggestionView">
-     <p class="noticeTitle">历史建议：</p>
-     <div id="History">    
-     <div id="ListOfAdvice"></div>    
-     </div>
+         <p class="noticeTitle">历史建议：</p>
+         <div id="History">    
+             <div id="ListOfAdvice"></div>    
+         </div>
  
-     <div class="adviceBox">
-     <p class="noticeTitle">给患者的建议</p>
-     <div class="edit"><textarea id="editAdvice"></textarea></div> 
-     <input id="sendAdvice" class="button" type="submit" value="发送" />
-     <input id="giveUp" class="button"  value="取消" />
-     </div> 
+         <div class="adviceBox">
+            <p class="noticeTitle">给患者的建议</p>
+             <div class="edit"><textarea id="editAdvice"></textarea></div> 
+            <input id="sendAdvice" class="button" type="submit" value="发送" />
+            <input id="giveUp" class="button"  value="取消" />
+         </div> 
     </div>
 </div>
         <div id="@ViewBag.patId" class="PID" style="display:none;"></div>
@@ -378,6 +378,8 @@
                         data: { PatID: Pid },
                         success: function (data) {
                             $("#ListOfAdvice").html(data);
+                            ele=document.getElementById("History");
+                            ele.scrollTop=ele.scrollHeight;
                         }
                     })
                 }
@@ -418,7 +420,17 @@
 
 
         $("#diarygraph").live("click", function () {//日期选择--确定
-            debugger;
+        });
+        $("input:radio").click(function(){
+            drawing();
+        })
+        $("#d1").change(function(){
+        drawing();
+        });
+        $("#d2").change(function(){
+        drawing();
+        });
+            function drawing(){
             var StartDate = $("#d1").val();
             var EndDate = $("#d2").val();
             var Pid = $(".PID").attr("id");
@@ -558,7 +570,7 @@
                     alert("处理失败!");
                 }
             }); //ajax
-        })//click
+            }
 
 
         $("#delete").click(function () {
@@ -605,10 +617,12 @@
                         $.ajax({
                             type: "POST",
                             url: '@Url.Action("HistoryAdvice", "ViewPatRecord")',
-                            data: { PatID: PatID },
+                            data: { PatID: pid },
                             success: function (data) {
                                 $("#ListOfAdvice").html(data);
                                 $("#editAdvice").val("");
+                                ele=document.getElementById("History");
+                                ele.scrollTop=ele.scrollHeight;
                                 alert("发送成功");
                             }
                         })

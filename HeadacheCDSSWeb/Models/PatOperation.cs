@@ -45,15 +45,16 @@ namespace HeadacheCDSSWeb.Models
                 PatBasicInfor ptfor = patient.First();
                 VisitDataOperation visitop = new VisitDataOperation();
                 //删除viewrecord
+
                 if (ptfor.VisitRecord.Count != 0)
                 {
-                    var vr = from v in context.VisitRecordSet.ToList()
-                             where (v.PatBasicInforId == PatID)
-                             select v;
+                    var vr = from v in context.VisitRecordSet.ToList() where (v.PatBasicInforId == PatID)select v;
                     foreach (var r in vr)
                     {
-                        //string RecordID = R.Id.ToString();
-                        //visitop.DeleteRecord(PatID, RecordID);
+                        //不能调用 VisitDataOperation的删除就诊记录方法，因为两次savechange 操作会让删除病人时报“存储区更新、插入或删除语句影响到了意外的行数(0)。实体在加载后可能被修改或删除。刷新 ObjectStateManager 项。”错误
+                         /* var recordId = r.Id.ToString();
+                        visitop.DeleteRecord(PatID, recordId);
+                        */
                         if (r.PrimaryHeadachaOverView != null)
                         {
                             while (r.PrimaryHeadachaOverView.HeadachePlace.Count != 0)
@@ -75,6 +76,10 @@ namespace HeadacheCDSSWeb.Models
                             while (r.PrimaryHeadachaOverView.MitigatingFactors.Count != 0)
                             {
                                 context.MitigatingFactorsSet.Remove(r.PrimaryHeadachaOverView.MitigatingFactors.First());
+                            }
+                            while (r.PrimaryHeadachaOverView.PremonitorySymptom.Count != 0)
+                            {
+                                context.PremonitorySymptom集.Remove(r.PrimaryHeadachaOverView.PremonitorySymptom.First());
                             }
                             context.PrimaryHeadacheOverViewSet.Remove(r.PrimaryHeadachaOverView);
                         }
@@ -113,7 +118,9 @@ namespace HeadacheCDSSWeb.Models
                         // visitrecord 内容删除
                         context.VisitRecordSet.Remove(r);
                     }
+                    
                 }
+                
                 //头痛日志
                 while (ptfor.HeadacheDiary.Count() != 0)
                 {
@@ -121,7 +128,6 @@ namespace HeadacheCDSSWeb.Models
                 }
                 //删除患有头痛家族成员
                 
-
                 while (ptfor.HeadacheFamilyMember.Count != 0)
                 {
                     context.HeadacheFamilyMemberSet.Remove(ptfor.HeadacheFamilyMember.First());
@@ -143,14 +149,25 @@ namespace HeadacheCDSSWeb.Models
                 {
                     context.PreviousExamSet.Remove(ptfor.PreviousExam.First());
                 }
+                //医生推送建议表
+                while (ptfor.DocSuggestionSet.Count != 0) {
+                    context.DocSuggestionSet.Remove(ptfor.DocSuggestionSet.First());
+                }
                 context.PatBasicInforSet.Remove(ptfor);
                 //context.Entry(ptfor).State = System.Data.EntityState.Deleted;
                 context.SaveChanges();
                 
                 return true;
             }
-            catch (System.Exception e)
+            catch (DbEntityValidationException dbEx)
             {
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        Trace.TraceInformation("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
+                    }
+                }
                 return false;
             }
         }

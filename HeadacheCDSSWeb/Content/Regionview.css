@@ -140,16 +140,6 @@ select
     padding-top:2px;
     display:block;
 }
-#content li span
-{
- width: 90px;
-float: left;
-text-align: right;
-padding-right: 15px;
-padding-top: 7px;
-font-size: 18px;
-
-}
 #content li p
 {
 color:Red;
@@ -363,8 +353,23 @@ input[type="submit"]:active
     margin-top:10px;
     }
 #patientTable tbody tr {height:50px;}
-#patientTable tbody td { text-align:center;}
+#patientTable tbody td,th { text-align:center; font-size:15px;}
 #patientTable_filter{}
 .div.dataTables_wrapper {
     background-color: #719ba7;
 }
+#content li span.itemname{
+  width: 90px;
+  float: left;
+  text-align: right;
+  padding-right: 15px;
+  padding-top: 7px;
+  font-size: 18px
+}
+#content li span{ width:20px}
+#add
+{
+   height:20px;
+    border:2px solid #98C2E2;
+    }
+    #date{width:118px}

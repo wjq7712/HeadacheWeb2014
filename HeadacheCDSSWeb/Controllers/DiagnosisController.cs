@@ -19,6 +19,8 @@ namespace HeadacheCDSSWeb.Controllers
      
         public ActionResult Index(string ID)
         {
+            string userName = HttpContext.Request.Cookies["username"].Value.ToString();
+            this.ViewBag.UserName = userName;
             this.TempData["PatID"] = ID;
             ReportData RData = vr.ViewDetail(ID, "");
             System.Web.Script.Serialization.JavaScriptSerializer oSerializer = new System.Web.Script.Serialization.JavaScriptSerializer();
@@ -29,6 +31,8 @@ namespace HeadacheCDSSWeb.Controllers
         }
         public ActionResult ContinueVisit(string identity)
         {
+            string userName = HttpContext.Request.Cookies["username"].Value.ToString();
+            this.ViewBag.UserName = userName;
             string[] IDs = identity.Split(new Char[] { '%','?' });
             this.TempData["PatID"] = IDs[0];
             this.TempData["ContinueVisitID"] = IDs[1];
@@ -43,9 +47,11 @@ namespace HeadacheCDSSWeb.Controllers
         }
         [HttpPost]
         public JsonResult Save()
-        {            
+        {
+            string userName = HttpContext.Request.Cookies["username"].Value.ToString();
+            this.ViewBag.UserName = userName;         
             string jsonStr = Request.Params["postjson"];
-             string VisitID = Request.Params["VisitId"];
+            string VisitID = Request.Params["VisitId"];
             string PatID = this.TempData["PatID"].ToString();
             bool res;
             try

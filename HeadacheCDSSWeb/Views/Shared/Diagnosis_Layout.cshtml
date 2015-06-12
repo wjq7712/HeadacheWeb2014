@@ -51,8 +51,9 @@
         </section>
                 </div>
             </div>
-            <div id="return" class="btn">
-                  @Html.ActionLink("返回查询", "index","EnterpatInfor")
+            <div id="returnSearch" onclick="returnSearch()" class="btn">
+                  <a id="back">返回查询</a>
+                  <!--@Html.ActionLink("返回查询", "index","EnterpatInfor")-->
              </div>
             <div class="button">
                 <div id="btn1" class="btn">
@@ -69,24 +70,29 @@
 </body>
   
 <script type="text/javascript">
-//这段代码没用啊，导致界面一直进不去，一直在controller里循环
-//    function reurl() {
-
-//        url = location.href; //把当前页面的地址赋给变量 url
-
-//        var times = url.split("?"); //分切变量 url 分隔符号为 "?"
-
-//        if (times[1] != 1) { //如果?后的值不等于1表示没有刷新
-
-//            url += "?1"; //把变量 url 的值加入 ?1
-
-//            self.location.replace(url); //刷新页面
-
-//        }
-//    }
-
-//    onload = reurl
-
+//返回  查询
+    function returnSearch() {
+        var userName = "@ViewBag.UserName";
+        $.ajax({
+            url: '@Url.Action("returnSearch", "ViewPatRecord")',
+            data: { userName: userName },
+            type: "POST",
+            traditional: true,
+            success: function (data) {
+                if (data.OK) {
+                    if (data.Message == "region") {
+                        var t = setTimeout("  window.location.href = '@Url.Action("Index", "Region")'", 30);
+                    } 
+                    else { 
+                        var t = setTimeout("  window.location.href = '@Url.Action("Index", "EnterPatInfor")'", 30);
+                     }
+                } else {
+                        alert("Error '" + data.Message);
+                }
+            }
+        });
+        
+    }
 </script>  
 
 </html>

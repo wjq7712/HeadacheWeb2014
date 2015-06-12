@@ -231,13 +231,31 @@ $("#submenu").hide();
                         success: function (data) {
                             if (data.OK) {
                              var OCX = document.getElementById('Reporter2');
-                              $(".demo").html("本次问诊信息保存成功！稍候将自动退出");                             
-                                var t = setTimeout("  window.location.href = '@Url.Action("Index", "EnterPatInfor")'", 3000);
+                              $(".demo").html("本次问诊信息保存成功！稍候将自动退出");     
+                               var userName = "@ViewBag.UserName";
+                                $.ajax({
+                                    url: '@Url.Action("returnSearch", "ViewPatRecord")',
+                                    data: { userName: userName },
+                                    type: "POST",
+                                    traditional: true,
+                                    success: function (data) {
+                                        if (data.OK) {
+                                            if (data.Message == "region") {
+                                                var t = setTimeout("  window.location.href = '@Url.Action("Index", "Region")'", 300);
+                                            } 
+                                            else { 
+                                                var t = setTimeout("  window.location.href = '@Url.Action("Index", "EnterPatInfor")'", 300);
+                                                }
+                                        } else {
+                                                alert("Error '" + data.Message);
+                                        }
+                                    }
+                                });                        
                             }
                             else {
                            // debugger;
                             $(".demo").html("抱歉，信息保存出现异常");
-                               var t = setTimeout("  window.location.href = '@Url.Action("Index", "EnterPatInfor")'", 2000);
+                               var t = setTimeout("  window.location.href = '@Url.Action("Index", "EnterPatInfor")'", 300);
                      
                             }
 

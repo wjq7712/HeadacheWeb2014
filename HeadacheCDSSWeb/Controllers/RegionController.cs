@@ -45,61 +45,19 @@ namespace HeadacheCDSSWeb.Controllers
                 {
                     Unormaldoc.Add(doc);
                 }
-
             }
             
             VisitDataOperation visitop = new VisitDataOperation();
             List<PatBasicInfor> Patlist = new List<PatBasicInfor>();
             List<tableData> patlistforre = new List<tableData>();
             RegionViewData visitdata = new RegionViewData();
-            var diaResult = "";//database mapping
-            if (diagnosis!= "")
-            {  //没整理完整，测试添加
-                if (diagnosis == "很可能的偏头痛")
-                { diaResult = "偏头痛:很可能的偏头痛"; }
-                else if (diagnosis == "先兆性偏头痛")
-                { diaResult = "偏头痛:先兆性偏头痛"; }
-                else if (diagnosis == "无先兆性偏头痛")
-                { diaResult = "偏头痛:无先兆性偏头痛"; }
-                else if (diagnosis == "慢性偏头痛")
-                { diaResult = "偏头痛:慢性偏头痛"; }
-
-                else if (diagnosis == "很可能的紧张型头痛")
-                { diaResult = "紧张型头痛:很可能的紧张型头痛"; }
-                else if (diagnosis == "慢性紧张型头痛")
-                { diaResult = "紧张型头痛:慢性紧张型头痛"; }
-                else if (diagnosis == "偶尔发作性紧张型头痛")
-                { diaResult = "紧张型头痛:偶尔发作性紧张型头痛"; }
-                else if (diagnosis == "频繁阵发性紧张型头痛")
-                { diaResult = "紧张型头痛:频繁阵发性紧张型头痛"; }
-
-                else if (diagnosis == "丛集性头痛和其他三叉自主神经痛")
-                { diaResult = "丛集性头痛和其他原发性三叉神经痛:丛集性头痛"; }
-                else if (diagnosis == "很可能的丛集性头痛")
-                { diaResult = "丛集性头痛和其他原发性三叉神经痛:很可能的丛集性头痛"; }
-                else if (diagnosis == "阵发性偏侧头痛")
-                { diaResult = "丛集性头痛和其他原发性三叉神经痛:阵发性偏侧头痛"; }
-                else if (diagnosis == "很可能的阵发性偏侧头痛")
-                { diaResult = "丛集性头痛和其他原发性三叉神经痛:很可能的阵发性偏侧头痛"; }
-                else if (diagnosis == "SUNCT")
-                { diaResult = "丛集性头痛和其他原发性三叉神经痛:SUNCT"; }
-                else if (diagnosis == "很可能的SUNCT")
-                { diaResult = "丛集性头痛和其他原发性三叉神经痛:很可能的SUNCT"; }
-
-                else if (diagnosis == "新发每日持续性头痛")
-                { diaResult = "慢性每日头痛:新发每日持续性头痛"; }
-                else if (diagnosis == "药物滥用引起的头痛")
-                { diaResult = "慢性每日头痛:药物滥用引起的头痛"; }
-
-                else { diaResult = diagnosis; }
-            }
-
+           
             var allpats = from s in DataContainer.PatBasicInforSet.ToList() select s;
             List<string> query = new List<string>();
             query.Add(name);
             query.Add(sex);
             query.Add(date);
-            query.Add(diaResult);
+            query.Add(diagnosis);
             var docnum = SelectedDocs.Count;
             int i,j;
             for (i = 0; i < docnum; i++)

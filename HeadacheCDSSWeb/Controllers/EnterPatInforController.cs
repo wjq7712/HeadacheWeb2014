@@ -64,53 +64,12 @@ namespace HeadacheCDSSWeb.Controllers
             string patsex = Request["sex"];
             string date = Request["date"];
             string diagnosisresult = Request["diagnosis"];
-            string user = HttpContext.Request.Cookies["username"].Value.ToString();
-            var diaResult="";
-            if (diagnosisresult!= "")
-            {  //没整理完整，测试添加
-                if (diagnosisresult == "很可能的偏头痛")
-                { diaResult = "偏头痛:很可能的偏头痛"; }
-                else if (diagnosisresult == "先兆性偏头痛")
-                { diaResult = "偏头痛:先兆性偏头痛"; }
-                else if (diagnosisresult == "无先兆性偏头痛")
-                { diaResult = "偏头痛:无先兆性偏头痛"; }
-                else if (diagnosisresult == "慢性偏头痛")
-                { diaResult = "偏头痛:慢性偏头痛"; }
-
-                else if (diagnosisresult == "很可能的紧张型头痛")
-                { diaResult = "紧张型头痛:很可能的紧张型头痛"; }
-                else if (diagnosisresult == "慢性紧张型头痛")
-                { diaResult = "紧张型头痛:慢性紧张型头痛"; }
-                else if (diagnosisresult == "偶尔发作性紧张型头痛")
-                { diaResult = "紧张型头痛:偶尔发作性紧张型头痛"; }
-                else if (diagnosisresult == "频繁阵发性紧张型头痛")
-                { diaResult = "紧张型头痛:频繁阵发性紧张型头痛"; }
-
-                else if (diagnosisresult == "丛集性头痛")
-                { diaResult = "丛集性头痛和其他原发性三叉神经痛:丛集性头痛"; }
-                else if (diagnosisresult == "很可能的丛集性头痛")
-                { diaResult = "丛集性头痛和其他原发性三叉神经痛:很可能的丛集性头痛"; }
-                else if (diagnosisresult == "阵发性偏侧头痛")
-                { diaResult = "丛集性头痛和其他原发性三叉神经痛:阵发性偏侧头痛"; }
-                else if (diagnosisresult == "很可能的阵发性偏侧头痛")
-                { diaResult = "丛集性头痛和其他原发性三叉神经痛:很可能的阵发性偏侧头痛"; }
-                else if (diagnosisresult == "SUNCT")
-                { diaResult = "丛集性头痛和其他原发性三叉神经痛:SUNCT"; }
-                else if (diagnosisresult == "很可能的SUNCT")
-                { diaResult = "丛集性头痛和其他原发性三叉神经痛:很可能的SUNCT"; }
-
-                else if (diagnosisresult == "新发每日持续性头痛")
-                { diaResult = "慢性每日头痛:新发每日持续性头痛"; }
-                else if (diagnosisresult == "药物滥用引起的头痛")
-                { diaResult = "慢性每日头痛:药物滥用引起的头痛"; }
-
-                else { diaResult = diagnosisresult; }
-            }
+            string user = HttpContext.Request.Cookies["username"].Value.ToString(); 
             List<string> query = new List<string>();
             query.Add(patname);
             query.Add(patsex);
             query.Add(date);
-            query.Add(diaResult);
+            query.Add(diagnosisresult);
             query.Add(user);
             VisitDataOperation visitop = new VisitDataOperation();
             List<PatBasicInfor> pts = visitop.GetPatforDoc(query);

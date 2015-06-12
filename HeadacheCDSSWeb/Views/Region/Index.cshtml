@@ -15,19 +15,30 @@
 @{
     var diagnosis = new SelectList(new[]
         {  new SelectListItem {Text = "", Value = ""},
-            new SelectListItem {Text = "很可能的偏头痛", Value = "很可能的偏头痛"},
-            new SelectListItem {Text = "无先兆性偏头痛", Value = "无先兆性偏头痛"},
-             new SelectListItem {Text = "先兆性偏头痛", Value = "先兆性偏头痛"},
-             
-             new SelectListItem {Text = "偶尔发作性紧张型头痛", Value = "偶尔发作性紧张型头痛"},
-            new SelectListItem {Text = "频繁阵发性紧张型头痛", Value = "频繁阵发性紧张型头痛"},
-             new SelectListItem {Text = "丛集性头痛和其他三叉自主神经痛", Value = "丛集性头痛和其他三叉自主神经痛"},
-             new SelectListItem {Text = "药物滥用引起的头痛", Value = "药物滥用引起的头痛"},
-            new SelectListItem {Text = "慢性偏头痛", Value = "慢性偏头痛"},
-             new SelectListItem {Text = "慢性紧张型头痛", Value = "慢性紧张型头痛"},
-            new SelectListItem {Text = "新发每日持续性头痛", Value = "新发每日持续性头痛"},
-             new SelectListItem {Text = "其他慢性每日头痛", Value = "其他慢性每日头痛"},
-              new SelectListItem {Text = "其他原发性头痛", Value = "其他原发性头痛"},
+           new SelectListItem {Text = "偏头痛", Value = "偏头痛"},
+           new SelectListItem {Text = "偏头痛:很可能的偏头痛", Value = "很可能的偏头痛"},
+           new SelectListItem {Text = "偏头痛:无先兆性偏头痛", Value = "无先兆偏头痛"},
+           new SelectListItem {Text = "偏头痛:先兆性偏头痛", Value = "先兆性偏头痛"},
+           new SelectListItem {Text = "偏头痛:偏头痛持续状态", Value = "偏头痛持续状态"},
+         
+           new SelectListItem {Text = "紧张型头痛", Value = "紧张型头痛"},
+           new SelectListItem {Text = "紧张型头痛:很可能的紧张型头痛", Value = "很可能的紧张型头痛"}, 
+           new SelectListItem {Text = "紧张型头痛:偶尔发作性紧张型头痛", Value = "偶尔发作性紧张型头痛"},
+           new SelectListItem {Text = "紧张型头痛:频繁阵发性紧张型头痛", Value = "频繁阵发性紧张型头痛"},
+           
+           new SelectListItem {Text = "丛集性头痛和其他原发性三叉神经痛", Value = "丛集性头痛和其他原发性三叉神经痛"}, 
+           new SelectListItem {Text = "丛集性头痛和其他原发性三叉神经痛:丛集性头痛", Value = "丛集性头痛"},
+           new SelectListItem {Text = "丛集性头痛和其他原发性三叉神经痛:很可能的丛集性头痛", Value = "很可能的丛集性头痛"},
+           new SelectListItem {Text = "丛集性头痛和其他原发性三叉神经痛:很可能的阵发性偏侧头痛", Value = "很可能的阵发性偏侧头痛"},
+           new SelectListItem {Text = "丛集性头痛和其他原发性三叉神经痛:SUNCT", Value = "SUNCT"},
+           new SelectListItem {Text = "丛集性头痛和其他原发性三叉神经痛:很可能的SUNCT", Value = "很可能的SUNCT"},           
+                   
+           new SelectListItem {Text = "慢性每日头痛:慢性偏头痛", Value = "慢性偏头痛"},
+           new SelectListItem {Text = "慢性每日头痛:药物滥用引起的头痛", Value = "药物滥用引起的头痛"},
+           new SelectListItem {Text = "慢性每日头痛:慢性紧张型头痛", Value = "慢性紧张型头痛"},   
+           new SelectListItem {Text = "慢性每日头痛:新发每日持续性头痛", Value = "新发每日持续性头痛"},
+           
+            new SelectListItem {Text = "颅神经痛和中枢源性面痛", Value = "颅神经痛和中枢源性面痛"},
         }, "Text", "Value");
 }
 
@@ -37,15 +48,22 @@
                 查询病人</h2>
             <div id="queryinfo">
             <ul>
-                <li style=" float:left"><span>姓名</span>
+                <li style=" float:left"><span class="itemname">姓名</span>
                     @Html.TextBox("name")
                 </li>
-                <li><span>性别</span>
+                <li><span class="itemname">性别</span>
                     @Html.DropDownList("sex", @items)
                 </li>
-                <li style=" float:left"><span>就诊日期</span><input type="text" name="date" id="date" />
+                <li style=" float:left"><span class="itemname">就诊日期</span>
+                  <div id="datetimepicker4" class="input-append">
+                    <input data-format="yyyy-MM-dd" type="text" name="date" id="date"/>
+                    <span class="add-on" id="add">
+                      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                      </i>
+                    </span>
+                  </div>
                 </li>
-                <li><span>诊断结论</span> @Html.DropDownList("diagnosis", @diagnosis)
+                <li><span class="itemname">诊断结论</span> @Html.DropDownList("diagnosis", @diagnosis)
                 </li>
             </ul></div>
            <div id="btn"><p><input type="submit" value="查询病人" onclick="search()"/></p></div>    
@@ -54,19 +72,13 @@
     <div id="sidebar">
     <table id="patientTable" class="display" cellspacing="0" width="100%">
     </table>
-     <div class="pagination">
-        <a href="#" class="first" data-action="first">&laquo;</a> 
-        <a href="#" class="previous" data-action="previous">&lsaquo;</a>
-        <input type="text" readonly="readonly" data-max-page="40" />
-        <a href="#" class="next" data-action="next">&rsaquo;</a>
-        <a href="#" class="last" data-action="last">&raquo;</a>
-    </div>
 </div>
 
 <script type="text/javascript">
     $(function () {
-        $(".pagination").hide();//隐藏
-        $("#date").Zebra_DatePicker();
+        $('#datetimepicker4').datetimepicker({
+            pickTime: false
+        });
     });
 
     function search() {
@@ -103,29 +115,6 @@
                             { "title": "诊断日期", "data": "Date" },{"title": "详细信息", "data": "PatBasicInforId", "render": function (data, type, full) { return "<a href='/ViewPatRecord/Index/" + data + "'>查看</a>" } }]
             })
         });
-    }
-
-    function ListPage(e) {
-        var js = e.get_response().get_object();
-        alert(data);
-       $(".page").find("tr").hide(); //查询到的病人姓名分页显示
-       $(".pagination").show();
-        $("tr:lt(6)").addClass("current").show();
-        var num = Math.ceil($("tr.trow").length /5);
-        // 分页插件jqPagination 
-        $('.pagination').jqPagination({
-            max_page: num,
-            paged: function (page) {
-                $(".current").hide();
-                var start = (page - 1) * 5;
-                for (var i = 0; i < 5; i++) {
-                    $("tr.thead").addClass("current").show();   
-                    $("tr.trow:eq(" + start + ")").addClass("current").show();
-                    start = start + 1;
-                }
-                // do something with the page variable
-            }
-        })
     }
 </script>
 

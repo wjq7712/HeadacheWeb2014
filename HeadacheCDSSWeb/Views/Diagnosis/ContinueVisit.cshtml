@@ -41,7 +41,7 @@ $(function () {
         var patientId= @Html.Raw(Json.Encode(ViewData["id"]));
          var visitId= @Html.Raw(Json.Encode(ViewData["visitId"]));
         var OCX = document.getElementById('Reporter2');
-     // debugger;
+      debugger;
         SetDataIntoOCX(OCX, obj);
         SetHeadachePlace(obj);
 
@@ -214,7 +214,25 @@ $(function () {
                             if (data.OK) {
                             var OCX = document.getElementById('Reporter2');
                             $(".demo").html("本次问诊信息保存成功！稍候将自动退出"); 
-                            var t = setTimeout("  window.location.href = '@Url.Action("Index", "EnterPatInfor")'", 3000);
+                            var userName = "@ViewBag.UserName";
+                                $.ajax({
+                                    url: '@Url.Action("returnSearch", "ViewPatRecord")',
+                                    data: { userName: userName },
+                                    type: "POST",
+                                    traditional: true,
+                                    success: function (data) {
+                                        if (data.OK) {
+                                            if (data.Message == "region") {
+                                                var t = setTimeout("  window.location.href = '@Url.Action("Index", "Region")'", 30);
+                                            } 
+                                            else { 
+                                                var t = setTimeout("  window.location.href = '@Url.Action("Index", "EnterPatInfor")'", 30);
+                                             }
+                                        } else {
+                                                alert("Error '" + data.Message);
+                                        }
+                                    }
+                                });
                             }
                             else {
                             $(".demo").html("抱歉，信息保存出现异常");
@@ -1365,7 +1383,7 @@ $(function () {
      function SetHeadachePlace(obj)
     { 
       var lheadacheplaceCount = obj.headacheplace.length;
-      //debugger;
+      debugger;
        if(lheadacheplaceCount>0){
          var place=obj.headacheplace[lheadacheplaceCount-1].charAt(0);
                 switch (place)
