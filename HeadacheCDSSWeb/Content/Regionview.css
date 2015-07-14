@@ -81,13 +81,13 @@ p
 	padding:0 20px 0 20px;
 	color :#000;	
 }
-#queryinfo
+#queryinfo,#newUser
 {
   float: left;
-  width : 560px;  
+  width : 640px;  
   padding:0 20px 0 89px;
   color  :#000;	
-  margin-top: -20px;
+  margin-top: 10px;
     }
 #but
 {
@@ -113,7 +113,7 @@ input
     margin: 0 0 0 2px;
     padding: 0 0 0 3px;
     width:150px;
-   height:28px;
+   height:32px;
    border: 2px solid #98C2E2;
    background-color:#D3E7F2;
 }
@@ -134,7 +134,7 @@ select
 }
 #content li
 {
-    height: 26px;
+    height: 40px;
     text-decoration:none;
     padding-bottom:15px;
     padding-top:2px;
@@ -199,7 +199,32 @@ padding-top:7px;
     cursor:pointer;
 }
 
-
+#searchPat
+{ 
+    height: 37px;
+	float: left;
+	margin-left:28px;
+	margin-top:22px;
+	padding:0;
+	width :138px;
+    background: url(images/normal-button.png) no-repeat ;
+    text-align:center;
+    border:0;
+    font-family:"Microsoft YaHei"; 
+    }
+#addUser
+{
+    height: 37px;
+	float: left;
+	margin-left:-22px;
+	margin-top:24px;
+	padding:0;
+	width :138px;
+    background: url(images/normal-button.png) no-repeat ;
+    text-align:center;
+    border:0;
+    font-family:"Microsoft YaHei"; 
+    }
 input[type="submit"]
 {
      height: 37px;
@@ -229,10 +254,10 @@ input[type="submit"]:active
 
 /* Sidebar */
 
-#sidebar {
+#sidebar,#existUsers {
 	float: left;
-	width: 960px;
-	height: 615px;
+	width: 940px;
+	height: 630px;
 }
 
 #List
@@ -349,7 +374,7 @@ input[type="submit"]:active
 #patientTable_wrapper
 {
     width:94%;
-    margin-left:3%;
+    margin-left:2%;
     margin-top:10px;
     }
 #patientTable tbody tr {height:50px;}
@@ -358,18 +383,31 @@ input[type="submit"]:active
 .div.dataTables_wrapper {
     background-color: #719ba7;
 }
+#usersTable_wrapper
+{
+    width:83%;
+    margin-left:8%;
+    margin-top:10px;
+    }
+#usersTable tbody tr {height:50px;}
+#usersTable tbody td,th { text-align:center; font-size:15px;}
+#usersTable_filter{}
+.div.dataTables_wrapper {
+    background-color: #719ba7;
+}
+
 #content li span.itemname{
   width: 90px;
   float: left;
   text-align: right;
-  padding-right: 15px;
+  padding-right: 10px;
   padding-top: 7px;
   font-size: 18px
 }
-#content li span{ width:20px}
+#content li span{ width:32px}
 #add
 {
-   height:20px;
+   height:32px;
     border:2px solid #98C2E2;
     }
-    #date{width:118px}
+#date{width:119px}

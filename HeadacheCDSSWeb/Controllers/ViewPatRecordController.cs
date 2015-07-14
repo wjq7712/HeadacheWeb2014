@@ -16,12 +16,13 @@ namespace HeadacheCDSSWeb.Controllers
         HeadacheModelContainer context = new HeadacheModelContainer();
         VisitDataOperation visitop = new VisitDataOperation();
         [OutputCache(Location=System.Web.UI.OutputCacheLocation.None)]
-        public ActionResult Index(string ID)
+        public ActionResult Index(string ID, string userType)
         {
             string userName = HttpContext.Request.Cookies["username"].Value.ToString();
             this.ViewBag.UserName = userName;
             this.TempData["PatID"] = ID;
             this.ViewBag.patId = ID;
+            this.ViewBag.userType = userType;
             List<VisitRecord> Lvisit = visitop.GetVistRecord(ID);
             if (Lvisit.Count != 0)
             {

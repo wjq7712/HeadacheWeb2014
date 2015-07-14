@@ -15,25 +15,33 @@ namespace HeadacheCDSSWeb.Controllers
             return View();
         }
         [HttpPost]       
-        public ActionResult Index(DoctorAccount dacount,RegionalCenterAccount reaccount)
+        public ActionResult Index(DoctorAccount dacount,RegionalCenterAccount reaccount,NationalCenterAccount naccount)
         {
             UserOperation UOpertation = new UserOperation();
             List<DoctorAccount> SelectedDocs = new List<DoctorAccount>();
-            SelectedDocs = UOpertation.GetSelectedDocs(reaccount.UserName, reaccount.PassWord);
-            bool docaccout = UOpertation.ValidateUser(dacount.UserName, dacount.PassWord);
-            if (SelectedDocs != null && SelectedDocs.Count > 0)
-            {
+            List<string> result = new List<string>();
+            result = UOpertation.userType(dacount);
+            var type = result[0];
+            var userID = result[1];
+            if (type!="") {
                 HttpCookie cookie = new HttpCookie("username", reaccount.UserName);
+                HttpCookie cookieID = new HttpCookie("userID", userID);
+                HttpCookie cookieType = new HttpCookie("userType", type);
                 Response.Cookies.Add(cookie);
-                return RedirectToAction("Index", "Region");
-            }else 
-            if (docaccout)
-            {
-                HttpCookie cookie = new HttpCookie("username", dacount.UserName);
-                Response.Cookies.Add(cookie);
-                return RedirectToAction("Index", "EnterPatInfor");
-            }          
-                else
+                Response.Cookies.Add(cookieID);
+                Response.Cookies.Add(cookieType);
+                if (type == "administrator"){
+                    return RedirectToAction("Index", "Nation");
+                }
+                if (type == "hospital"){
+                    return RedirectToAction("Index", "Region");
+                }
+                if (type == "doctor")
+                {
+                    return RedirectToAction("Index", "EnterPatInfor");
+                }
+                else { return View(); }
+            }else
                 {
                     ViewBag.message = "用户名或密码错误";
                     return View();

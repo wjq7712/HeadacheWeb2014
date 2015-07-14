@@ -55,7 +55,8 @@ namespace HeadacheCDSSWeb.Controllers
         }
         public ActionResult ViewRecord(string ID)
         {
-            return RedirectToAction("Index", "ViewPatRecord", new { ID = ID });
+            var userType = HttpContext.Request.Cookies["userType"].Value.ToString();
+            return RedirectToAction("Index", "ViewPatRecord", new { ID = ID, userType = userType });
         }
         public ActionResult Query()
         {

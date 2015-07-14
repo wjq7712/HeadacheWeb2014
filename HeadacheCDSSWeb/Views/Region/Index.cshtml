@@ -1,4 +1,4 @@
-﻿@model HeadacheCDSSWeb.Models.PatBasicInfor
+﻿@model HeadacheCDSSWeb.Models.register
 
 @{
     ViewBag.Title = "Index";
@@ -42,10 +42,36 @@
         }, "Text", "Value");
 }
 
+
+
 <div id="content" style=" display:inline">
-    <div id="query">
-            <h2 class="title">
-                查询病人</h2>
+  <div class="normal" style="width: 81%;margin-left: 8%;">
+    <ul class="nav nav-tabs" role="tablist"  id="myTab"> 
+        <li role="presentation" style="height:50px"><a href="#query"  aria-controls="query"  role="tab" data-toggle="tab" style="font-size: 18px;">病人查询</a></li>
+        <li role="presentation" class="active" style="height:50px"><a href="#userManagement" role="tab" data-toggle="tab" style="font-size: 18px;">用户管理</a></li>     
+    </ul>
+  </div>
+    <div class="tab-content">
+     <div role="tabpanel" class="tab-pane active" id="userManagement">    
+     <div style="float:left"><h4 style="width: 120px;margin: 30px -100px 20px 79px;">添加新用户:</h4></div> 
+     <div id="newUser">         
+         <ul style="margin-top:-5px">           
+            <li style=" float:left"><span class="itemname">用户类型</span><select id="userRole" style="width: 150px;"><option>医生账号</option></select></li>
+            <li><span class="itemname">用户名</span><input id="userName"/></li>
+            <li style=" float:left"><span class="itemname" >密码</span><input id="passWord"/></li>
+            <li><span class="itemname">医生姓名</span><input id="realName"/></li>
+         </ul>               
+    </div>
+    <div> 
+        <p id="msg"></p>  
+        <input type="submit" id="addUser" value="添加" onclick="addNewAccount()" />          
+    </div>
+    <div id="existUsers">
+        <h4 style="width: 120px;margin: 30px -100px 20px 79px;">已添加的用户</h4>
+        <table id="usersTable" class="display" cellspacing="0" width="100%"> </table>     
+        </div>
+    </div>
+     <div role="tabpanel" class="tab-pane" id="query">
             <div id="queryinfo">
             <ul>
                 <li style=" float:left"><span class="itemname">姓名</span>
@@ -58,7 +84,7 @@
                   <div id="datetimepicker4" class="input-append">
                     <input data-format="yyyy-MM-dd" type="text" name="date" id="date"/>
                     <span class="add-on" id="add">
-                      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                      <i data-time-icon="icon-time" data-date-icon="icon-calendar" style="margin: -1px;">
                       </i>
                     </span>
                   </div>
@@ -66,15 +92,95 @@
                 <li><span class="itemname">诊断结论</span> @Html.DropDownList("diagnosis", @diagnosis)
                 </li>
             </ul></div>
-           <div id="btn"><p><input type="submit" value="查询病人" onclick="search()"/></p></div>    
+           <div id="btn"><p><input id="searchPat" type="submit" value="查询病人" onclick="search()"/></p></div>   
+           <div id="sidebar">
+            <table id="patientTable" class="display" cellspacing="0" width="100%">
+            </table>
+            </div> 
     </div>
+    </div>
+   <!-- Modal -->
+<div class="modal fade bs-example-modal-sm" id="changeModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">修改账号信息</h4>
+      </div>
+      <div class="modal-body">
+         <div id="uptateUser">         
+         <ul style="margin-top:-5px">           
+            <li style=" float:left"><span class="itemname">用户类型</span><select id="uptateuserRole" style="width: 150px;"><option>医生账号</option></select></li>
+            <li><span class="itemname">用户名</span><input id="updateuserName"/></li>
+            <li style=" float:left"><span class="itemname" >密码</span><input id="updatepassWord"/></li>
+            <li><span class="itemname">医生姓名</span><input id="updaterealName"/></li>
+         </ul>               
+         </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" onclick="saveChange()">保存修改</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <div id="sidebar">
-    <table id="patientTable" class="display" cellspacing="0" width="100%">
-    </table>
+<div class="modal fade bs-example-modal-sm" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+     <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">确认删除下面的账号？</h4>
+      </div>
+     <div class="modal-body"><p id="targetId">警告：如果删除该账户，其录入的病人信息也将全部丢失。</p></div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" onclick="deleteAccount()">确认删除</button>
+    </div>
+    </div>
+  </div>
+</div>
+
 </div>
 
 <script type="text/javascript">
+    $(function () {
+        $('#myTab a:first').tab('show');});
+        $(document).ready(function () {            
+            searchUsers();
+        });
+     function searchUsers() {
+        var userName = '@ViewBag.userName';
+        $.ajax({
+            url: '@Url.Action("ListUsers", "Region")',
+            data: { "userName": userName },
+            dataType: "json",
+            type: "POST"
+        }).done(function (data) {
+            var datasource = data;
+            $("#usersTable").dataTable({
+                "bDestroy": true,
+                "lengthChange": false,
+                "searching": false,
+                "language": {
+                    "lengthMenu": "显示 _MENU_ 条记录每页",
+                    "zeroRecords": "找不到记录 - 抱歉",
+                    "info": "当前页 _PAGE_ of _PAGES_",
+                    "infoFiltered": "(从总共 _MAX_ 条记录中过滤)",
+                    "infoEmpty": "没有记录",
+                    "paginate": { "first": "第一页",
+                        "last": "最后一页",
+                        "next": "后一页",
+                        "previous": "前一页"
+                    },
+                    "search": "表内查找:"
+                },
+                "data": datasource,
+                "columns": [{ "title": "用户名", "data": "userName" }, { "title": "密码", "data": "passWord" }, { "title": "医生姓名", "data": "chiefDoctor" }, { "title": "用户类型", "data": "userRole" },
+                { "title": "修改/删除", "data": "id", "render": function (data, type, full) { return "<button type='button' class='btn btn-primary btn-sm'id="+data+" data-toggle='modal' onclick='changeModal(this)'>修改</button> <button type='button' class='btn btn-primary btn-sm'  data-toggle='modal' onclick='deleteModal("+data+")'>删除</button>"; } }]
+            })
+        });
+    }
     $(function () {
         $('#datetimepicker4').datetimepicker({
             pickTime: false
@@ -82,7 +188,6 @@
     });
 
     function search() {
-
         var name = $("#name").val();
         var sex = $("#sex").val();
         var date = $("#date").val();
@@ -114,6 +219,89 @@
                 "columns": [{ "title": "序号", "data": "ListID", "width": "8%" }, { "title": "姓名", "data": "Name", "width": "10%" }, { "title": "性别", "data": "Sex", "width": "8%" }, { "title": "年龄", "data": "Age", "width": "8%" }, { "title": "头痛类型", "data": "HeadacheStyle" },
                             { "title": "诊断日期", "data": "Date" },{"title": "详细信息", "data": "PatBasicInforId", "render": function (data, type, full) { return "<a href='/ViewPatRecord/Index/" + data + "'>查看</a>" } }]
             })
+        });
+    }
+
+    function addNewAccount(){
+        var userName = $("#userName").val();
+        var userType = "医生账号";
+        var userPassword = $("#passWord").val();
+        var realName = $("#realName").val();
+        $.ajax({
+            url: '@Url.Action("addNewAccount","Region")',
+            data: { "userRole": userType, "userName": userName, "realName": realName, "Password": userPassword },
+            dataType: "json",
+            type: "POST",
+            success: function (data) {
+                if (data.OK) {
+                    $("#userName").val("");
+                    $("#passWord").val("");
+                    $("#realName").val("")
+                    searchUsers();
+                    alert("新账号添加成功");
+                } else {
+                    $("#msg").text(data.Message);
+                }
+            }
+        });
+    }
+
+    function changeModal(obj) {
+        debugger;
+        var targetId = obj.id;
+        $("#targetId").val(targetId);  
+        var tds = $(obj).parent().parent().find('td');
+        $("#updateuserName").val(tds.eq(0).text());
+        $("#updatepassWord").val(tds.eq(1).text());
+        $("#updaterealName").val(tds.eq(2).text());
+        $("#uptateuserRole").get(0).value=tds.eq(3).text();
+        $("#changeModal").modal("show");
+    }
+     function deleteModal(data) {
+        debugger; 
+        $("#targetId").val(data);       
+        $("#deleteModal").modal("show");
+    }
+    function saveChange(){
+        var userId=@ViewBag.userID;
+        var targetId = $("#targetId").val();
+        var Id = parseInt(targetId);
+        var userName = $("#updateuserName").val();
+        var userType = "医生账号";
+        var userPassword = $("#updatepassWord").val();
+        var realName = $("#updaterealName").val();
+        $.ajax({
+            url: '@Url.Action("changeAccount","Region")',
+            data: {"targetId":targetId , "userRole": userType, "userName": userName, "realName": realName, "Password": userPassword},
+            dataType: "json",
+            type: "POST",
+            success: function (data) {
+                if (data.OK) {
+                    searchUsers();
+                    $("#changeModal").modal("hide");
+                    alert("修改成功");
+                } else {
+                    $("#msg").text(data.Message);
+                }
+            }
+        });
+    }
+    function deleteAccount(){
+        var targetId = $("#targetId").val();
+        $.ajax({
+            url: '@Url.Action("deleteAccount","Region")',
+            data: { "targetId": targetId},
+            dataType: "json",
+            type: "POST",
+            success: function (data) {
+                if (data.OK) {
+                    searchUsers();
+                    $("#deleteModal").modal("hide");
+                    alert("删除成功");
+                } else {
+                    $("#msg").text(data.Message);
+                }
+            }
         });
     }
 </script>
