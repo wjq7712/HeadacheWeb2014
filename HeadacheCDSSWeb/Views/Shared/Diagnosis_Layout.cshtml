@@ -72,26 +72,18 @@
 <script type="text/javascript">
 //返回  查询
     function returnSearch() {
-        var userName = "@ViewBag.UserName";
-        $.ajax({
-            url: '@Url.Action("returnSearch", "ViewPatRecord")',
-            data: { userName: userName },
-            type: "POST",
-            traditional: true,
-            success: function (data) {
-                if (data.OK) {
-                    if (data.Message == "region") {
-                        var t = setTimeout("  window.location.href = '@Url.Action("Index", "Region")'", 30);
-                    } 
-                    else { 
-                        var t = setTimeout("  window.location.href = '@Url.Action("Index", "EnterPatInfor")'", 30);
-                     }
-                } else {
-                        alert("Error '" + data.Message);
-                }
-            }
-        });
-        
+        var userType = "@ViewBag.userType";
+        if (userType == "administrator") {
+            var t = setTimeout("  window.location.href = '@Url.Action("Index", "Nation")'", 30);
+        } 
+        else if (userType == "region") {
+            var t = setTimeout("  window.location.href = '@Url.Action("Index", "Region")'", 30);
+        } 
+        else if(userType=="doctor") { 
+            var t = setTimeout("  window.location.href = '@Url.Action("Index", "EnterPatInfor")'", 30);
+        }else{
+            var t = setTimeout("  window.location.href = '@Url.Action("Index", "DAccount")'", 30);
+        }         
     }
 </script>  
 

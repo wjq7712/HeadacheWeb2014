@@ -33,7 +33,7 @@ namespace HeadacheCDSSWeb.Controllers
                 if (type == "administrator"){
                     return RedirectToAction("Index", "Nation");
                 }
-                if (type == "hospital"){
+                if (type == "region"){
                     return RedirectToAction("Index", "Region");
                 }
                 if (type == "doctor")

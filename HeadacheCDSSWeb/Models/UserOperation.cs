@@ -73,7 +73,7 @@ namespace HeadacheCDSSWeb.Models
             }
             if (user2 != null)
             {
-                type = "hospital";
+                type = "region";
                 userID = user2.ID.ToString();
             }
             if (user3 != null)

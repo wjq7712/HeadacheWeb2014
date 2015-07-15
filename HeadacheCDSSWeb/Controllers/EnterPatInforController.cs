@@ -53,10 +53,10 @@ namespace HeadacheCDSSWeb.Controllers
                 return View();
             }
         }
-        public ActionResult ViewRecord(string ID)
+        public ActionResult ViewRecord(string ID, string userType)
         {
-            var userType = HttpContext.Request.Cookies["userType"].Value.ToString();
-            return RedirectToAction("Index", "ViewPatRecord", new { ID = ID, userType = userType });
+            //var userType = HttpContext.Request.Cookies["userType"].Value.ToString();
+            return RedirectToAction("Index", "ViewPatRecord", new { ID = ID});
         }
         public ActionResult Query()
         {

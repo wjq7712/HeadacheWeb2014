@@ -215,7 +215,19 @@ $(function () {
                             var OCX = document.getElementById('Reporter2');
                             $(".demo").html("本次问诊信息保存成功！稍候将自动退出"); 
                             var userName = "@ViewBag.UserName";
-                                $.ajax({
+                             var userType = "@ViewBag.userType";
+                                if (userType == "administrator") {
+                                    var t = setTimeout("  window.location.href = '@Url.Action("Index", "Nation")'", 30);
+                                } 
+                                else if (userType == "region") {
+                                    var t = setTimeout("  window.location.href = '@Url.Action("Index", "Region")'", 30);
+                                } 
+                                else if(userType=="doctor") { 
+                                    var t = setTimeout("  window.location.href = '@Url.Action("Index", "EnterPatInfor")'", 30);
+                                }else{
+                                    var t = setTimeout("  window.location.href = '@Url.Action("Index", "DAccount")'", 30);
+                                }   
+                               /* $.ajax({
                                     url: '@Url.Action("returnSearch", "ViewPatRecord")',
                                     data: { userName: userName },
                                     type: "POST",
@@ -232,7 +244,7 @@ $(function () {
                                                 alert("Error '" + data.Message);
                                         }
                                     }
-                                });
+                                });*/
                             }
                             else {
                             $(".demo").html("抱歉，信息保存出现异常");

@@ -51,7 +51,7 @@
         <li role="presentation" class="active" style="height:50px"><a href="#userManagement" role="tab" data-toggle="tab" style="font-size: 18px;">用户管理</a></li>     
     </ul>
   </div>
-    <div class="tab-content">
+    <div class="tab-content" style="overflow:hidden">
      <div role="tabpanel" class="tab-pane active" id="userManagement">    
      <div style="float:left"><h4 style="width: 120px;margin: 30px -100px 20px 79px;">添加新用户:</h4></div> 
      <div id="newUser">         
@@ -67,7 +67,7 @@
         <input type="submit" id="addUser" value="添加" onclick="addNewAccount()" />          
     </div>
     <div id="existUsers">
-        <h4 style="width: 120px;margin: 30px -100px 20px 79px;">已添加的用户</h4>
+        <h4 style="width: 120px;margin: 10px -100px 10px 79px;">已添加的用户:</h4>
         <table id="usersTable" class="display" cellspacing="0" width="100%"> </table>     
         </div>
     </div>
@@ -94,6 +94,7 @@
             </ul></div>
            <div id="btn"><p><input id="searchPat" type="submit" value="查询病人" onclick="search()"/></p></div>   
            <div id="sidebar">
+           <a class="wbox"></a>
             <table id="patientTable" class="display" cellspacing="0" width="100%">
             </table>
             </div> 
@@ -132,7 +133,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">确认删除下面的账号？</h4>
       </div>
-     <div class="modal-body"><p id="targetId">警告：如果删除该账户，其录入的病人信息也将全部丢失。</p></div>
+     <div class="modal-body"><p id="targetId">警告：如果删除该账户，其相关的全部信息也将全部丢失。</p></div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
         <button type="button" class="btn btn-primary" onclick="deleteAccount()">确认删除</button>
@@ -176,8 +177,8 @@
                     "search": "表内查找:"
                 },
                 "data": datasource,
-                "columns": [{ "title": "用户名", "data": "userName" }, { "title": "密码", "data": "passWord" }, { "title": "医生姓名", "data": "chiefDoctor" }, { "title": "用户类型", "data": "userRole" },
-                { "title": "修改/删除", "data": "id", "render": function (data, type, full) { return "<button type='button' class='btn btn-primary btn-sm'id="+data+" data-toggle='modal' onclick='changeModal(this)'>修改</button> <button type='button' class='btn btn-primary btn-sm'  data-toggle='modal' onclick='deleteModal("+data+")'>删除</button>"; } }]
+                "columns": [{ "title": "用户名", "data": "userName", "width": "20%" }, { "title": "密码", "data": "passWord","width": "20%" }, { "title": "医生姓名", "data": "chiefDoctor" ,"width": "20%"}, { "title": "用户类型", "data": "userRole" ,"width": "20%"},
+                { "title": "修改/删除", "data": "id", "width": "20%","render": function (data, type, full) { return "<button type='button' class='btn btn-primary btn-sm'id="+data+" data-toggle='modal' onclick='changeModal(this)'>修改</button> <button type='button' class='btn btn-primary btn-sm'  data-toggle='modal' onclick='deleteModal("+data+")'>删除</button>"; } }]
             })
         });
     }
@@ -192,12 +193,14 @@
         var sex = $("#sex").val();
         var date = $("#date").val();
         var diagnosis = $("#diagnosis").val();
+        $(".wbox").wBox({title: "提示信息", html: "<div class='demo'><img width='170' height='160' src='"+'@Url.Content("~/Content/images/wait.gif")'+"'/><div class='demo_text'>正在查询中....</div></div>", show: true  });
+                           
         $.ajax({
             url: '@Url.Action("Query", "Region")',
             data: { "name": name, "sex": sex, "date": date, "diagnosis": diagnosis },
             dataType: "json",
             type: "POST"
-        }).done(function (data) {
+        }).done(function (data) {             
             var datasource = data;
             $("#patientTable").dataTable({
                 "bDestroy": true,
@@ -217,8 +220,10 @@
                 },                
                 "data": datasource,
                 "columns": [{ "title": "序号", "data": "ListID", "width": "8%" }, { "title": "姓名", "data": "Name", "width": "10%" }, { "title": "性别", "data": "Sex", "width": "8%" }, { "title": "年龄", "data": "Age", "width": "8%" }, { "title": "头痛类型", "data": "HeadacheStyle" },
-                            { "title": "诊断日期", "data": "Date" },{"title": "详细信息", "data": "PatBasicInforId", "render": function (data, type, full) { return "<a href='/ViewPatRecord/Index/" + data + "'>查看</a>" } }]
-            })
+                            { "title": "诊断日期", "data": "Date" },{"title": "详细信息", "data": "PatBasicInforId", "render": function (data, type, full) { return "<a href='ViewPatRecord/Index/" + data + "'>查看</a>" } }] 
+            });
+            $("#wBox").remove();
+            $("#wBox_overlay").remove();
         });
     }
 
@@ -245,7 +250,6 @@
             }
         });
     }
-
     function changeModal(obj) {
         debugger;
         var targetId = obj.id;

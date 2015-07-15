@@ -16,9 +16,10 @@ namespace HeadacheCDSSWeb.Controllers
         HeadacheModelContainer context = new HeadacheModelContainer();
         VisitDataOperation visitop = new VisitDataOperation();
         [OutputCache(Location=System.Web.UI.OutputCacheLocation.None)]
-        public ActionResult Index(string ID, string userType)
+        public ActionResult Index(string ID)
         {
             string userName = HttpContext.Request.Cookies["username"].Value.ToString();
+            string userType = HttpContext.Request.Cookies["userType"].Value.ToString();
             this.ViewBag.UserName = userName;
             this.TempData["PatID"] = ID;
             this.ViewBag.patId = ID;
@@ -241,7 +242,7 @@ namespace HeadacheCDSSWeb.Controllers
             return RedirectToAction("ContinueVisit", "Diagnosis", new { identity = identity });
         }
 
-        public ActionResult returnSearch(string UserName) {
+       /* public ActionResult returnSearch(string UserName) {
             try
             {
                 var Users = from s in context.RegionalCenterAccountSet.ToList() select s;
@@ -259,7 +260,7 @@ namespace HeadacheCDSSWeb.Controllers
             {
                 return this.Json(new { OK = false, Message = ex.Message });
             }
-        }
+        }*/
         public class QueryCondition{
            public string PID;
            public DateTime StartDate;

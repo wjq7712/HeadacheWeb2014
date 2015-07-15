@@ -377,6 +377,7 @@ input[type="submit"]:active
     margin-left:2%;
     margin-top:10px;
     }
+#patientTable thead th{ text-align:center}
 #patientTable tbody tr {height:50px;}
 #patientTable tbody td,th { text-align:center; font-size:15px;}
 #patientTable_filter{}
@@ -389,7 +390,8 @@ input[type="submit"]:active
     margin-left:8%;
     margin-top:10px;
     }
-#usersTable tbody tr {height:50px;}
+#usersTable thead th{ text-align:center}
+#usersTable tbody tr {height:45px;}
 #usersTable tbody td,th { text-align:center; font-size:15px;}
 #usersTable_filter{}
 .div.dataTables_wrapper {
