@@ -193,7 +193,7 @@
         var sex = $("#sex").val();
         var date = $("#date").val();
         var diagnosis = $("#diagnosis").val();
-        $(".wbox").wBox({title: "提示信息", html: "<div class='demo'><img width='170' height='160' src='"+'@Url.Content("~/Content/images/wait.gif")'+"'/><div class='demo_text'>正在查询中....</div></div>", show: true  });
+        $(".wbox").wBox({title: "查询中", html: "<img width='170' height='160' src='"+'@Url.Content("~/Content/images/wait.gif")'+"'/>", show: true  });
                            
         $.ajax({
             url: '@Url.Action("Query", "Region")',
@@ -220,7 +220,7 @@
                 },                
                 "data": datasource,
                 "columns": [{ "title": "序号", "data": "ListID", "width": "8%" }, { "title": "姓名", "data": "Name", "width": "10%" }, { "title": "性别", "data": "Sex", "width": "8%" }, { "title": "年龄", "data": "Age", "width": "8%" }, { "title": "头痛类型", "data": "HeadacheStyle" },
-                            { "title": "诊断日期", "data": "Date" },{"title": "详细信息", "data": "PatBasicInforId", "render": function (data, type, full) { return "<a href='ViewPatRecord/Index/" + data + "'>查看</a>" } }] 
+                            { "title": "诊断日期", "data": "Date" },{"title": "详细信息", "data": "PatBasicInforId","width": "15%" , "render": function (data, type, full) { return "<a href='ViewPatRecord/Index/" + data + "'>查看</a>" } }] 
             });
             $("#wBox").remove();
             $("#wBox_overlay").remove();

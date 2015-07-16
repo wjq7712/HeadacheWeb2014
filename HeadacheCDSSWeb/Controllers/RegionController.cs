@@ -131,13 +131,68 @@ namespace HeadacheCDSSWeb.Controllers
             RegionViewData regionViewData = new RegionViewData();
            
             var allpats = from s in DataContainer.PatBasicInforSet.ToList() select s;
-            List<string> query = new List<string>();
-            query.Add(name);
-            query.Add(sex);
-            query.Add(date);
-            query.Add(diagnosis);
+            var allvisitRecord= from s in DataContainer.VisitRecordSet.ToList() select s;
             var docnum = SelectedDocs.Count;
-            int i,j;
+
+            List<int> docIDS=new List<int> ();
+            foreach(userInfo doc in SelectedDocs){
+               docIDS.Add(doc.id);
+            }
+            var patlist=allpats.Where(p => docIDS.Contains(p.DoctorAccountId)).ToList();
+            var patinfoList = (from ps in patlist.Where(p =>(string.IsNullOrEmpty(name) ? true : p.Name == name) && (string.IsNullOrEmpty(sex) ? true : p.Sex == sex))
+                              from r in DataContainer.VisitRecordSet.ToList().Where(r => (r.PatBasicInforId == ps.Id) && 
+                             (string.IsNullOrEmpty(diagnosis) ? true : (r.DiagnosisResult1.Contains(diagnosis) || r.DiagnosisResult2.Contains(diagnosis) || r.DiagnosisResult3.Contains(diagnosis)))
+                              && (string.IsNullOrEmpty(date) ? true : r.VisitDate.Date== DateTime.Parse(date)))
+                              select new
+                              {
+                                  Name = ps.Name,
+                                  Sex = ps.Sex,
+                                  Age = ps.Age,
+                                  Date=r.VisitDate,
+                                  DiagnosisResult1 = r.DiagnosisResult1,
+                                  DiagnosisResult2 = r.DiagnosisResult2,
+                                  DiagnosisResult3 = r.DiagnosisResult3,
+                                  PatBasicInforId=ps.Id
+                              }).OrderByDescending(x=>x.Date).DistinctBy(x=>x.PatBasicInforId).ToList();
+            int i = 1;
+            foreach (var patient in patinfoList)
+            {
+                tableData td = new tableData();
+                td.Name = patient.Name;
+                td.Sex = patient.Sex;
+                td.Age = patient.Age;
+                td.ListID = i.ToString();
+                td.Date = patient.Date.ToString("yyyy-MM-dd");
+                td.PatBasicInforId = patient.PatBasicInforId;
+                if (patient.DiagnosisResult1 != null || patient.DiagnosisResult2 != null || patient.DiagnosisResult3 != null)
+                {
+                    if (patient.DiagnosisResult1.Contains("慢性每日头痛"))
+                    {
+                        var style = patient.DiagnosisResult1.Split(new Char[] { ':' });
+                        if (style.Length > 1)
+                        {
+                            td.HeadacheStyle = style[1];
+                        }
+                        else
+                        {
+                            td.HeadacheStyle = patient.DiagnosisResult1 + patient.DiagnosisResult2 + patient.DiagnosisResult3;
+                        }
+                    }
+                    else
+                    {
+                        td.HeadacheStyle = patient.DiagnosisResult1 + patient.DiagnosisResult2 + patient.DiagnosisResult3;
+                    }
+                }
+                i++;
+                patlistforre.Add(td);
+            }
+
+          /* int i,j;
+           List<string> query = new List<string>();
+           query.Add(name);
+           query.Add(sex);
+           query.Add(date);
+           query.Add(diagnosis);
             for (i = 0; i < docnum; i++)
             {
                 string docname = SelectedDocs[i].userName;
@@ -145,14 +200,16 @@ namespace HeadacheCDSSWeb.Controllers
                 var pts= visitop.GetPatforDoc(query);
                 query.Remove(docname);
                 var patnum = pts.Count;
+                
                 for (j = 0; j < patnum; j++)
                 {
                     var patID=pts[j].Id ;
                     var selectedpat = allpats.Where(s => s.Id == patID).FirstOrDefault();
+                    List<string> patientIds = new List<string>();
                     Patlist.Add(selectedpat);
                 }
             }
-            patlistforre = regionViewData.GetPatforView(Patlist);
+            patlistforre = regionViewData.GetPatforView(Patlist);*/
             return Json(patlistforre, JsonRequestBehavior.AllowGet);   
            // return PartialView("PatlistForRe", patlistforre);
         }

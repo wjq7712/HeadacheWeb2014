@@ -82,6 +82,7 @@
     <Compile Include="Controllers\NationController.cs" />
     <Compile Include="Controllers\RegionController.cs" />
     <Compile Include="Controllers\ViewPatRecordController.cs" />
+    <Compile Include="Models\distinct.cs" />
     <Compile Include="Models\Filters\AuthorizeActionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
