@@ -52,11 +52,15 @@ p
 }
 #header a
 {
-   float:right;
-   margin: 70px  25px 0 0 ;
    color:#F0BE72;
 }
-
+#header text
+{
+    font-size:15px;
+    float: right;
+  margin-top: 33px;
+  margin-right: 13px;
+    }
 /* Page */
 
 #page {

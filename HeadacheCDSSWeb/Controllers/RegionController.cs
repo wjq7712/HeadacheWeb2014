@@ -140,7 +140,7 @@ namespace HeadacheCDSSWeb.Controllers
             }
             var patlist=allpats.Where(p => docIDS.Contains(p.DoctorAccountId)).ToList();
             var patinfoList = (from ps in patlist.Where(p =>(string.IsNullOrEmpty(name) ? true : p.Name == name) && (string.IsNullOrEmpty(sex) ? true : p.Sex == sex))
-                              from r in DataContainer.VisitRecordSet.ToList().Where(r => (r.PatBasicInforId == ps.Id) && 
+                               from r in allvisitRecord.Where(r => (r.PatBasicInforId == ps.Id) && 
                              (string.IsNullOrEmpty(diagnosis) ? true : (r.DiagnosisResult1.Contains(diagnosis) || r.DiagnosisResult2.Contains(diagnosis) || r.DiagnosisResult3.Contains(diagnosis)))
                               && (string.IsNullOrEmpty(date) ? true : r.VisitDate.Date== DateTime.Parse(date)))
                               select new

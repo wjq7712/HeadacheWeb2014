@@ -53,7 +53,7 @@
   </div>
     <div class="tab-content" style="overflow:hidden">
      <div role="tabpanel" class="tab-pane active" id="userManagement">    
-     <div style="float:left"><h4 style="width: 120px;margin: 30px -100px 20px 79px;">添加新用户:</h4></div> 
+     <div style="float:left"><h4 style="width: 120px;margin: 30px -100px 20px 79px;">添加新用户</h4></div> 
      <div id="newUser">         
          <ul style="margin-top:-5px">           
             <li style=" float:left"><span class="itemname">用户类型</span><select id="userRole" style="width: 150px;"><option>医生账号</option></select></li>
@@ -67,7 +67,7 @@
         <input type="submit" id="addUser" value="添加" onclick="addNewAccount()" />          
     </div>
     <div id="existUsers">
-        <h4 style="width: 120px;margin: 10px -100px 10px 79px;">已添加的用户:</h4>
+        <h4 style="width: 120px;margin: 10px -100px 10px 79px;">已添加的用户</h4>
         <table id="usersTable" class="display" cellspacing="0" width="100%"> </table>     
         </div>
     </div>
@@ -220,7 +220,7 @@
                 },                
                 "data": datasource,
                 "columns": [{ "title": "序号", "data": "ListID", "width": "8%" }, { "title": "姓名", "data": "Name", "width": "10%" }, { "title": "性别", "data": "Sex", "width": "8%" }, { "title": "年龄", "data": "Age", "width": "8%" }, { "title": "头痛类型", "data": "HeadacheStyle" },
-                            { "title": "诊断日期", "data": "Date" },{"title": "详细信息", "data": "PatBasicInforId","width": "15%" , "render": function (data, type, full) { return "<a href='ViewPatRecord/Index/" + data + "'>查看</a>" } }] 
+                            { "title": "诊断日期", "data": "Date" ,"width": "12%"  },{"title": "详细信息", "data": "PatBasicInforId","width": "12%" , "render": function (data, type, full) { return "<a href='ViewPatRecord/Index/" + data + "'>查看</a>" } }] 
             });
             $("#wBox").remove();
             $("#wBox_overlay").remove();
@@ -258,7 +258,8 @@
         $("#updateuserName").val(tds.eq(0).text());
         $("#updatepassWord").val(tds.eq(1).text());
         $("#updaterealName").val(tds.eq(2).text());
-        $("#uptateuserRole").get(0).value=tds.eq(3).text();
+        if(tds.eq(3).text()=="医生"){
+            $("#uptateuserRole").get(0).selectedIndex =0;}
         $("#changeModal").modal("show");
     }
      function deleteModal(data) {

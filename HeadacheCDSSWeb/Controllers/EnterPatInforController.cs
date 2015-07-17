@@ -12,9 +12,11 @@ namespace HeadacheCDSSWeb.Controllers
     {
         //
         // GET: /EnterPatientInfor/
- 
+        HeadacheModelContainer DataContainer = new HeadacheModelContainer();
         public ActionResult Index()
         {
+            var userName = HttpContext.Request.Cookies["username"].Value.ToString();
+            ViewBag.userName = userName;
             return View();
         }
         [HttpPost]
@@ -60,20 +62,68 @@ namespace HeadacheCDSSWeb.Controllers
         }
         public ActionResult Query()
         {
-
             string patname = Request["name"];
             string patsex = Request["sex"];
             string date = Request["date"];
             string diagnosisresult = Request["diagnosis"];
-            string user = HttpContext.Request.Cookies["username"].Value.ToString(); 
-            List<string> query = new List<string>();
+            string docID = HttpContext.Request.Cookies["userID"].Value.ToString();
+            var allpats = from s in DataContainer.PatBasicInforSet.ToList() select s;
+            var allvisitRecord = from s in DataContainer.VisitRecordSet.ToList() select s;
+            var patlist = allpats.Where(p => docID == p.DoctorAccountId.ToString()).ToList();
+            var recordPats= from ps in patlist                              
+                            from r in allvisitRecord.Where(r => (r.PatBasicInforId == ps.Id)) select ps;
+            var noRecordPats = patlist.Except(recordPats);
+            var patinfoList =(from ps in patlist.Where(p => (string.IsNullOrEmpty(patname) ? true : p.Name == patname) && (string.IsNullOrEmpty(patsex) ? true : p.Sex == patsex))                              
+                              from r in allvisitRecord.Where(r => (r.PatBasicInforId == ps.Id) &&
+                             (string.IsNullOrEmpty(diagnosisresult) ? true : (r.DiagnosisResult1.Contains(diagnosisresult) || r.DiagnosisResult2.Contains(diagnosisresult) || r.DiagnosisResult3.Contains(diagnosisresult)))
+                              && (string.IsNullOrEmpty(date) ? true : r.VisitDate.Date == DateTime.Parse(date)))
+                               select new
+                              {
+                                  Name = ps.Name,
+                                  Sex = ps.Sex,
+                                  Age = ps.Age,
+                                  Date=r.VisitDate,
+                                  Id = ps.Id
+                              }).OrderByDescending(x=>x.Date).DistinctBy(x=>x.Id).ToList();
+            List<PatBasicInfor> pts = new List<PatBasicInfor>();
+            foreach (var pat in patinfoList) {
+                PatBasicInfor pb = new PatBasicInfor();
+                pb.Id = pat.Id;
+                pb.Name = pat.Name;
+                pb.Sex = pat.Sex;
+                pb.Age = pat.Age;
+                pts.Add(pb);
+            }
+            if (string.IsNullOrEmpty(diagnosisresult) && string.IsNullOrEmpty(date))
+            {
+                var patinfoList2 = (from ps in noRecordPats.Where(p => (string.IsNullOrEmpty(patname) ? true : p.Name == patname) && (string.IsNullOrEmpty(patsex) ? true : p.Sex == patsex))
+                                  select new
+                                  {
+                                      Name = ps.Name,
+                                      Sex = ps.Sex,
+                                      Age = ps.Age,
+                                      Id = ps.Id
+                                  }).DistinctBy(x => x.Id).ToList();
+                foreach (var pat in patinfoList2)
+                {
+                    PatBasicInfor pb = new PatBasicInfor();
+                    pb.Id = pat.Id;
+                    pb.Name = pat.Name;
+                    pb.Sex = pat.Sex;
+                    pb.Age = pat.Age;
+                    pts.Add(pb);
+                }
+            } 
+           
+           
+          /*  List<string> query = new List<string>();
             query.Add(patname);
             query.Add(patsex);
             query.Add(date);
             query.Add(diagnosisresult);
             query.Add(user);
             VisitDataOperation visitop = new VisitDataOperation();
-            List<PatBasicInfor> pts = visitop.GetPatforDoc(query);
+            List<PatBasicInfor> pts = visitop.GetPatforDoc(query);*/
             return PartialView("PatList", pts);
         }
 

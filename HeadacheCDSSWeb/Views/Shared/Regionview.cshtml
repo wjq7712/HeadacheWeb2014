@@ -31,8 +31,9 @@
 <body>
     <div id="wrapper">
         <!-- start header -->
-        <div id="header">
-            @Html.ActionLink("退出登录", "index", "DAccount")
+        <div id="header"> 
+        <text>欢迎 <strong>@ViewBag.userName</strong>![ @Html.ActionLink("注销", "index", "DAccount") ]</text>
+           <!-- <p><span>@ViewBag.userName</span>@Html.ActionLink("退出登录", "index", "DAccount")</p> -->
         </div>
         <div class="clear ">
         </div>
